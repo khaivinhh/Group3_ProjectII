@@ -1,0 +1,14 @@
+.main .layouttitle {
+    padding: 5px;
+    width: 95%;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+.main .layouttitle .header span {
+    line-height: 2;
+    font-size: 13px;
+}
+.main .layouttitle .header{
+    padding:15px 0; 
+}

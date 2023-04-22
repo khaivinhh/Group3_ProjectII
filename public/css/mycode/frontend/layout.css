@@ -1,0 +1,110 @@
+header .sidebar_header {
+    display: flex;
+    justify-content: space-around;
+    height: 60px;
+    align-items: center;
+}
+
+header .sidebar_header .left_sidebar_header h1 {
+    display: inline;
+}
+
+header .sidebar_header .left_sidebar_header>* {
+    color: black;
+    text-decoration: none;
+    padding: 0 10px;
+}
+
+header .sidebar_header .right_sidebar_header {
+    display: flex;
+    align-items: center;
+    max-width: 275px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+header .sidebar_header .right_sidebar_header .header_mobie .search {
+    position: relative;
+}
+header .sidebar_header .right_sidebar_header .header_mobie .logo {
+    width: 30px;
+    height: 40px;
+}
+
+header .sidebar_header .right_sidebar_header .header_mobie .search i {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    border-left: 1px solid black;
+    padding: 0 5px;
+}
+
+header .sidebar_header .right_sidebar_header .header_mobie .search input {
+    outline: none;
+    border: none;
+    font-size: 16px;
+    max-width: 120px;
+    padding: 4px 50px 4px 5px;
+    border-bottom: 1px solid black;
+}
+
+header .sidebar_header .right_sidebar_header img,
+header .sidebar_header .right_sidebar_header .fa-bars {
+    display: none;
+    font-size: 30px;
+}
+
+header .sidebar_header .right_sidebar_header a {
+    background-color: #ff416b;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+}
+
+
+
+@media (max-width : 600px) {
+    header .sidebar_header {
+        justify-content: start;
+        height: 100%;
+        top: 0;
+        right: 0;
+        position: fixed;
+        flex-direction: column;
+        background-color: red;
+        width: 250px;
+        right: -100%;
+    }
+
+    header .sidebar_header .left_sidebar_header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    header .sidebar_header .right_sidebar_header .header_mobie {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 0;
+        height: 60px;
+    }
+
+
+    header .sidebar_header .right_sidebar_header img,
+    header .sidebar_header .right_sidebar_header .fa-bars {
+        padding-top: 10px;
+        display: block;
+    }
+
+}
+
+@media (max-width : 830px) {
+    header .sidebar_header .left_sidebar_header h1 {
+        display: none;
+    }
+}

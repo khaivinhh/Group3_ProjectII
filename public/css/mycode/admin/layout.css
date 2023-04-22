@@ -1,0 +1,312 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body{
+    height: 100vh;
+    background-color: #eef1f3;
+}
+li,i,button{
+    cursor: pointer;
+}
+
+/*sidebar*/
+.sidebar {
+    width: 275px;
+    position: fixed;
+    height: 100%;
+    transition: .3s;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 12px 30px rgba(80, 143, 244, .1);
+    overflow-y: auto;
+    z-index: 2;
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.sidebar .btn_collapser {
+    position: fixed;
+    top: 20px;
+    left: 265px;
+    font-size: 20px;
+    transition: .3s;
+}
+.sidebar .menu_icon_close{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+}
+
+.sidebar nav {
+    height: 100%;
+    padding-top:175px;
+    position: relative;
+}
+
+.sidebar .header_sidebar {
+    position: fixed;
+    height: 150px;
+    width: 275px;
+    top: 0;
+    background: url("http://localhost/Group3_ProjectII/public/images/myimg/admin/background-sidebar.jpg");
+    background-position: center;
+    background-size: cover;
+    transition: .3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sidebar .name_user {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.sidebar .logo_user {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.sidebar .header_sidebar span {
+    padding: 10px 0;
+    text-align: center;
+}
+
+.sidebar ul[class="sidebar-menu"] {
+    list-style: none;
+    height: 100%;
+    padding: 0;
+}
+
+.sidebar .sidebar-menu .panel {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #eef1f3;
+    padding: 0 15px 0 45px;
+}
+
+.sidebar .sidebar-menu .panel a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 10px 5px 10px 35px;
+    white-space: nowrap;
+}
+
+.sidebar .sidebar-menu li {
+    cursor: pointer;
+    user-select: none;
+    height: 45px;
+    width: 275px;
+    align-items: center;
+    display: flex;
+}
+.sidebar .sidebar-menu li a {
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    color: black;
+    text-decoration: none;
+}
+
+.sidebar .sidebar-menu li i {
+    font-size: 18px;
+    width: 65px;
+    text-align: center;
+}
+
+.sidebar .sidebar-menu li span {
+    padding-left: 15px;
+}
+
+
+/* main */
+
+.main {
+    width: calc(100% - 275px);
+    float: right;
+    transition: .3s;
+    padding-top: 110px;
+    height: 100%;
+}
+
+.main::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 110px;
+    background-color: #eef1f3;
+    z-index: 0;
+}
+
+.main .tab_header {
+    border-radius: 5px;
+    position: fixed;
+    top: 16px;
+    right: 27px;
+    width: calc(100% - 327px);
+    height: 75px;
+    background-color: #fff;
+    transition: .3s;
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+    z-index: 1;
+}
+
+.main .tab_header .input_search {
+    width: 50%;
+    position: relative;
+}
+
+.main .tab_header .input_search input {
+    font-size: 15px;
+    width: 100%;
+    height: 35px;
+    border-radius: 18px;
+    outline: none;
+    padding: 0 45px 0 20px;
+    border: 1px solid gray;
+}
+
+.main .tab_header .input_search i {
+    position: absolute;
+    right: 16px;
+    top: 8px;
+    font-size: 19px;
+}
+
+.main .tab_header .option{
+    position: relative;
+}
+.main .tab_header .option> i{
+    font-size: 20px;
+    padding: 0 10px;
+}
+
+.main .tab_header .option> div{
+    position: absolute;
+    right: -16%;
+    top: 45px;
+    border: 1px solid #eef1f3;
+    border-radius: 9px;
+    background-color: #eef1f3;
+    display: none;
+}
+
+.main .tab_header .option div a{
+    display: block;
+    padding: 10px 35px;
+    text-decoration: none;
+    color: black;
+    white-space: nowrap;
+}
+
+.main .tab_header .menu_icon_open , .sidebar .menu_icon_close {
+    font-size: 25px;
+    display: none;
+}
+
+
+.main header {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+
+/*responsive*/
+@media screen and (max-width: 980px) {
+    .main .tab_header .option> div{
+        right: -70%;
+    }
+    .main .tab_header .option i:nth-of-type(-n+2) {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .sidebar {
+        left: -100%;
+    }
+
+    .sidebar .btn_collapser {
+        display: none;
+    }
+
+    body .main{
+        width: 100% !important;
+    }
+    body .main .tab_header {
+        width: calc(100% - 55px) !important;
+    }
+
+    .main .tab_header .menu_icon_open , .sidebar .menu_icon_close{
+        display: block;
+    }
+
+    .main .tab_header .logo_brand {
+        display: none;
+    }
+
+}
+
+/*add class*/
+
+/*collapser-sidebar*/
+.logo_user_sidebar {
+    width: 50px !important;
+    height: 50px !important;
+
+}
+
+.name_user_sidebar {
+    display: none;
+}
+
+.btn_collapser_sidebar {
+    left: 55px !important;
+    rotate: 180deg;
+}
+
+.main_sidebar{
+    width: calc(100% - 65px) !important;
+}
+.tab_header_sidebar{
+    width: calc(100% - 124px) !important;
+}
+
+.sidebar_sidebar {
+    width: 65px;
+}
+
+.panel_sidebar {
+    position: fixed;
+    left: 65px;
+    margin-top: -50px;
+}
+
+.header_sidebar_sidebar {
+    width: 65px !important;
+}
+
+/*menu-icon*/
+.sidebar_menu_icon_open {
+    left: 0;
+}
+/*setting_account*/
+.account_setting_setting_account{
+    display: block !important;
+}

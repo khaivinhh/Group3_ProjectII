@@ -1,0 +1,135 @@
+/*edit profile*/
+.main .editprofile {
+    padding: 5px;
+    width: 95%;
+    margin: auto;
+}
+
+.main .editprofile>.informationuser,
+section {
+    margin: 20px 0;
+    padding: 30px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.main .editprofile .informationuser {
+    display: flex;
+    align-items: center;
+}
+
+.main .editprofile .informationuser .imguser {
+    max-width: 350px;
+    position: relative;
+    aspect-ratio: 1/1
+}
+
+.main .editprofile .informationuser .imguser img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.main .editprofile .informationuser .imguser form {
+    position: absolute;
+    right: 0;
+    bottom: 0px;
+}
+
+.main .editprofile .informationuser div p{
+    font-size: 14px;
+    padding:5px 0;
+}
+.main .editprofile .informationuser div:nth-child(2){
+    margin-left: 20px;
+}
+.main .editprofile .informationuser div h1{
+    margin-bottom:15px;
+}
+
+.main .editprofile section p {
+    padding: 10px 0 20px 0;
+    font-size: 14px;
+}
+
+.main .editprofile section form input {
+    font-size: 17px;
+    margin: 5px 0 20px;
+    width: 100%;
+    max-width: 650px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #d7dbdd;
+    outline: none;
+    padding: 0 10px;
+}
+
+.main .editprofile section form .information,
+.main .editprofile section form .updatepassword {
+    width: 85px;
+    height: 35px;
+    border: none;
+    background: black;
+    color: white;
+    border-radius: 3px;
+}
+
+.main .editprofile section form .deleteaccount {
+    color: white;
+    height: 35px;
+    width: 135px;
+    background: red;
+    border: none;
+    border-radius: 3px;
+}
+
+
+.main .editprofile section form #passworderror,
+.main .editprofile section form #passwordincorrect {
+    display: none;
+    padding: 0;
+    margin: -15px 0 10px 5px;
+    color: red;
+}
+
+.image-input {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.image-input input[type=file] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.image-input i {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: #fff;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 720px) {
+    .main .editprofile .informationuser {
+        display: block;
+    }
+    .main .editprofile .informationuser div:nth-child(1){
+        margin: 0 auto;
+    }
+    .main .editprofile .informationuser div:nth-child(2){
+        margin:0;
+        text-align: center;
+
+    }
+
+}
