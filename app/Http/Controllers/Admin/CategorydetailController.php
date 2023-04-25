@@ -18,7 +18,7 @@ class CategorydetailController extends Controller
     {
         $auth = Auth::user();
         $categorydetail = Categorydetail::all();
-        return view('admin/categorydetail/index', compact('auth','categorydetail'));
+        return view('admin/categorydetail/index', compact('auth', 'categorydetail'));
     }
 
     /**
@@ -28,7 +28,7 @@ class CategorydetailController extends Controller
     {
         $auth = Auth::user();
         $category = Category::all();
-        return view('admin/categorydetail/create', compact('auth','category'));
+        return view('admin/categorydetail/create', compact('auth', 'category'));
     }
 
     /**
@@ -44,11 +44,11 @@ class CategorydetailController extends Controller
                 return redirect('/admin/categorydetail/create');
             }
             $imageFile = $file->getClientOriginalName();
-            $file->move('images/myimg/category/product_iphone',$imageFile);
+            $file->move('images/myimg/category/product_iphone', $imageFile);
         } else {
             $imageFile = null;
         }
-        $item['image'] = 'images/myimg/category/product_iphone/'.$imageFile;
+        $item['image'] = 'images/myimg/category/product_iphone/' . $imageFile;
         Categorydetail::create($item);
         return redirect('admin/categorydetail');
     }
@@ -66,7 +66,10 @@ class CategorydetailController extends Controller
      */
     public function edit(Categorydetail $categorydetail)
     {
-        //
+        $auth = Auth::user();
+        $category = Category::all();
+        $categorydt = Categorydetail::all();
+        return view('admin/categorydetail/edit', compact('categorydetail', 'category', 'categorydt', 'auth'));
     }
 
     /**
@@ -74,7 +77,8 @@ class CategorydetailController extends Controller
      */
     public function update(Request $request, Categorydetail $categorydetail)
     {
-        //
+        $categorydetail->update($request->all());
+        return redirect('admin/categorydetail');
     }
 
     /**
@@ -84,5 +88,13 @@ class CategorydetailController extends Controller
     {
         $categorydetail->delete();
         return redirect('admin/categorydetail');
+    }
+    public function searchcategorydetail(Request $request)
+    {
+        $categorydetail = Categorydetail::where('name', 'like', '%' . $request->valuesearch . '%')
+            ->get();
+
+        $auth = Auth::user();
+        return view('admin/categorydetail/index', compact('auth', 'categorydetail'));
     }
 }

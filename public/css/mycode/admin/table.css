@@ -24,9 +24,22 @@
 {
     padding:15px
 }
+.main .layouttitle .body table form {
+    display: inline;
+}
+.main .layouttitle .body table form button {
+    color: red;
+}
+
+
 .main .layouttitle .body table  button{
     background-color: white;
-    color:red;
     border: none;
     font-size: 17px;
+}
+.main .layouttitle .body .option{
+    width: 100px;
+}
+.main .layouttitle .body table  button a{
+    color:blue;
 }

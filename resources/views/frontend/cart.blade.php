@@ -11,7 +11,6 @@
             <th>img</th>
             <th>name</th>
             <th>color</th>
-            <th>ram</th>
             <th>capacity</th>
             <th>quantity</th>
             <th>price</th>
@@ -30,17 +29,16 @@
                 </td>
                 <td>{{$item->product->categorydetails->name}}</td>
                 <td>{{$item->product->colors->name}}</td>
-                <td>{{$item->product->rams->name}}</td>
                 <td>{{$item->product->capacitys->name}}</td>
 
-                
+
 
                 <td><input type="number" value="{{$item->quantity}}" name="qty[]"></td>
                 <td>{{$item->product->price}}</td>
                 <td>
-                        <button type="submit"><a href="{{route('remove_cart',$loop->index)}}">Delete</a></button>
+                    <button type="submit"><a href="{{route('remove_cart',$loop->index)}}">Delete</a></button>
                 </td>
-                
+
                 <td>{{$item->product->price*$item->quantity}}</td>
             </tr>
             @php
@@ -49,12 +47,17 @@
             @endforeach
             @endif
         </tbody>
-        <tfoot></tfoot>
+        <tfoot>
+            <tr>
+                <td>
+                    <h3>Total : {{$total}}</h3>
+                </td>
+            </tr>
+        </tfoot>
     </table>
     <button type="submit">update cart</button>
     <button><a href="{{route('checkout')}}">Check Out</a></button>
 </form>
-<h3>Total : {{$total}}</h3>
 
 
 @endsection

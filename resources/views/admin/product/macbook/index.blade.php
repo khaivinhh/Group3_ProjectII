@@ -9,12 +9,12 @@
 <div class="layouttitle">
     <section class="header">
         <div class="title">
-            <h1>Iphone List</h1>
+            <h1>Macbook List</h1>
             <span>IShopApple Admin Panel</span>
         </div>
     </section>
     <section class=body>
-        <h3>Iphone Lists</h3>
+        <h3>Macbook Lists</h3>
         <hr>
         <table border="1">
             <thead>
@@ -26,13 +26,13 @@
                 <td>capacity</td>
                 <td>price</td>
                 <td>quantity</td>
-                <th><a href="{{route('iphone.create')}}" style="color:blue"><i class="fa-solid fa-plus"></i></a></th>
+                <th><a href="{{route('macbook.create')}}" style="color:green"><i class="fa-solid fa-plus"></i></a></th>
             </thead>
             <tbody>
-                @foreach($product as $item)
+                @foreach($macbook as $item)
                 <tr>
                     <td>{{$item->id}}</td>
-                    <td>{{$item->name}}</td>
+                    <td>{{$item->categorydetails->name}}</td>
                     <td>
                         <img src="{{ asset($item->image) }}" alt=""  style="max-width:10%; height: auto">
                     </td>
@@ -41,15 +41,16 @@
                     <td>{{$item->capacitys->name}}</td>
                     <td>{{$item->price}}$</td>
                     <td>{{$item->quantity}}</td>
-                    <th>
-                        <form action="{{route('iphone.destroy',$item->id)}}" method="post">
+                    <th class="option">
+                        <form action="{{route('macbook.destroy',$item->id)}}" method="post">
                             @csrf
                             @method("DELETE")
                             <button type="submit">
                                 <i class="fa-solid fa-delete-left"></i>
                             </button>
-
                         </form>
+                        <button><a href="{{route('macbook.edit',$item->id)}}"><i class="fa-solid fa-pen-to-square"></i></a></button>
+
                     </th>
                 </tr>
                 @endforeach
@@ -61,4 +62,12 @@
 </div>@endsection
 
 @section('myjs')
+<script>
+    $(document).ready(function() {
+        $('.btn-search').on('click', function() {
+            var valuesearch = $('.valuesearch').val();
+            window.location.href = "{{ route('searchmacbook', ['valuesearch' => 'replacevaluesearch']) }}".replace('replacevaluesearch', valuesearch);
+        });
+    });
+</script>
 @endsection

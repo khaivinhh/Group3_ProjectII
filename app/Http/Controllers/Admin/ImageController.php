@@ -66,7 +66,10 @@ class ImageController extends Controller
      */
     public function edit(Image $image)
     {
-        //
+        $auth = Auth::user();
+        $categorydetail = Categorydetail::all();
+        $color = Color::all();
+        return view('admin/image/edit',compact('image','categorydetail','color','auth'));
     }
 
     /**
@@ -74,7 +77,8 @@ class ImageController extends Controller
      */
     public function update(Request $request, Image $image)
     {
-        //
+        $image->update($request->all());
+        return redirect('admin/image');
     }
 
     /**
@@ -84,5 +88,16 @@ class ImageController extends Controller
     {
         $image->delete();
         return redirect('admin/image');
+    }
+    public function searchimage(Request $request)
+    {
+        $image = Image::leftJoin('categorydetails', 'images.categorydetail_id', '=', 'categorydetails.id')
+            ->select('images.*')
+            ->where('categorydetails.name', 'like', '%' . $request->valuesearch . '%')
+            ->with('categorydetails')
+            ->get();
+
+        $auth = Auth::user();
+        return view('admin/image/index', compact('auth', 'image'));
     }
 }

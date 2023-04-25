@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Categorydetail;
 use App\Models\Iphone;
 use App\Models\Order;
 use App\Models\Product;
@@ -63,5 +65,9 @@ class HomeController extends Controller
     {
         Auth::guard('web')->logout();
         return view('admin/login');
+    }
+    public function test(){
+        $category = Category::all();
+        return view('test',compact('category'));
     }
 }

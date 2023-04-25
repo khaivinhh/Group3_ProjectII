@@ -39,7 +39,7 @@
     @endforeach
     @foreach($appwatch as $item)
     <div class="item" onclick="submitForm('{{$item->id}}','{{$item->category_id}}')">
-        <form id="form-{{ $item->id.'_'.$item->category_id }}" action="{{ route('macbook_detail', $item->id) }}" method="GET">
+        <form id="form-{{ $item->id.'_'.$item->category_id }}" action="{{ route('appwatch_detail', $item->id) }}" method="GET">
             <img src="{{asset($item->image)}}" alt="">
             <h1>{{$item->categorydetails->name}}</h1>
             <h1>{{$item->price}}</h1>

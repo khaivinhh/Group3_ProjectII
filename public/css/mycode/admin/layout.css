@@ -96,10 +96,11 @@ li,i,button{
 }
 
 .sidebar .sidebar-menu .panel a {
+    font-size: 13px;
     display: block;
     color: black;
     text-decoration: none;
-    padding: 10px 5px 10px 35px;
+    padding: 10px 5px 10px 45px;
     white-space: nowrap;
 }
 

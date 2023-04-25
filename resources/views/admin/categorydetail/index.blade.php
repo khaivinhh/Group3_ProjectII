@@ -22,7 +22,7 @@
                 <td>category</td>
                 <td>name</td>
                 <td>image</td>
-                <th><a href="{{route('categorydetail.create')}}" style="color:blue"><i class="fa-solid fa-plus"></i></a></th>
+                <th><a href="{{route('categorydetail.create')}}" style="color:green"><i class="fa-solid fa-plus"></i></a></th>
             </thead>
             <tbody>
                 @foreach($categorydetail as $item)
@@ -31,7 +31,7 @@
                     <td>{{$item->categories->name}}</td>
                     <td>{{$item->name}}</td>
                     <td>
-                        <img src="{{ asset($item->image) }}" style="max-width: 10%; height: auto;">
+                        <img src="{{ asset($item->image) }}" width="50">
                     </td>
                     <th>
                         <form action="{{route('categorydetail.destroy',$item->id)}}" method="post">
@@ -42,6 +42,8 @@
                             </button>
 
                         </form>
+                        <button><a href="{{route('categorydetail.edit',$item->id)}}"><i class="fa-solid fa-pen-to-square"></i></a></button>
+
                     </th>
                 </tr>
                 @endforeach
@@ -53,4 +55,12 @@
 </div>@endsection
 
 @section('myjs')
+<script>
+    $(document).ready(function() {
+        $('.btn-search').on('click', function() {
+            var valuesearch = $('.valuesearch').val();
+            window.location.href = "{{ route('searchcategorydetail', ['valuesearch' => 'replacevaluesearch']) }}".replace('replacevaluesearch', valuesearch);
+        });
+    });
+</script>
 @endsection

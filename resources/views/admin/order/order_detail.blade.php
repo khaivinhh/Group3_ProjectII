@@ -23,12 +23,12 @@
 <div class="layouttitle">
     <section class="header">
         <div class="title">
-            <h1>Image List</h1>
+            <h1>Order Detail List</h1>
             <span>IShopApple Admin Panel</span>
         </div>
     </section>
     <section class=body>
-        <h3>Image Lists</h3>
+        <h3>Order Detail Lists</h3>
         <hr>
         <table border="1">
             <thead>

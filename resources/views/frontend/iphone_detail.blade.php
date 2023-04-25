@@ -37,15 +37,18 @@
 <div class="review">
     <div class="view_review">@foreach($comments as $item)
         <p>name : {{$item->customers->first_name.' '.$item->customers->last_name}}</p>
+        <p>rate : {{$item->rate}}</p>
         <p>{{$item->content}}</p>
         @endforeach
     </div>
+
     <h1>{{$check}}</h1>
     <div class="write_review">
-        <form action="">
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-            <button>submit</button>
-        </form>
+
+
+        <input type="text" id="rate">
+        <textarea id="content" id="" cols="30" rows="10"></textarea>
+        <button class="addreview">submit</button>
     </div>
 </div>
 
@@ -55,30 +58,49 @@
 
 @section('myjs')
 <script>
-    const id = "{{$iphone->id}}";
-    const categoryname = "{{$iphone->categories->name}}";
-    const urladd = "{{route('add_to_cart')}}";
+    const product_id = "{{$iphone->id}}";
+    const category_id = "{{$iphone->categories->id}}";
+    const urladditem = "{{route('add_to_cart')}}";
+    const urladdreview = "{{route('add_review')}}";
+
     $(document).ready(function() {
         $('.addtocart').click(function(e) {
             e.preventDefault();
             let quantity = $('.quantity').val();
             $.ajax({
                 type: 'post',
-                url: urladd,
+                url: urladditem,
                 data: {
-                    id: id,
+                    product_id: product_id,
                     quantity: quantity,
-                    categoryname: categoryname,
+                    category_id: category_id,
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(data) {
                     alert('add to cart successfully !');
-
                 }
             });
-
-
         });
+
+
+        $('.addreview').on('click', function(e) {
+            var rate = $('#rate').val();
+            var content = $('#content').val();
+            $.ajax({
+                type: 'post',
+                url: urladdreview,
+                data: {
+                    rate:rate,
+                    content:content,
+                    product_id: product_id,
+                    category_id: category_id,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    alert('add review successfully !');
+                }
+            });
+        })
     });
 </script>
 @endsection

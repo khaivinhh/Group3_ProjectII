@@ -24,7 +24,7 @@
                 <td>email</td>
                 <td>phone</td>
                 <td>address</td>
-                <th><a href="{{route('customer.create')}}" style="color:blue"><i class="fa-solid fa-plus"></i></a></th>
+                <th><a href="{{route('customer.create')}}" style="color:green"><i class="fa-solid fa-plus"></i></a></th>
             </thead>
             <tbody>
                 @foreach($customer as $item)
@@ -35,16 +35,15 @@
                     <td>{{$item->email}}</td>
                     <td>{{$item->phone}}</td>
                     <td>{{$item->address}}</td>
-                    <th >
+                    <th>
                         <form action="{{route('customer.destroy',$item->id)}}" method="post">
                             @csrf
                             @method("DELETE")
                             <button type="submit">
-                            <i class="fa-solid fa-delete-left"></i>
-
+                                <i class="fa-solid fa-delete-left"></i>
                             </button>
-
                         </form>
+                        <button><a href="{{route('customer.edit',$item->id)}}"><i class="fa-solid fa-pen-to-square"></i></a></button>
                     </th>
                 </tr>
 
@@ -57,4 +56,12 @@
 </div>@endsection
 
 @section('myjs')
+<script>
+    $(document).ready(function() {
+        $('.btn-search').on('click', function() {
+            var valuesearch = $('.valuesearch').val();
+            window.location.href = "{{ route('searchcustomer', ['valuesearch' => 'replacevaluesearch']) }}".replace('replacevaluesearch', valuesearch);
+        });
+    });
+</script>
 @endsection

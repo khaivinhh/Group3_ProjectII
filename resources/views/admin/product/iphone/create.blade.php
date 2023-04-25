@@ -1,6 +1,6 @@
 @extends('admin/layout/layout')
 <link rel="stylesheet" href="{{asset('/css/mycode/admin/layouttitle.css')}}">
-<link rel="stylesheet" href="{{asset('/css/mycode/admin/addiphone.css')}}">
+<link rel="stylesheet" href="{{asset('/css/mycode/admin/add_all_object.css')}}">
 
 @section('mycss')
 @endsection
@@ -14,16 +14,19 @@
         </div>
     </section>
     <section class="body">
-        <h2>Profile Information</h1>
-            <p>Add information name , category , color , ram , capacity , price , quantity of your product.</p>
+        <h2>Iphone Information</h1>
+            <p>Add information name , category , color , ram , capacity , price , quantity of your iphone.</p>
             <form action="{{route('iphone.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
             
                 <div>
-                    <label for="categorydetail_id">Category</label><br>
+                    <label for="categorydetail_id">Category Detail</label><br>
                     <select name="categorydetail_id" id="">
                         @foreach($categorydetail as $item)
+                        @if($item->categories->id == 1)
+
                         <option value="{{$item->id}}">{{$item->name}}</option>
+                        @endif
                         @endforeach
                     </select>
                 </div>

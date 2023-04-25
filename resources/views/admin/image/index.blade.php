@@ -19,10 +19,10 @@
         <table border="1">
             <thead>
                 <td>id</td>
-                <td>category</td>
+                <td>name</td>
                 <td>color</td>
                 <td>img</td>
-                <th><a href="{{route('image.create')}}" style="color:blue"><i class="fa-solid fa-plus"></i></a></th>
+                <th><a href="{{route('image.create')}}" style="color:green"><i class="fa-solid fa-plus"></i></a></th>
             </thead>
             <tbody>
                 @foreach($image as $item)
@@ -42,6 +42,8 @@
                             </button>
 
                         </form>
+                        <button><a href="{{route('image.edit',$item->id)}}"><i class="fa-solid fa-pen-to-square"></i></a></button>
+
                     </th>
                 </tr>
                 @endforeach
@@ -53,4 +55,12 @@
 </div>@endsection
 
 @section('myjs')
+<script>
+    $(document).ready(function() {
+        $('.btn-search').on('click', function() {
+            var valuesearch = $('.valuesearch').val();
+            window.location.href = "{{ route('searchimage', ['valuesearch' => 'replacevaluesearch']) }}".replace('replacevaluesearch', valuesearch);
+        });
+    });
+</script>
 @endsection

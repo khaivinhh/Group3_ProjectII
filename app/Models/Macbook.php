@@ -9,7 +9,7 @@ class Macbook extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
+        'categorydetail_id',
         'category_id',
         'ram_id',
         'color_id',

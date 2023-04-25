@@ -1,6 +1,6 @@
 @extends('admin/layout/layout')
 <link rel="stylesheet" href="{{asset('/css/mycode/admin/layouttitle.css')}}">
-<link rel="stylesheet" href="{{asset('/css/mycode/admin/addiphone.css')}}">
+<link rel="stylesheet" href="{{asset('/css/mycode/admin/add_all_object.css')}}">
 
 @section('mycss')
 @endsection
@@ -9,28 +9,27 @@
 <div class="layouttitle">
     <section class="header">
         <div class="title">
-            <h1>Create New Iphone</h1>
+            <h1>Create New Appwatch</h1>
             <span>IShopApple Admin Panel</span>
         </div>
     </section>
     <section class="body">
-        <h2>Profile Information</h1>
-            <p>Add information name , category , color , ram , capacity , price , quantity of your product.</p>
-            <form action="{{route('iphone.store')}}" method="post" enctype="multipart/form-data">
+        <h2>Appwatch Information</h1>
+            <p>Add information name , category , color , size , capacity , price , quantity of your appwatch.</p>
+            <form action="{{route('appwatch.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
+            
                 <div>
-                    <label for="name">Name</label><br>
-                    <input type="text" name="name" id="name" required>
-                </div>
-                
-                <div>
-                    <label for="category_id">Category</label><br>
-                    <select name="category_id" id="">
-                        @foreach($category as $item)
+                    <label for="categorydetail_id">Category Detail</label><br>
+                    <select name="categorydetail_id" id="">
+                        @foreach($categorydetail as $item)
+                        @if($item->categories->id == 3)
                         <option value="{{$item->id}}">{{$item->name}}</option>
+                        @endif
                         @endforeach
                     </select>
                 </div>
+                <input style="display: none;" type="text" name="category_id" value="3">
                
                 <div>
                 <label for="color_id">Color</label><br>
@@ -41,7 +40,7 @@
                     </select>
                 </div>
                 <div>
-                <label for="size_id">Ram</label><br>
+                <label for="size_id">Size</label><br>
                     <select name="size_id" id="">
                         @foreach($size as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>

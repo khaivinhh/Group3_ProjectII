@@ -23,7 +23,7 @@
 
 <h3>color</h3>
 <select name="color" id="color">
-    @foreach($categorydetail->images->unique('color_id') as $item)
+    @foreach($categorydetail->iphones->unique('color_id') as $item)
     <option value="{{ $item->colors->id }}">
         {{ $item->colors->name }}
     </option>
@@ -86,8 +86,8 @@
         $('.addtocart').click(function(e) {
             e.preventDefault();
             let quantity = 1;
-            let categoryname = "{{$categorydetail->categories->name}}";
-            let cateid = "{{$categorydetail->id}}";
+            let category_id = "{{$categorydetail->categories->id}}";
+            let categorydetail_id = "{{$categorydetail->id}}";
             let color = $('#color').val();
             let ram = $('#ram').val();
             let capacity = $('#capacity').val();
@@ -96,8 +96,8 @@
                 url: urladd,
                 data: {
                     quantity: quantity,
-                    categoryname: categoryname,
-                    categorydetail_id:cateid,
+                    category_id: category_id,
+                    categorydetail_id:categorydetail_id,
                     color:color,
                     ram:ram,
                     capacity:capacity,

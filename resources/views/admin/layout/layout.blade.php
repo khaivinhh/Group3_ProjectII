@@ -57,8 +57,8 @@
                     <span>Category</span>
                 </li>
                 <div class="panel">
-                    <a href="{{route('categorydetail.index')}}">List Category</a>
-                    <a href="{{route('categorydetail.create')}}">Create New Category</a>
+                    <a href="{{route('categorydetail.index')}}">List Category Detail</a>
+                    <a href="{{route('categorydetail.create')}}">Create New Category Detail</a>
                 </div>
 
 
@@ -90,8 +90,8 @@
             <a class="logo_brand" href=""><img src="{{ asset('/images/myimg/logo-apple.png')}}" alt="" width="50px" height="60px"></a>
             <i class="menu_icon_open fa-solid fa-bars"></i>
             <div class="input_search">
-                <input type="text" placeholder="Search ...">
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search ..." class="valuesearch">
+                <i class="btn-search fa-solid fa-magnifying-glass"></i>
             </div>
             <div class="option">
                 <i class="fa-sharp fa-solid fa-message"></i>

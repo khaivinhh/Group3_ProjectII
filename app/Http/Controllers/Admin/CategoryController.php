@@ -15,9 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $auth = Auth::user();
-        $category = Category::all();
-        // return view('admin/category/index', compact('auth','category'));
+      
     }
 
     /**
@@ -34,21 +32,21 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $item = $request->all();
-        if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $ext = $file->getClientOriginalExtension();
-            if ($ext != 'jpg' && $ext != 'png' && $ext != 'jpeg') {
-                return redirect('/admin/category/create');
-            }
-            $imageFile = $file->getClientOriginalName();
-            $file->move('images/myimg/category/product_iphone',$imageFile);
-        } else {
-            $imageFile = null;
-        }
-        $item['image'] = 'images/myimg/category/product_iphone/'.$imageFile;
-        Category::create($item);
-        return redirect('admin/category');
+        // $item = $request->all();
+        // if ($request->hasFile('photo')) {
+        //     $file = $request->file('photo');
+        //     $ext = $file->getClientOriginalExtension();
+        //     if ($ext != 'jpg' && $ext != 'png' && $ext != 'jpeg') {
+        //         return redirect('/admin/category/create');
+        //     }
+        //     $imageFile = $file->getClientOriginalName();
+        //     $file->move('images/myimg/category/product_iphone',$imageFile);
+        // } else {
+        //     $imageFile = null;
+        // }
+        // $item['image'] = 'images/myimg/category/product_iphone/'.$imageFile;
+        // Category::create($item);
+        // return redirect('admin/category');
     }
 
     /**
@@ -80,7 +78,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
-        return redirect('admin/category');
+       
     }
 }

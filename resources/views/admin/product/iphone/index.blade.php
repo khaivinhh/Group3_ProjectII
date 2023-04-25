@@ -26,10 +26,10 @@
                 <td>capacity</td>
                 <td>price</td>
                 <td>quantity</td>
-                <th><a href="{{route('iphone.create')}}" style="color:blue"><i class="fa-solid fa-plus"></i></a></th>
+                <th><a href="{{route('iphone.create')}}" style="color:green"><i class="fa-solid fa-plus"></i></a></th>
             </thead>
             <tbody>
-                @foreach($product as $item)
+                @foreach($iphone as $item)
                 <tr>
                     <td>{{$item->id}}</td>
                     <td>{{$item->categorydetails->name}}</td>
@@ -41,15 +41,16 @@
                     <td>{{$item->capacitys->name}}</td>
                     <td>{{$item->price}}$</td>
                     <td>{{$item->quantity}}</td>
-                    <th>
+                    <th class="option">
                         <form action="{{route('iphone.destroy',$item->id)}}" method="post">
                             @csrf
                             @method("DELETE")
                             <button type="submit">
                                 <i class="fa-solid fa-delete-left"></i>
                             </button>
-
                         </form>
+                        <button><a href="{{route('iphone.edit',$item->id)}}"><i class="fa-solid fa-pen-to-square"></i></a></button>
+
                     </th>
                 </tr>
                 @endforeach
@@ -61,4 +62,12 @@
 </div>@endsection
 
 @section('myjs')
+<script>
+    $(document).ready(function() {
+        $('.btn-search').on('click', function() {
+            var valuesearch = $('.valuesearch').val();
+            window.location.href = "{{ route('searchiphone', ['valuesearch' => 'replacevaluesearch']) }}".replace('replacevaluesearch', valuesearch);
+        });
+    });
+</script>
 @endsection

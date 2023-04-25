@@ -11,6 +11,8 @@ use App\Models\Ram;
 use App\Models\Capacity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class IphoneController extends Controller
 {
@@ -20,8 +22,8 @@ class IphoneController extends Controller
     public function index()
     {
         $auth = Auth::user();
-        $product = Iphone::all();
-        return view('admin/product/iphone/index', compact('auth', 'product'));
+        $iphone = Iphone::all();
+        return view('admin/product/iphone/index', compact('auth', 'iphone'));
     }
 
     /**
@@ -42,7 +44,7 @@ class IphoneController extends Controller
      */
     public function store(Request $request)
     {
-       
+
 
 
         $item = $request->all();
@@ -50,7 +52,7 @@ class IphoneController extends Controller
             $file = $request->file('photo');
             $ext = $file->getClientOriginalExtension();
             if ($ext != 'jpg' && $ext != 'png' && $ext != 'jpeg') {
-                return redirect('/admin/product/create');
+                return redirect('/admin/iphone/create');
             }
             $imageFile = $file->getClientOriginalName();
             $file->move('images/myimg/product_iphone', $imageFile);
@@ -75,7 +77,12 @@ class IphoneController extends Controller
      */
     public function edit(Iphone $iphone)
     {
-        //
+        $auth = Auth::user();
+        $categorydetail = Categorydetail::all();
+        $color = Color::all();
+        $ram = Ram::all();
+        $capacity = Capacity::all();
+        return view('admin/product/iphone/edit', compact('iphone', 'auth', 'categorydetail', 'color', 'ram', 'capacity'));
     }
 
     /**
@@ -83,7 +90,8 @@ class IphoneController extends Controller
      */
     public function update(Request $request, Iphone $iphone)
     {
-        //
+        $iphone->update($request->all());
+        return redirect('admin/iphone');
     }
 
     /**
@@ -93,5 +101,16 @@ class IphoneController extends Controller
     {
         $iphone->delete();
         return redirect('admin/iphone');
+    }
+    public function searchiphone(Request $request)
+    {
+        $iphone = Iphone::leftJoin('categorydetails', 'iphones.categorydetail_id', '=', 'categorydetails.id')
+            ->select('iphones.*')
+            ->where('categorydetails.name', 'like', '%' . $request->valuesearch . '%')
+            ->with('categorydetails')
+            ->get();
+
+        $auth = Auth::user();
+        return view('admin/product/iphone/index', compact('auth', 'iphone'));
     }
 }

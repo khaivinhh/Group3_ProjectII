@@ -1,6 +1,6 @@
 @extends('admin/layout/layout')
 <link rel="stylesheet" href="{{asset('/css/mycode/admin/layouttitle.css')}}">
-<link rel="stylesheet" href="{{asset('/css/mycode/admin/addiphone.css')}}">
+<link rel="stylesheet" href="{{asset('/css/mycode/admin/add_all_object.css')}}">
 
 @section('mycss')
 @endsection
@@ -14,14 +14,14 @@
         </div>
     </section>
     <section class="body">
-        <h2>Profile Information</h1>
-            <p>Add information category , color of your image.</p>
+        <h2>Image Information</h1>
+            <p>Add information category detail , color of your image.</p>
             <form action="{{route('image.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
               
                 
                 <div>
-                    <label for="categorydetail_id">Category</label><br>
+                    <label for="categorydetail_id">Category Detail</label><br>
                     <select name="categorydetail_id" id="">
                         @foreach($categorydetail as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>

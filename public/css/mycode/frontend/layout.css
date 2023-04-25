@@ -1,16 +1,37 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+body {
+    padding-top: 150px;
+    position: relative;
+    min-height: 100vh;
+}
+
 header .sidebar_header {
     display: flex;
     justify-content: space-around;
     height: 60px;
     align-items: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    right: 0;
+    background-color: black;
 }
+
+
 
 header .sidebar_header .left_sidebar_header h1 {
     display: inline;
 }
 
 header .sidebar_header .left_sidebar_header>* {
-    color: black;
+    color: white;
     text-decoration: none;
     padding: 0 10px;
 }
@@ -26,6 +47,7 @@ header .sidebar_header .right_sidebar_header {
 header .sidebar_header .right_sidebar_header .header_mobie .search {
     position: relative;
 }
+
 header .sidebar_header .right_sidebar_header .header_mobie .logo {
     width: 30px;
     height: 40px;
@@ -35,17 +57,20 @@ header .sidebar_header .right_sidebar_header .header_mobie .search i {
     position: absolute;
     right: 5px;
     bottom: 5px;
-    border-left: 1px solid black;
+    border-left: 1px solid rgb(255, 255, 255);
     padding: 0 5px;
+    color: white;
 }
 
 header .sidebar_header .right_sidebar_header .header_mobie .search input {
+    color: white;
+    background-color: black;
     outline: none;
     border: none;
     font-size: 16px;
-    max-width: 120px;
+    max-width: 175px;
     padding: 4px 50px 4px 5px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(255, 255, 255);
 }
 
 header .sidebar_header .right_sidebar_header img,
@@ -64,18 +89,109 @@ header .sidebar_header .right_sidebar_header a {
 
 
 
+
+
+.container {
+    max-width: 1170px;
+    margin: auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+ul {
+    list-style: none;
+}
+
+.footer {
+    margin-top: 100px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: #eee;
+    padding: 70px 0;
+}
+
+.footer-col {
+    width: 25%;
+    padding: 0 15px;
+}
+
+.footer-col h4 {
+    font-size: 18px;
+    color: #000000;
+    text-transform: capitalize;
+    margin-bottom: 35px;
+    font-weight: 500;
+    position: relative;
+}
+
+.footer-col h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background-color: #e91e63;
+    height: 2px;
+    box-sizing: border-box;
+    width: 50px;
+}
+
+.footer-col ul li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    font-size: 16px;
+    text-transform: capitalize;
+    text-decoration: none;
+    font-weight: 300;
+    color: #000000;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    padding-left: 8px;
+}
+
+.footer-col .social-links a {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-color: #000000;
+    margin: 0 10px 10px 0;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    color: #ffffff;
+    transition: all 0.5s ease;
+    border: 1px solid black;
+
+}
+
+.footer-col .social-links a:hover {
+    color: #24262b;
+    background-color: #ffffff;
+}
+
+
 @media (max-width : 600px) {
     header .sidebar_header {
         justify-content: start;
         height: 100%;
         top: 0;
-        right: 0;
+        left: -100%;
         position: fixed;
         flex-direction: column;
         background-color: red;
         width: 250px;
-        right: -100%;
+        /* z-index: 0; */
+
     }
+
 
     header .sidebar_header .left_sidebar_header {
         display: flex;
@@ -87,11 +203,13 @@ header .sidebar_header .right_sidebar_header a {
         width: 100%;
         left: 0;
         top: 0;
+        top: 0;
         display: flex;
         align-items: center;
         justify-content: space-evenly;
         padding: 0;
         height: 60px;
+        background-color: black;
     }
 
 
@@ -99,6 +217,11 @@ header .sidebar_header .right_sidebar_header a {
     header .sidebar_header .right_sidebar_header .fa-bars {
         padding-top: 10px;
         display: block;
+        color: white;
+    }
+
+    .footer-col {
+        width: 100%;
     }
 
 }
@@ -106,5 +229,10 @@ header .sidebar_header .right_sidebar_header a {
 @media (max-width : 830px) {
     header .sidebar_header .left_sidebar_header h1 {
         display: none;
+    }
+
+    .footer-col {
+        width: 50%;
+        margin-bottom: 30px;
     }
 }

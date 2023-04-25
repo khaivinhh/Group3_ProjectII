@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -17,7 +18,7 @@ class CustomerController extends Controller
         $auth = Auth::user();
         $customer = Customer::all();
         // return view('admin/customer/index', ['auth' => $auth ,'customer' => $customer]);
-        return view('admin/customer/index', compact('auth','customer'));
+        return view('admin/customer/index', compact('auth', 'customer'));
     }
 
     /**
@@ -64,7 +65,9 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        $auth = Auth::user();
+
+        return view('admin/customer/edit', compact('customer', 'auth'));
     }
 
     /**
@@ -72,7 +75,8 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+        $customer->update($request->all());
+        return redirect('admin/customer');
     }
 
     /**
@@ -82,5 +86,15 @@ class CustomerController extends Controller
     {
         $customer->delete();
         return redirect('admin/customer');
+    }
+    public function searchcustomer(Request $request)
+    {
+        $fullname = $request->valuesearch;
+        $customer = Customer::where(DB::raw("CONCAT(first_name, ' ', last_name)"), 'like', '%' . $fullname . '%')
+             ->get();
+
+
+        $auth = Auth::user();
+        return view('admin/customer/index', compact('auth', 'customer'));
     }
 }
