@@ -1,0 +1,114 @@
+.title {
+    text-align: center;
+    margin: 45px 0;
+}
+
+.header_link {
+    padding-left: 150px;
+}
+
+.header_link a {
+    text-decoration: none;
+    color: gray;
+}
+
+.header_link .arrow {
+    margin: 0 10px;
+}
+
+.order {
+    display: flex;
+    justify-content: center;
+}
+
+.order hr {
+    margin-top: 5px;
+    max-width: 65px;
+    border: 1px solid;
+}
+
+.order .form .infouser div {
+    margin-top: 25px;
+}
+
+.order .form .infouser div label {
+    font-size: 14px;
+    color: gray;
+}
+
+.order .form .infouser div input,
+.order .form .infouser .f-l-name div input {
+    font-size: 16px;
+    width: 100%;
+    max-width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    border: 2px solid rgb(235, 235, 235);
+    outline: none;
+    border-radius: 2px;
+}
+
+.order .form .infouser .f-l-name {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order .form .infouser .f-l-name div {
+    width: 48%;
+}
+
+.order .form {
+    width: 40%;
+    margin: 0 30px;
+}
+
+.order .infopro {
+    margin: 0 30px;
+    width: 35%;
+    padding: 30px;
+    border: 2px solid rgb(235, 235, 235);
+}
+
+.order .infopro table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+}
+
+
+.order .infopro table thead td ,
+.order .infopro table tfoot td
+{
+    padding: 10px 0;
+    font-size: 15px;
+}
+
+.order .infopro table tbody td {
+    padding: 10px 0;
+    font-size: 13px;
+}
+.order .infopro table tbody tr:first-child td{
+    padding-top: 30px;
+}
+.order .infopro table tbody tr:last-child td{
+    padding-bottom: 30px;
+}
+
+.order .infopro table tr td:last-child{
+    text-align: right;
+}
+
+.order .infopro table thead,
+.order .infopro table tbody,
+.order .infopro table tfoot {
+    border-bottom: 2px solid rgb(235, 235, 235);
+}
+
+.order .infopro button{
+    width: 100%;
+    height: 40px;
+    margin-top: 70px;
+    border: none;
+    background: #5d5dff;
+    color: white
+}

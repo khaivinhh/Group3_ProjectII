@@ -96,6 +96,7 @@ Route::prefix('frontend')->group(function(){
     Route::post('add_to_cart', [CustomerinterfaceController::class,'add_to_cart'])->name('add_to_cart');
     Route::post('update_cart', [CustomerinterfaceController::class,'update_cart'])->name('update_cart');
     Route::get('remove_cart/{index}', [CustomerinterfaceController::class,'remove_cart'])->name('remove_cart');
+    Route::post('check_coupon/{total}', [CustomerinterfaceController::class,'check_coupon'])->name('check_coupon');
     Route::get('place_order', [CustomerinterfaceController::class,'place_order'])->name('place_order');
     Route::post('add_review', [CustomerinterfaceController::class,'add_review'])->name('add_review');
 

@@ -42,11 +42,11 @@ class ImageController extends Controller
             $images = $request->file('images');
             foreach($images as $image){
                 $filename = time() .''. $image->getClientOriginalName();
-                $image->move('images/myimg/image_color/product_iphone',$filename);
+                $image->move('images/myimg/image_color',$filename);
                 $image = new Image();
                 $image->categorydetail_id = $request->categorydetail_id;
                 $image->color_id = $request->color_id;
-                $image->path = 'images/myimg/image_color/product_iphone/'.$filename;
+                $image->path = 'images/myimg/image_color/'.$filename;
                 $image->save();
             }
         }

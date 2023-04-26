@@ -31,7 +31,7 @@
                     <td>{{$item->categorydetails->name}}</td>
                     <td>{{$item->colors->name}}</td>
                     <td>
-                        <img src="{{asset($item->path)}}" alt="" style="max-width:10%; height: auto">
+                        <img src="{{asset($item->path)}}" alt="" width="50">
                     </td>
                     <th>
                         <form action="{{route('image.destroy',$item->id)}}" method="post">

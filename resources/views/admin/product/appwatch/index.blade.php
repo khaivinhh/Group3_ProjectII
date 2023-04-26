@@ -34,7 +34,7 @@
                     <td>{{$item->id}}</td>
                     <td>{{$item->categorydetails->name}}</td>
                     <td>
-                        <img src="{{ asset($item->image) }}" alt=""  style="max-width:10%; height: auto">
+                        <img src="{{ asset($item->image) }}" alt="" width="50">
                     </td>
                     <td>{{$item->colors->name}}</td>
                     <td>{{$item->sizes->name}}</td>

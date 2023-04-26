@@ -10,7 +10,7 @@ class Color extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'image',
+        'code',
     ];
     public function iphons(){//primary key
         return $this->hasMany(Iphone::class,'color_id');

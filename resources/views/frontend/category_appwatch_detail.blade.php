@@ -97,7 +97,7 @@
                 data: {
                     quantity: quantity,
                     category_id: category_id,
-                    categorydetail_id:categorydetailid,
+                    categorydetail_id:categorydetail_id,
                     color:color,
                     size:size,
                     capacity:capacity,

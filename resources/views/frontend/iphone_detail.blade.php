@@ -23,6 +23,7 @@
 @endforeach
 
 <h1>Name : {{$iphone->categorydetails->name}}</h1>
+<h1>id : {{$iphone->id}}</h1>
 <h3>Color : {{$iphone->colors->name}}</h3>
 <h3>Ram : {{$iphone->rams->name}}</h3>
 <h3>Capacity : {{$iphone->capacitys->name}}</h3>

@@ -10,11 +10,13 @@ use App\Models\Macbook;
 use App\Models\Appwatch;
 use App\Models\Categorydetail;
 use App\Models\Comment;
+use App\Models\Discount;
 use App\Models\Iphone;
 use App\Models\Order;
 use App\Models\Orderdetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -122,14 +124,12 @@ class CustomerinterfaceController extends Controller
     {
         if (!($request->session()->has('user'))) {
             return view('frontend/myaccount');
-        }
-        elseif (!($request->session()->has('cart'))) {
+        } elseif (!($request->session()->has('cart'))) {
             return view('frontend/cart');
-
-        }  else {
+        } else {
             $user = $request->session()->get('user');
             $cart = $request->session()->get('cart');
-            if($request->session()->get('cart') == null){
+            if ($request->session()->get('cart') == null) {
                 return view('frontend/cart');
             }
             return view('frontend/checkout', compact('user', 'cart'));
@@ -199,7 +199,7 @@ class CustomerinterfaceController extends Controller
 
 
 
-    public function appwatch_detail(Request $request , $id)
+    public function appwatch_detail(Request $request, $id)
     {
         $appwatch = Appwatch::find($id);
         $comments = Comment::where('category_id', $appwatch->category_id)
@@ -231,7 +231,7 @@ class CustomerinterfaceController extends Controller
 
 
 
-    public function category_detail($id,$category_id)
+    public function category_detail($id, $category_id)
     {
         if ($category_id == 1) {
             $categorydetail = Categorydetail::find($id);
@@ -264,7 +264,7 @@ class CustomerinterfaceController extends Controller
                     $product = $iphones->first();
                 }
             } else {
-                $product = Iphone::find($request->id);
+                $product = Iphone::find($request->product_id);
             }
         } elseif ($request->category_id == 2) {
             if (isset($request->color) && isset($request->ram) && isset($request->capacity)) {
@@ -279,7 +279,7 @@ class CustomerinterfaceController extends Controller
                     $product = $macbooks->first();
                 }
             } else {
-                $product = Macbook::find($request->id);
+                $product = Macbook::find($request->product_id);
             }
         } elseif ($request->category_id == 3) {
             if (isset($request->color) && isset($request->size) && isset($request->capacity)) {
@@ -294,7 +294,7 @@ class CustomerinterfaceController extends Controller
                     $product = $appwatches->first();
                 }
             } else {
-                $product = Appwatch::find($request->id);
+                $product = Appwatch::find($request->product_id);
             }
         }
 
@@ -329,9 +329,14 @@ class CustomerinterfaceController extends Controller
         $quantity = $request->qty;
         if ($request->session()->has('cart')) {
             $cart = $request->session()->get('cart');
-            foreach ($cart as $index => $item) {
-                $item->quantity = $quantity[$index];
+            $count = count($cart);
+         
+            $index = 0;
+            foreach ($cart as $item) {
+                echo $item->quantity = $quantity[$index];
+                $index++;
             }
+
             $request->session()->put('cart', $cart);
             $cart = $request->session()->get('cart');
             return redirect('frontend/cart');
@@ -342,12 +347,28 @@ class CustomerinterfaceController extends Controller
 
     public function remove_cart(Request $request, $index)
     {
+        echo $index;
         $cart = session()->get('cart');
-        if (isset($cart[$index])) {
-            unset($cart[$index]);
-            session()->put('cart', $cart);
-        }
+        unset($cart[$index]);
+        session()->put('cart', $cart);
         return redirect('frontend/cart');
+    }
+
+
+    public function check_coupon(Request $request, $total)
+    {
+        if ($request->session()->has('cart')) {
+            $cart = $request->session()->get('cart');
+            $value = Discount::where('name', $request->name)
+                ->value('value');
+            $newtotal = $total - $total * (floatval(str_replace('%', '', $value)) / 100);
+            if ($newtotal) {
+                return view('frontend/cart', compact('cart', 'newtotal'));
+            } else {
+                return view('frontend/cart');
+            }
+        }
+        return view('frontend/cart');
     }
 
     public function place_order(Request $request)
@@ -385,7 +406,8 @@ class CustomerinterfaceController extends Controller
         }
     }
 
-    public function add_review(Request $request){
+    public function add_review(Request $request)
+    {
         $user = $request->session()->get('user');
         $review = new Comment();
         $review->customer_id = $user->id;

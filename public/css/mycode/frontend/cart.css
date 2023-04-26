@@ -1,0 +1,117 @@
+.title {
+    text-align: center;
+    margin: 45px 0;
+}
+
+.header_link {
+    padding-left: 150px;
+}
+
+.header_link a {
+    text-decoration: none;
+    color: gray;
+}
+
+.header_link .arrow {
+    margin: 0 10px;
+}
+
+.cart {
+    border-collapse: collapse;
+    border: none;
+    margin: auto;
+}
+
+.cart th {
+    padding: 20px 75px;
+    color: gray;
+}
+
+.cart td {
+    padding: 25px 20px;
+    text-align: center;
+}
+
+.cart tbody td:nth-child(1) {
+    width: 1px;
+}
+
+.cart tbody .capacity_color {
+    padding-top: 5px;
+    font-size: 13px;
+    color: gray;
+}
+
+.cart tbody .removeitem {
+    font-size: 25px;
+    text-decoration: none;
+    color: red;
+}
+
+.cart tbody .quantity {
+    border-bottom: 1px solid gray;
+    padding-bottom: 7px;
+    width: max-content;
+    margin: auto;
+}
+
+.cart tbody .quantity input {
+    padding: 0 20px;
+    text-align: center;
+    width: 75px;
+    border: none;
+    font-size: 17px;
+    outline: none;
+}
+
+.cart tbody .quantity span {
+    font-size: 20px;
+    cursor: pointer;
+    user-select: none;
+    padding: 5px;
+
+}
+
+.cart tfoot tr td .total {
+    text-align: right;
+    padding-bottom: 20px;
+}
+
+.cart tfoot tr td .update_cart button {
+    float: right;
+
+}
+
+.cart tfoot tr td .update_cart button {
+    padding: 8px 25px;
+    outline: none;
+    background-color: #5d5dff;
+    color: white;
+    border: none;
+    border-radius: 2px
+}
+
+.cart tfoot tr td .update_cart form {
+    display: inline;
+    float: left;
+}
+
+.cart tfoot tr td .update_cart form input {
+    padding:0 10px;
+    height: 31px;
+    width: 275px;
+    outline: none;
+    border: 1px solid rgb(169, 169, 169);
+
+}
+
+
+.cart tfoot tr td .update_cart form button,
+.cart tfoot tr td .update_cart .submit {
+    margin: 0 10px
+}
+
+.cart tfoot tr td .update_cart button a {
+    text-decoration: none;
+    color: white;
+}

@@ -44,11 +44,11 @@ class CategorydetailController extends Controller
                 return redirect('/admin/categorydetail/create');
             }
             $imageFile = $file->getClientOriginalName();
-            $file->move('images/myimg/category/product_iphone', $imageFile);
+            $file->move('images/myimg/category', $imageFile);
         } else {
             $imageFile = null;
         }
-        $item['image'] = 'images/myimg/category/product_iphone/' . $imageFile;
+        $item['image'] = 'images/myimg/category/' . $imageFile;
         Categorydetail::create($item);
         return redirect('admin/categorydetail');
     }
