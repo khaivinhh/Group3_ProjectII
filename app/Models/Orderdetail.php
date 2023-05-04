@@ -22,4 +22,7 @@ class Orderdetail extends Model
     public function categories(){//foreign key
         return $this->belongsTo(Category::class,'category_id');
     }
+    public function iphones(){//foreign key
+        return $this->belongsTo(Iphone::class,'product_id');
+    }
 }

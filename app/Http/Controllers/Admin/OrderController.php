@@ -7,8 +7,8 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Orderdetail;
-
-
+use App\Models\orderdetailappwatch;
+use App\Models\orderdetailmacbook;
 
 class OrderController extends Controller
 {
@@ -19,7 +19,7 @@ class OrderController extends Controller
     {
         $auth = Auth::user();
         $order = Order::all();
-        return view('admin/order/index', compact('auth','order'));
+        return view('admin/order/index', compact('auth', 'order'));
     }
 
     /**
@@ -44,10 +44,22 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $auth = Auth::user();
-        $orderdetail = Orderdetail::where('order_id',$order->id)
-        ->get();
+        $orderdetail = Orderdetail::where('order_id', $order->id)
+            ->select('*')
+            ->union(
+                orderdetailmacbook::where('order_id', $order->id)
+                    ->select('*')
+            )
+            ->union(
+                orderdetailappwatch::where('order_id', $order->id)
+                    ->select('*')
+            )
+            ->get();
+
+
         $order_id = $order->id;
-        return view('admin/order/order_detail', compact('auth','orderdetail','order_id'));
+        $order_status = $order->status;
+        return view('admin/order/order_detail', compact('auth', 'orderdetail', 'order_id', 'order_status'));
     }
 
     /**

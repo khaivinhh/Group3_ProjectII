@@ -20,11 +20,13 @@
                 @csrf
                 @method("PUT")
 
-
-                
                 <div>
                     <label for="name">Category Detail</label><br>
                     <input type="text" name="name" value="{{$categorydetail->name}}">
+                </div>
+                <div>
+                    <label for="description">Description</label><br>
+                    <textarea name="description" id="" cols="50" rows="10">{{$categorydetail->description}}</textarea>
                 </div>
                 <button id="submit">Update</button>
             </form>

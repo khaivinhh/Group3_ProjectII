@@ -7,11 +7,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="{{asset('/css/mycode/admin/layout.css')}}">
+    <!-- <link rel="stylesheet" href="{{asset('/css/mycode/frontend/bootstrap.min.css')}}"> -->
     @yield('mycss')
     <title>Document</title>
 </head>
 
 <body>
+    <div id="preloader" class="preloader">
+        <div class="animation-preloader">
+            <div class="spinner">
+            </div>
+            <div class="txt-loading">
+
+                <span data-text-preloader="A" class="letters-loading">
+                    A
+                </span>
+                <span data-text-preloader="P" class="letters-loading">
+                    P
+                </span>
+                <span data-text-preloader="P" class="letters-loading">
+                    P
+                </span>
+                <span data-text-preloader="L" class="letters-loading">
+                    L
+                </span>
+                <span data-text-preloader="E" class="letters-loading">
+                    E
+                </span>
+            </div>
+            <p class="text-center">Loading</p>
+        </div>
+        <div class="loader">
+            <div class="row">
+                <div class="col-3 loader-section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-right">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-right">
+                    <div class="bg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <header class="sidebar">
         <nav class="">
@@ -64,7 +106,7 @@
 
                 <li class="accordion">
                     <i class="fa-solid fa-image"></i>
-                     <span>Image</span>
+                    <span>Image</span>
                 </li>
                 <div class="panel">
                     <a href="{{route('image.index')}}">List Image</a>
@@ -122,6 +164,8 @@
 
     <script src="{{asset('/js/mycode/1aa4f49900.js')}}"></script>
     <script src="{{asset('/js/mycode/jquery-3.6.4.min.js')}}"></script>
+    <script src="{{asset('/js/mycode/loader.js')}}"></script>
+
     @yield('myjs')
     <script>
         var acc = document.getElementsByClassName("accordion");
@@ -155,7 +199,6 @@
                 }
             });
         }
-        /////////////////////////////////////////////////////////////////collapser-sidebar
         var sidebar = document.querySelector('.sidebar');
         var header_sidebar = document.querySelector('.header_sidebar');
         var logo_user = document.querySelector('.logo_user');
@@ -183,7 +226,6 @@
 
         });
 
-        ////////////////////////////////////////////////////////////////menu-icon
         var menu_icon_open = document.querySelector('.menu_icon_open');
         menu_icon_open.addEventListener('click', function() {
             sidebar.classList.add('sidebar_menu_icon_open');
@@ -220,7 +262,6 @@
         }
         window.addEventListener('resize', toggleHeaderClass);
         toggleHeaderClass();
-        //////////////////////////////////////////////////////////////////////setting_account
         var setting_account = document.querySelector('.setting_account');
         var account_setting = document.querySelector('.account_setting');
         setting_account.addEventListener('click', function() {

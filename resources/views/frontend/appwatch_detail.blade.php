@@ -25,7 +25,7 @@
 <h1>Name : {{$appwatch->categorydetails->name}}</h1>
 <h3>Color : {{$appwatch->colors->name}}</h3>
 <h3>Size : {{$appwatch->sizes->name}}</h3>
-<h3>Capacity : {{$appwatch->capacitys->name}}</h3>
+<h3>Capacity : {{$appwatch->capacities->name}}</h3>
 <h3>Price : {{$appwatch->price}}</h3>
 <input class="quantity" type="number" max="{{$appwatch->quantity}}">
 <button class="addtocart">Add To Cart</button>

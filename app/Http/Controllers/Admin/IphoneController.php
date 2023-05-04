@@ -104,11 +104,15 @@ class IphoneController extends Controller
     }
     public function searchiphone(Request $request)
     {
-        $iphone = Iphone::leftJoin('categorydetails', 'iphones.categorydetail_id', '=', 'categorydetails.id')
-            ->select('iphones.*')
-            ->where('categorydetails.name', 'like', '%' . $request->valuesearch . '%')
-            ->with('categorydetails')
-            ->get();
+        if (empty($request->valuesearch)) {
+            $iphone = Iphone::with('categorydetails')->get();
+        } else {
+            $iphone = Iphone::leftJoin('categorydetails', 'iphones.categorydetail_id', '=', 'categorydetails.id')
+                ->select('iphones.*')
+                ->where('categorydetails.name', '=', $request->valuesearch)
+                ->with('categorydetails')
+                ->get();
+        }
 
         $auth = Auth::user();
         return view('admin/product/iphone/index', compact('auth', 'iphone'));

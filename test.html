@@ -1,19 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Star rating using pure CSS</title>
     <style>
-        .test{
-            height: 50px;
-            width: 50px;
-            background-color: green ;
+        * {
+            margin: 0;
+            padding: 0;
         }
+
+        .capacities {
+            float: left;
+            height: 46px;
+            padding: 0 10px;
+        }
+        .capacities label {
+            margin-bottom: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            font-size: 30px;
+            display: block;
+            width:auto;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color:rgb(240, 240, 240);
+            border:2px solid  rgb(240, 240, 240);
+        }
+
+        .capacities label {
+    
+        }
+
+        .capacities>input:checked + label {
+            border:2px solid  rgb(125, 125, 255);
+
+        }
+
+      
+
     </style>
 </head>
+
 <body>
-    <div class="test"></div>
+    <div class="capacities">
+        <input type="radio" id="star5" name="capacities" value="5" />
+        <label for="star5" title="text">
+            <span>256GB</span>
+            <span>From $899</span>
+        </label>
+        <input type="radio" id="star4" name="capacities" value="4" />
+        <label for="star4" title="text">
+            <span>256GB</span>
+            <span>From $899</span>
+        </label>
+        <input type="radio" id="star3" name="capacities" value="3" />
+        <label for="star3" title="text">
+            <span>256GB</span>
+            <span>From $899</span>
+        </label>
+        <input type="radio" id="star2" name="capacities" value="2" />
+        <label for="star2" title="text">
+            <span>256GB</span>
+            <span>From $899</span>
+        </label>
+        <input type="radio" id="star1" name="capacities" value="1" />
+        <label for="star1" title="text">
+            <span>256GB</span>
+            <span>From $899</span>
+        </label>
+    </div>
+
+    <input type="radio" name="haha">
+    <input type="radio" name="haha">
+    <input type="radio" name="haha">
+    <input type="radio" name="haha">
+    <input type="radio" name="haha">
 </body>
+
 </html>

@@ -20,7 +20,18 @@ class Iphone extends Model
         'description',
     ];
    
-
+    public function comments()//primary key
+    {
+        return $this->hasMany(Comment::class,'product_id');
+    }
+    public function cartdetails()//primary key
+    {
+        return $this->hasMany(Cartdetail::class,'product_id');
+    }
+    public function orderdetails()//primary key
+    {
+        return $this->hasMany(Orderdetail::class,'product_id');
+    }
 
     public function categories()//foreign key
     {
@@ -34,7 +45,7 @@ class Iphone extends Model
     {
         return $this->belongsTo(Color::class,'color_id');
     }
-    public function capacitys()//foreign key
+    public function capacities()//foreign key
     {
         return $this->belongsTo(Capacity::class,'capacity_id');
     }

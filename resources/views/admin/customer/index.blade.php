@@ -24,7 +24,7 @@
                 <td>email</td>
                 <td>phone</td>
                 <td>address</td>
-                <th><a href="{{route('customer.create')}}" style="color:green"><i class="fa-solid fa-plus"></i></a></th>
+                <th><a href="{{route('customer.create')}}" style="color:lime"><i class="fa-solid fa-plus"></i></a></th>
             </thead>
             <tbody>
                 @foreach($customer as $item)

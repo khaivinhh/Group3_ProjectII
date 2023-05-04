@@ -1,0 +1,148 @@
+.title{
+    padding-left: 50px;
+}
+
+.profile{
+    width: 80%;
+    margin: auto;
+}
+.profile>.informationuser,
+section {
+    margin: 35px 0;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.profile .informationuser {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+
+.profile .informationuser .informationuser_header_right{
+    margin-left:50px;
+}
+.profile .informationuser .header_informationuser_left{
+  
+    position: relative;
+}
+.profile .informationuser .imguser {
+    max-width: 350px;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.profile .informationuser .imguser img {
+    display: block;
+    width: 100%;
+    margin:auto
+}
+
+.profile .informationuser .header_informationuser_left form {
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+}
+
+.profile .informationuser div p {
+    font-size: 14px;
+    padding: 5px 0;
+}
+
+
+
+.profile .informationuser div h1 {
+    margin-bottom: 15px;
+}
+
+.profile section p {
+    padding: 10px 0 20px 0;
+    font-size: 14px;
+}
+
+.profile section form label {
+    font-size: 13px;
+    color: rgb(169, 169, 169);
+
+}
+
+.profile section form input {
+    font-size: 17px;
+    margin: 5px 0 20px;
+    width: 100%;
+    max-width: 650px;
+    height: 40px;
+    padding: 0 10px;
+    outline: none;
+    border-radius: 2px;
+    border: 1px solid rgb(205, 205, 205);
+
+
+}
+
+.profile section form .information,
+.profile section form .updatepassword ,
+.profile section form .sign_out {
+    padding:10px 20px;
+    border: none;
+    background: #5d5dff;
+    color: white;
+    border-radius: 3px;
+}
+
+.profile section form .sign_out {
+    background: red;
+}
+/* .profile section form .deleteaccount {
+    color: white;
+    height: 35px;
+    width: 135px;
+    background: red;
+    border: none;
+    border-radius: 3px;
+} */
+
+
+.profile section form #passworderror,
+.profile section form #passwordincorrect {
+    display: none;
+    padding: 0;
+    margin: -15px 0 10px 5px;
+    color: red;
+}
+
+.image-input {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.image-input input[type=file] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.image-input i {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: #fff;
+    font-size: 20px;
+}
+
+@media (max-width : 750px) {
+    .profile .informationuser {
+        flex-direction: column;
+    }
+}

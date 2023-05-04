@@ -59,10 +59,10 @@
                 <div>
                     <label for="capacity_id">Capacity</label><br>
                     <select name="capacity_id" id="">
-                    <option value="{{$macbook->capacitys->id}}">{{$macbook->capacitys->name}}</option>
+                    <option value="{{$macbook->capacities->id}}">{{$macbook->capacities->name}}</option>
 
                         @foreach($capacity as $item)
-                        @if($item->id != $macbook->capacitys->id)
+                        @if($item->id != $macbook->capacities->id)
 
                         <option value="{{$item->id}}">{{$item->name}}</option>
                         @endif

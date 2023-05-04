@@ -20,4 +20,7 @@ class Comment extends Model
     public function categories(){//primary key
         return $this->belongsTo(Category::class,'category_id');
     }
+    public function iphones(){//primary key
+        return $this->belongsTo(Iphone::class,'product_id');
+    }
 }

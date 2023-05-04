@@ -1,0 +1,230 @@
+.title {
+    padding-left: 50px;
+}
+
+.category_product {
+    display: flex;
+    width: 90%;
+    margin: 50px auto 0;
+}
+
+
+.category_product .image_product {
+    width: 70%;
+    padding: 0 20px;
+    height: max-content;
+}
+
+.category_product .image_product .slick-list {
+    border-radius: 15px;
+}
+
+.category_product .image_product img {
+    width: 100%;
+}
+
+.category_product .image_product .slick-dots {
+    bottom: -40px;
+}
+
+.category_product .image_product .slick-dots li button:before {
+    font-size: 22px !important;
+}
+
+.category_product .information_product .name {
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.category_product .information_product .capacity,
+.category_product .information_product .name_color {
+    margin-bottom: 10px;
+
+}
+
+.category_product .information_product .colors {
+    float: left;
+    height: 46px;
+}
+
+.category_product .information_product .colors input {
+    display: none;
+}
+
+.category_product .information_product .colors label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ccc;
+    border: 3px solid white;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+    user-select: none;
+}
+
+.category_product .information_product .colors>input:checked+label {
+    outline: 1px solid;
+}
+
+.category_product .information_product .addtocart {
+    display: block;
+    padding: 10px 20px;
+    border: none;
+    background-color: #a0a0ff;
+    color: white;
+    border-radius: 2px
+}
+
+
+.category_product .information_product .name_capacity{
+    clear:both;
+    margin-bottom:10px;
+}
+
+.category_product .information_product .capacities label {
+    cursor: pointer;
+    font-size: 30px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color:rgb(245, 245, 245);
+    border:2px solid  rgb(245, 245, 245);
+    display: flex;
+    align-items: center;
+    user-select:none;
+    margin-bottom: 15px;
+    width: 225px;
+}
+
+.category_product .information_product .capacities label span:first-child {
+    width: 50%;
+    font-size: 18px;
+}
+.category_product .information_product .capacities label span:last-child {
+    text-align:end;
+    font-size: 13px;
+    width: 50%;
+
+}
+
+.category_product .information_product .capacities input {
+    display: none;
+
+}
+
+.category_product .information_product .capacities>input:checked + label {
+    border:2px solid  rgb(125, 125, 255);
+
+}
+
+.discription ,
+.all_category{
+    display: block;
+    width: 80%;
+    margin: 150px auto 0;
+}
+.discription h1 ,
+.all_category h1{
+    text-align:center;
+}
+
+
+.all_category .tabcontent {
+    margin-top: 50px;
+    padding: 0 100px;
+}
+.all_category .tabcontent .slick-arrow{
+    background-color:#dee2e6;
+    top:17%;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%
+}
+.all_category .tabcontent .slick-next{
+    right: 0;
+}
+.all_category .tabcontent .slick-prev{
+    left: 0;
+}
+
+.all_category .tabcontent .item {
+    text-align: center;
+}
+
+.all_category .tabcontent .item .name {
+    font-size: 17px;
+}
+
+.all_category .tabcontent .item .price {
+    font-size: 14px;
+}
+
+.all_category .tabcontent .item .buy a {
+    display: inherit;
+}
+
+.all_category .tabcontent .item .buy a i{
+    font-weight: 750;
+    font-size: 12px;
+}
+
+.all_category .tabcontent .item .buy a:first-child {
+    display: inline-block;
+    padding: 4px 10px;
+    background: #5d5dff;
+    color: white;
+    border-radius: 999px;
+    margin-top: 25px;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.all_category .tabcontent .item .buy a:last-child {
+    font-size: 14px;
+    margin-top: 7px;
+}
+
+.all_category .tabcontent .item .color {
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+}
+
+.all_category .tabcontent .item .color p {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 2px;
+}
+
+.all_category .tabcontent .item a img {
+    width: 100%;
+    margin: auto;
+}
+
+.all_category .tabcontent hr {
+    width: 80%;
+    margin: 50px auto;
+}
+
+
+@media (max-width:1000px){
+    .category_product{
+        flex-direction:column;
+    }
+
+    .category_product .image_product{
+        width: 100%;
+        padding:0
+    }
+    .all_category .title{
+        padding: 0;
+    }
+    .all_category .tabcontent{
+        padding:0 50px;
+    }
+}

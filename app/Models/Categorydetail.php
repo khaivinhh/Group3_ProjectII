@@ -12,6 +12,7 @@ class Categorydetail extends Model
         'category_id',
         'name',
         'image',
+        'description',
     ];
 
     public function images(){//primary key

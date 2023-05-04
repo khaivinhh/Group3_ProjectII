@@ -25,7 +25,7 @@
 <h1>Name : {{$macbook->categorydetails->name}}</h1>
 <h3>Color : {{$macbook->colors->name}}</h3>
 <h3>Ram : {{$macbook->rams->name}}</h3>
-<h3>Capacity : {{$macbook->capacitys->name}}</h3>
+<h3>Capacity : {{$macbook->capacities->name}}</h3>
 <h3>Price : {{$macbook->price}}</h3>
 <input class="quantity" type="number" max="{{$macbook->quantity}}">
 <button class="addtocart">Add To Cart</button>

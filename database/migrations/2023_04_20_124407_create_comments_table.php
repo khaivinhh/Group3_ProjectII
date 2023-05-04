@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('category_id');
-            $table->integer('product_id');
+            $table->unsignedBigInteger('product_id');
             $table->integer('rate');
             $table->text('content');
             $table->timestamps();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('iphones')->onDelete('cascade');
         });
     }
 

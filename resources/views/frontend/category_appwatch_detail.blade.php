@@ -44,8 +44,8 @@
 <h3>capacity</h3>
 <select name="capacity" id="capacity">
     @foreach($categorydetail->appwatchs->unique('capacity_id') as $item)
-    <option value="{{ $item->capacitys->id }}">
-        {{ $item->capacitys->name }}
+    <option value="{{ $item->capacities->id }}">
+        {{ $item->capacities->name }}
     </option>
     @endforeach
 </select>

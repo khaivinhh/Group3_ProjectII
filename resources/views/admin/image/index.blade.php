@@ -22,7 +22,7 @@
                 <td>name</td>
                 <td>color</td>
                 <td>img</td>
-                <th><a href="{{route('image.create')}}" style="color:green"><i class="fa-solid fa-plus"></i></a></th>
+                <th><a href="{{route('image.create')}}" style="color:lime"><i class="fa-solid fa-plus"></i></a></th>
             </thead>
             <tbody>
                 @foreach($image as $item)

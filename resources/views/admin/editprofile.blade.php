@@ -118,7 +118,7 @@
                 success: function(data) {
                     $('#nameform1').val(data.name);
                     $('#emailform1').val(data.email);
-                    $('.name_user').text(data.name);
+                    // $('.name_user').text(data.name);
                 }
             });
         });

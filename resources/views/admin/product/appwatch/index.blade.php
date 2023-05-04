@@ -26,7 +26,7 @@
                 <td>capacity</td>
                 <td>price</td>
                 <td>quantity</td>
-                <th><a href="{{route('appwatch.create')}}" style="color:green"><i class="fa-solid fa-plus"></i></a></th>
+                <th><a href="{{route('appwatch.create')}}" style="color:lime"><i class="fa-solid fa-plus"></i></a></th>
             </thead>
             <tbody>
                 @foreach($appwatch as $item)
@@ -38,7 +38,7 @@
                     </td>
                     <td>{{$item->colors->name}}</td>
                     <td>{{$item->sizes->name}}</td>
-                    <td>{{$item->capacitys->name}}</td>
+                    <td>{{$item->capacities->name}}</td>
                     <td>{{$item->price}}$</td>
                     <td>{{$item->quantity}}</td>
                     <th class="option">

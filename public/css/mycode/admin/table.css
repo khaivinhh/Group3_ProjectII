@@ -43,3 +43,15 @@
 .main .layouttitle .body table  button a{
     color:blue;
 }
+.main .layouttitle .body table tbody .success{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(47, 255, 89);
+}
+.main .layouttitle .body table tbody .processing{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: red;
+}

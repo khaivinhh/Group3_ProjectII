@@ -6,31 +6,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('/css/mycode/frontend/layout.css')}}">
-
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/slick.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/slick-theme.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/bootstrap.min.css')}}">
+    <link rel="icon" type="image/x-icon" href="{{asset('images/myimg/OIP-removebg-preview.png')}}">
 
     @yield('mycss')
-    <title>Document</title>
+
+    <title>IShopApple</title>
 </head>
 
 <body>
+    <div id="preloader" class="preloader">
+        <div class="animation-preloader">
+            <div class="spinner">
+            </div>
+            <div class="txt-loading">
+
+                <span data-text-preloader="A" class="letters-loading">
+                    A
+                </span>
+                <span data-text-preloader="P" class="letters-loading">
+                    P
+                </span>
+                <span data-text-preloader="P" class="letters-loading">
+                    P
+                </span>
+                <span data-text-preloader="L" class="letters-loading">
+                    L
+                </span>
+                <span data-text-preloader="E" class="letters-loading">
+                    E
+                </span>
+            </div>
+            <p class="text-center">Loading</p>
+        </div>
+        <div class="loader">
+            <div class="row">
+                <div class="col-3 loader-section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-right">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-right">
+                    <div class="bg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <header>
         <nav class="sidebar_header">
             <div class="left_sidebar_header">
                 <h1>IShopApple</h1>
                 <a href="{{route('home')}}">Home</a>
-                <a href="{{route('shop')}}">Shop</a>
+                <a href="{{route('shop',1)}}">Shop</a>
                 <a href="{{route('about')}}">About</a>
                 <a href="{{route('contact')}}">Contact</a>
                 <a href="{{route('cart')}}">Cart</a>
             </div>
             <div class="right_sidebar_header">
                 <div class="header_mobie">
-                    <img class="logo" src="" alt="">
+                    <img class="logo" src="{{asset('images/myimg/OIP.jpg')}}" alt="">
                     <div class="search">
-                        <input type="text" placeholder="search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <form class="search_by_name" action="search_by_name">
+                            <input type="text" placeholder="search" name="name">
+                            <i class="btn_search fa-solid fa-magnifying-glass"></i>
+                        </form>
                     </div>
                     <i class="fa-solid fa-bars"></i>
                 </div>
@@ -45,7 +90,7 @@
     </main>
     <footer class="footer">
         <div class="container">
-            <div class="row">
+            <div class="row_flex">
                 <div class="footer-col">
                     <h4>company</h4>
                     <ul>
@@ -87,9 +132,15 @@
         </div>
     </footer>
 </body>
+
 <script src="{{asset('/js/mycode/1aa4f49900.js')}}"></script>
 <script src="{{asset('/js/mycode/jquery-3.6.4.min.js')}}"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="{{asset('/js/mycode/slick.min.js')}}"></script>
+<script src="{{asset('/js/mycode/loader.js')}}"></script>
 @yield('myjs')
-
+<script>
+    $('.btn_search').on('click',function(){
+        $('.search_by_name').submit();
+    })
+</script>
 </html>

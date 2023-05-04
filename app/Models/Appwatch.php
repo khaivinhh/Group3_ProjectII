@@ -21,6 +21,18 @@ class Appwatch extends Model
     ];
    
 
+    public function comments()//primary key
+    {
+        return $this->hasMany(commentappwatch::class,'product_id');
+    }
+    public function cartdetails()//primary key
+    {
+        return $this->hasMany(cartdetailappwatch::class,'product_id');
+    }
+    public function orderdetails()//primary key
+    {
+        return $this->hasMany(orderdetailappwatch::class,'product_id');
+    }
 
     public function categories()//foreign key
     {
@@ -34,7 +46,7 @@ class Appwatch extends Model
     {
         return $this->belongsTo(Color::class,'color_id');
     }
-    public function capacitys()//foreign key
+    public function capacities()//foreign key
     {
         return $this->belongsTo(Capacity::class,'capacity_id');
     }

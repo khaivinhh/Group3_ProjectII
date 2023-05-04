@@ -1,25 +1,15 @@
-.title {
-    text-align: center;
-    margin: 45px 0;
+.title{
+    padding-left: 50px;
 }
 
-.header_link {
-    padding-left: 150px;
+main{
+    overflow:auto;
 }
-
-.header_link a {
-    text-decoration: none;
-    color: gray;
-}
-
-.header_link .arrow {
-    margin: 0 10px;
-}
-
 .cart {
     border-collapse: collapse;
     border: none;
     margin: auto;
+    margin-top: 50px;
 }
 
 .cart th {
@@ -91,7 +81,7 @@
     border-radius: 2px
 }
 
-.cart tfoot tr td .update_cart form {
+/* .cart tfoot tr td .update_cart form {
     display: inline;
     float: left;
 }
@@ -105,11 +95,10 @@
 
 }
 
-
-.cart tfoot tr td .update_cart form button,
+*/
 .cart tfoot tr td .update_cart .submit {
     margin: 0 10px
-}
+} 
 
 .cart tfoot tr td .update_cart button a {
     text-decoration: none;

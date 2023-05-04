@@ -31,6 +31,10 @@
                 </select>
             </div>
             <div>
+                <label for="description">Description</label><br>
+                <textarea name="description" id="" cols="50" rows="10"></textarea>
+            </div>
+            <div>
                 <label for="photo">Image</label><br>
                 <input type="file" name="photo" id="photo" required>
             </div>

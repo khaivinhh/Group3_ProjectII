@@ -5,12 +5,12 @@
 @endsection
 
 @section('contents')
-<div class="header_link">
+<div class="title">
+    <h1>Account</h1>
     <a href="">Home</a>
-    <span class="arrow">></span>
-    <span>Account</span>
+    <span>/</span>
+    <a href="">Account</a>
 </div>
-<h1 class="title">Account</h1>
 <div class="myaccount">
 
     <form action="{{route('signin_user')}}" method="post">

@@ -22,7 +22,7 @@
                 <td>category</td>
                 <td>name</td>
                 <td>image</td>
-                <th><a href="{{route('categorydetail.create')}}" style="color:green"><i class="fa-solid fa-plus"></i></a></th>
+                <th><a href="{{route('categorydetail.create')}}" style="color:lime"><i class="fa-solid fa-plus"></i></a></th>
             </thead>
             <tbody>
                 @foreach($categorydetail as $item)

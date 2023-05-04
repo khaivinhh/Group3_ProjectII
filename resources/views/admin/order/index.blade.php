@@ -32,10 +32,16 @@
                 <tr>
                     <td>{{$item->id}}</td>
                     <td>{{$item->customer_id}}</td>
-                    <td><img src="{{asset($item->image)}}" alt="" width="50" height="50" style="border-radius:50%"></td>
+                    <td><img src="{{asset($item->customers->image)}}" alt="" width="50" height="50" style="border-radius:50%"></td>
                     <td>{{$item->address}}</td>
                     <td>{{$item->date}}</td>
-                    <td>{{$item->status}}</td>
+                    <td>
+                        @if($item->status == 'success')
+                        <div class="success"></div>
+                        @else
+                        <div class="processing"></div>
+                        @endif
+                    </td>
                     <td>${{$item->total}}</td>
                     <th>
                         <form action="{{route('order.destroy',$item->id)}}" method="post" style="display:inline">

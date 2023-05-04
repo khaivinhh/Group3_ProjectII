@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Appwatch;
 use App\Models\Category;
 use App\Models\Categorydetail;
 use App\Models\Iphone;
+use App\Models\Cart;
+use App\Models\Cartdetail;
+use App\Models\Discount;
+use App\Models\Macbook;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -51,23 +56,90 @@ class HomeController extends Controller
         $createdAt = $auth->created_at->format('d/m/Y H:i:s');
         $updatedAt = $auth->updated_at->format('d/m/Y H:i:s');
         // return view('admin/editprofile', ['auth' => $auth, 'createdAt' => $createdAt, 'updatedAt' => $updatedAt]);
-        return view('admin/editprofile', compact('auth','createdAt','updatedAt'));
+        return view('admin/editprofile', compact('auth', 'createdAt', 'updatedAt'));
     }
 
-    public function confirm_order($order_id){
-        $order = Order::findOrFail($order_id); // Tìm đơn hàng tương ứng với order_id
-        $order->status = 'success'; // Cập nhật giá trị status
-        $order->save(); // Lưu thay đổi vào cơ sở dữ liệu
+    public function confirm_order(Request $request, $order_id)
+    {
+
+
+        $order = Order::findOrFail($order_id);
+        $order->status = 'success';
+        $order->save();
+
+
+
+
+        $user = $request->session()->get('user');
+        $cart_product = $request->session()->get('cart_copy');
+
+        if (isset($cart_product['discount_code'])) {
+            $discount = Discount::where('name', $cart_product['discount_code'])->first();
+            if ($discount) {
+                $discount->count -= 1;
+                $discount->save();
+            }
+        }
+
+
+        unset($cart_product['discount_code']);
+        session()->put('cart_copy', $cart_product);
+
+
+
+
+        $cart = new Cart();
+        $cart->customer_id = $user->id;
+        $cart->save();
+
+        foreach ($cart_product as $item) {
+            if ($item->product->category_id == 1) {
+                $cartdetail = new Cartdetail();
+                $cartdetail->cart_id = $cart->id;
+                $cartdetail->category_id = $item->product->category_id;
+                $cartdetail->product_id = $item->product->id;
+                $cartdetail->quantity = $item->quantity;
+                $cartdetail->save();
+            } elseif ($item->product->category_id == 2) {
+            } elseif ($item->product->category_id == 3) {
+            }
+
+            $iphone = Iphone::where('id', $item->product->id)
+                ->where('category_id', $item->product->category_id)
+                ->first();
+            $macbook = Macbook::where('id', $item->product->id)
+                ->where('category_id', $item->product->category_id)
+                ->first();
+            $appwatch = Appwatch::where('id', $item->product->id)
+                ->where('category_id', $item->product->category_id)
+                ->first();
+            if ($iphone) {
+                $iphone->quantity -= $item->quantity;
+                $iphone->save();
+            }
+            if ($macbook) {
+
+                $macbook->quantity -= $item->quantity;
+                $macbook->save();
+            }
+            if ($appwatch) {
+
+                $appwatch->quantity -= $item->quantity;
+                $appwatch->save();
+            }
+        }
+        $request->session()->forget('cart_copy');
         return redirect('admin/order');
     }
-    
+
     public function logout()
     {
         Auth::guard('web')->logout();
         return view('admin/login');
     }
-    public function test(){
+    public function test()
+    {
         $category = Category::all();
-        return view('test',compact('category'));
+        return view('test', compact('category'));
     }
 }

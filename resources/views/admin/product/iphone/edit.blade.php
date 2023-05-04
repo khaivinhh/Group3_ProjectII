@@ -22,8 +22,10 @@
                 <div>
                     <label for="categorydetail_id">Category</label><br>
                     <select name="categorydetail_id" id="">
+                    <option value="{{$iphone->categorydetails->id}}">{{$iphone->categorydetails->name}}</option>
+    
                         @foreach($categorydetail as $item)
-                        @if($item->categories->id == 1)
+                        @if($item->id != $iphone->categorydetails->id)
                         <option value="{{$item->id}}">{{$item->name}}</option>
                         @endif
                         @endforeach
@@ -59,10 +61,10 @@
                 <div>
                     <label for="capacity_id">Capacity</label><br>
                     <select name="capacity_id" id="">
-                    <option value="{{$iphone->capacitys->id}}">{{$iphone->capacitys->name}}</option>
+                    <option value="{{$iphone->capacities->id}}">{{$iphone->capacities->name}}</option>
 
                         @foreach($capacity as $item)
-                        @if($item->id != $iphone->capacitys->id)
+                        @if($item->id != $iphone->capacities->id)
 
                         <option value="{{$item->id}}">{{$item->name}}</option>
                         @endif
@@ -83,7 +85,7 @@
                     <textarea name="description" id="" cols="50" rows="10">{{$iphone->description}}</textarea>
                 </div>
 
-                <button type="submit" style="margin-top:10px">Update</button>
+                <button type="submit">Update</button>
             </form>
     </section>
 

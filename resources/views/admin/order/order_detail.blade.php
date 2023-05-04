@@ -38,7 +38,9 @@
                 <td>product_id</td>
                 <td>quantity</td>
                 <td>price</td>
+                @if($order_status == 'processing')
                 <th>action</th>
+                @endif
             </thead>
             <tbody>
                 @foreach($orderdetail as $item)
@@ -49,6 +51,7 @@
                     <td>{{$item->product_id}}</td>
                     <td>{{$item->quantity}}</td>
                     <td>${{$item->price}}</td>
+                    @if($order_status == 'processing')
                     <th>
                         <form action="{{route('orderdetail.destroy',$item->id)}}" method="post" style="display:inline">
                             @csrf
@@ -58,13 +61,16 @@
                             </button>
                         </form>
                     </th>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>
             <tfoot>
             </tfoot>
         </table>
+        @if($order_status == 'processing')
         <button class="confirm"><a href="{{route('confirm_order',$order_id)}}">confirm</a></button>
+        @endif
     </section>
 
 </div>@endsection

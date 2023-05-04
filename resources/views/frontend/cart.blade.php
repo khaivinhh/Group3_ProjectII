@@ -5,12 +5,12 @@
 @endsection
 
 @section('contents')
-<div class="header_link">
+<div class="title">
+    <h1>Cart</h1>
     <a href="">Home</a>
-    <span class="arrow">></span>
-    <span>Cart</span>
+    <span>/</span>
+    <a href="">Cart</a>
 </div>
-<h1 class="title">Cart</h1>
 <table border="1" class="cart">
     <thead>
         <th colspan="2">PRODUCT</th>
@@ -34,7 +34,7 @@
                 </td>
                 <td>
                     <p>{{$item->product->categorydetails->name}}</p>
-                    <p class="capacity_color">{{$item->product->rams->name}} /{{$item->product->capacitys->name}} / {{$item->product->colors->name}}</p>
+                    <p class="capacity_color">{{$item->product->rams->name}} /{{$item->product->capacities->name}} / {{$item->product->colors->name}}</p>
                 </td>
 
                 <td>${{$item->product->price}}</td>
@@ -64,19 +64,9 @@
     <tfoot>
         <tr>
             <td colspan="6">
-                @if(isset($newtotal))
-                <h2 class="total">Total Price :${{$newtotal}}</h2>
-                @else
                 <h2 class="total">Total Price :${{$total}}</h1>
-                    @endif
                     <div class="update_cart">
-                        <form action="{{route('check_coupon',$total)}}" method="POST">
-                            @csrf
-                            <input type="text" name="name" placeholder="Enter your coupon code if you have one">
-                            <button type="submit">Coupon</button>
-                        </form>
                         <button><a href="{{route('checkout')}}">Check Out</a></button>
-
                         <button class="submit">Update Cart</button>
                     </div>
 

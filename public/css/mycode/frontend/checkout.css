@@ -1,24 +1,19 @@
 .title {
-    text-align: center;
-    margin: 45px 0;
+    padding-left: 50px;
 }
 
-.header_link {
-    padding-left: 150px;
-}
-
-.header_link a {
-    text-decoration: none;
-    color: gray;
-}
-
-.header_link .arrow {
-    margin: 0 10px;
+.title h1 {
+    margin-top: 0;
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    font-size: 2.5em;
 }
 
 .order {
     display: flex;
     justify-content: center;
+    margin-top: 50px;
 }
 
 .order hr {
@@ -43,7 +38,7 @@
     max-width: 100%;
     height: 40px;
     padding: 0 10px;
-    border: 2px solid rgb(235, 235, 235);
+    border: 1px solid rgb(205, 205, 205);
     outline: none;
     border-radius: 2px;
 }
@@ -64,9 +59,9 @@
 
 .order .infopro {
     margin: 0 30px;
-    width: 35%;
+    width: 30%;
     padding: 30px;
-    border: 2px solid rgb(235, 235, 235);
+    border: 1px solid rgb(205, 205, 205);
 }
 
 .order .infopro table {
@@ -76,9 +71,8 @@
 }
 
 
-.order .infopro table thead td ,
-.order .infopro table tfoot td
-{
+.order .infopro table thead td,
+.order .infopro table tfoot td {
     padding: 10px 0;
     font-size: 15px;
 }
@@ -87,28 +81,88 @@
     padding: 10px 0;
     font-size: 13px;
 }
-.order .infopro table tbody tr:first-child td{
+
+.order .infopro table tbody tr:first-child td {
     padding-top: 30px;
 }
-.order .infopro table tbody tr:last-child td{
+
+.order .infopro table tbody tr:last-child td {
     padding-bottom: 30px;
 }
 
-.order .infopro table tr td:last-child{
+.order .infopro table tr td:last-child {
     text-align: right;
 }
 
 .order .infopro table thead,
 .order .infopro table tbody,
 .order .infopro table tfoot {
-    border-bottom: 2px solid rgb(235, 235, 235);
+    border-bottom: 1px solid rgb(205, 205, 205);
 }
 
-.order .infopro button{
-    width: 100%;
-    height: 40px;
-    margin-top: 70px;
+.order .infopro button {
+
     border: none;
     background: #5d5dff;
     color: white
+}
+
+.order .infopro form {
+    margin-top: 20px;
+    display: flex;
+}
+
+.order .infopro form input {
+    font-size: 13px;
+    height: 30px;
+    width: 80%;
+    padding: 0 5px;
+    border: 1px solid rgb(205, 205, 205);
+    outline: none;
+    border-radius: 2px;
+}
+
+.order .infopro .place_order {
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    height: 45px;
+    font-size: 20px;
+}
+
+.order .infopro .notification_coupon {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 13px;
+    color: red
+}
+
+.order .infopro .coupon {
+    width: 80px;
+    margin-left:20px;
+    height: 30px;
+}
+
+@media (max-width:1000px) {
+    .order{
+        flex-direction:column;
+    }
+    .order .form,
+    .order .infopro{
+        width: 90%;
+    }
+    .order .form{
+        margin: auto;
+
+    }
+    .order .infopro{
+        margin: 50px auto;
+    }
+    .order .infopro form {
+        justify-content:end;
+    }
+    .order .infopro form input {
+        max-width:200px;
+    }
+
 }

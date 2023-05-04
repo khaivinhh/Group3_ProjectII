@@ -1,13 +1,214 @@
 @extends('frontend/layout/layout')
 @section('mycss')
+<link rel="stylesheet" href="{{asset('/css/mycode/frontend/profile.css')}}">
 @endsection
 
 @section('contents')
-<h1>profile page</h1>
-<form action="{{route('signout_user')}}">
-    <button>sign-out</button>
-</form>
-@endsection
 
+
+<div class="title">
+    <h1>Profile</h1>
+    <a href="">Home</a>
+    <span>/</span>
+    <a href="">Account</a>
+    <span>/</span>
+    <a href="">Profile</a>
+</div>
+
+
+
+
+
+
+
+<div class="profile">
+    <div class="informationuser">
+        <div class="header_informationuser_left">
+            <div class="imguser">
+                <img class="logo_user" src="{{asset($user->image)}}" alt="">
+            </div>
+            <form>
+                <label class="image-input">
+                    <input id="changeimguser" type="file" name="image" onchange="changeImage(this)">
+                    <i class="fa fa-pencil"></i>
+                </label>
+            </form>
+        </div>
+
+        <div class="informationuser_header_right">
+            <h1>Information</h1>
+            <p>First Name : {{$user->first_name}}</p>
+            <p>Last Name : {{$user->last_name}}</p>
+            <p>Email : {{$user->email}}</p>
+            <p>Phone : {{$user->phone}}</p>
+            <p>Address : {{$user->address}}</p>
+            <p>Created at : {{$user->created_at}}</p>
+            <p id="updateat">Updated at : {{$user->updated_at}}</p>
+        </div>
+    </div>
+    <hr>
+    <section class="profile_user">
+        <h2>Profile Information</h1>
+            <p>Update your account's profile information and email address.</p>
+            <form id="form1" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div>
+                    <label for="fist_name">First Name</label><br>
+                    <input type="text" name="first_nam" id="first_name" value="{{$user->first_name}}">
+                </div>
+                <div>
+                    <label for="last_name">Last Name</label><br>
+                    <input type="text" name="name" id="last_name" value="{{$user->last_name}}">
+                </div>
+                <div>
+                    <label for="email">Email</label><br>
+                    <input type="email" name="email" id="email" value="{{$user->email}}">
+                </div>
+                <div>
+                    <label for="phone">Phone</label><br>
+                    <input type="text" name="phone" id="phone" value="{{$user->phone}}">
+                </div>
+                <div>
+                    <label for="address">Address</label><br>
+                    <input type="text" name="address" id="address" value="{{$user->address}}">
+                </div>
+                <button type="submit" class="information">Save</button>
+            </form>
+    </section>
+
+
+    <section class="update">
+        <h2>Update Password</h2>
+        <p>Ensure your account is using a long, random password to stay secure.</p>
+        <form id="form2">
+            @csrf
+            @method('PUT')
+            <div>
+                <label for="curentpassword">Current Password</label><br>
+                <input type="password" name="curentpassword" id="curentpassword" required>
+            </div>
+            <p id="passworderror">password error</p>
+            <div>
+                <label for="newpassword">New Password</label><br>
+                <input type="password" name="newpassword" id="newpassword" required>
+            </div>
+            <p id="passwordincorrect">password incorrect</p>
+            <div>
+                <label for="confirmpassword">Confirm Password</label><br>
+                <input type="password" name="confirmpassword" id="confirmpassword" required>
+            </div>
+
+            <button type="submit" class="updatepassword">Save</button>
+        </form>
+    </section>
+
+
+
+
+    <section class="sign_out_account">
+        <h2>Sign Out Account</h2>
+        <p>Don't forget to log out if you're using a public or shared device to keep your account secure.</p>
+        <form action="{{route('signout_user')}}">
+            <button class="sign_out">Sign Out</button>
+        </form>
+    </section>
+
+
+
+    <!-- <section class="delete">
+        <h2>Delete Account</h2>
+        <p>Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting
+            your account, please download any data or information that you wish to retain.</p>
+        <form action="{{route('delete_customer',$user->id)}}" method="post">
+            @csrf
+            @method("DELETE")
+            <button type="submit" class="deleteaccount">Delete Account</button>
+        </form>
+    </section> -->
+</div>
+
+
+@endsection
 @section('myjs')
+<script>
+    function changeImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                const logoUsers = document.querySelectorAll('.logo_user');
+                logoUsers.forEach((logoUser) => {
+                    logoUser.src = e.target.result;
+                });
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $(document).ready(function() {
+        $('#form1').submit(function(e) {
+            e.preventDefault();
+            let form_data = new FormData();
+            form_data.append('first_name', $('#first_name').val());
+            form_data.append('last_name', $('#last_name').val());
+            form_data.append('email', $('#email').val());
+            form_data.append('phone', $('#phone').val());
+            form_data.append('address', $('#address').val());
+            form_data.append('newimguser', $('#changeimguser')[0].files[0]);
+            form_data.append('id', "{{$user->id}}");
+            form_data.append('_token', '{{ csrf_token() }}');
+            form_data.append('_method', 'PUT');
+            $.ajax({
+                type: 'post',
+                url: "{{route('update_profile')}}",
+                data: form_data,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    $('#first_name').val(data.first_name);
+                    $('#last_name').val(data.last_name);
+                    $('#email').val(data.email);
+                    $('#phone').val(data.phone);
+                    $('#address').val(data.address);
+                    alert('successful change');
+
+                }
+            });
+        });
+        $('#form2').submit(function(e) {
+            e.preventDefault();
+            let curentpassword = $('#curentpassword').val();
+            let newpassword = $('#newpassword').val();
+            let confirmpassword = $('#confirmpassword').val();
+
+            $.ajax({
+                type: 'post',
+                url: "{{route('update_profile')}}",
+                data: {
+                    _method: 'PUT',
+                    id: "{{$user->id}}",
+                    curentpassword: curentpassword,
+                    newpassword: newpassword,
+                    confirmpassword: confirmpassword,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    if (data.notification == 'password error') {
+                        $('#passworderror').show();
+                        $('#passwordincorrect').hide();
+                    } else if (data.notification == 'password incorrect') {
+                        $('#passwordincorrect').show();
+                        $('#passworderror').hide();
+                    } else {
+                        $('#passwordincorrect').hide();
+                        $('#passworderror').hide();
+                        $('#curentpassword').val('');
+                        $('#newpassword').val('');
+                        $('#confirmpassword').val('');
+                        alert('successful change');
+                    }
+                }
+            });
+        });
+    })
+</script>
 @endsection
