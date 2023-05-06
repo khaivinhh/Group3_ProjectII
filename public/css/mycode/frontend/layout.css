@@ -47,11 +47,7 @@
     user-select: none;
 }
 
-@media (max-width: 500px) {
-    .preloader .animation-preloader .txt-loading {
-        font-size: 3em;
-    }
-}
+
 
 .preloader .animation-preloader .txt-loading .letters-loading {
     color: #086ad7;
@@ -232,6 +228,9 @@ header .sidebar_header {
 header .sidebar_header .left_sidebar_header h1 {
     display: inline;
 }
+header .sidebar_header .left_sidebar_header h1 .name_brand {
+    text-decoration:none;
+}
 
 header .sidebar_header .left_sidebar_header>* {
     color: white;
@@ -385,6 +384,12 @@ ul {
     background-color: #ffffff;
 }
 
+
+@media (max-width: 500px) {
+    .preloader .animation-preloader .txt-loading {
+        font-size: 3em;
+    }
+}
 
 @media (max-width : 600px) {
     header .sidebar_header {

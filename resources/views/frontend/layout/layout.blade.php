@@ -61,7 +61,7 @@
     <header>
         <nav class="sidebar_header">
             <div class="left_sidebar_header">
-                <h1>IShopApple</h1>
+                <h1><a href="{{route('home')}}" class="name_brand">IShopApple</a></h1>
                 <a href="{{route('home')}}">Home</a>
                 <a href="{{route('shop',1)}}">Shop</a>
                 <a href="{{route('about')}}">About</a>
@@ -72,9 +72,9 @@
                 <div class="header_mobie">
                     <img class="logo" src="{{asset('images/myimg/OIP.jpg')}}" alt="">
                     <div class="search">
-                        <form class="search_by_name" action="search_by_name">
-                            <input type="text" placeholder="search" name="name">
-                            <i class="btn_search fa-solid fa-magnifying-glass"></i>
+                        <form class="search_by_name" action="{{route('search_by_name')}}">
+                            <input type="text" placeholder="search" name="name" class="input_search_name">
+                            <button class="submit_search" style="padding:0;border:0" type="submit" disabled><i class="btn_search fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </div>
                     <i class="fa-solid fa-bars"></i>
@@ -139,8 +139,13 @@
 <script src="{{asset('/js/mycode/loader.js')}}"></script>
 @yield('myjs')
 <script>
-    $('.btn_search').on('click',function(){
-        $('.search_by_name').submit();
-    })
+    $('.input_search_name').on('keyup', function() {
+        if ($(this).val().length > 0) {
+            $('.submit_search').removeAttr('disabled');
+        } else {
+            $('.submit_search').attr('disabled', 'disabled');
+        }
+    });
 </script>
+
 </html>

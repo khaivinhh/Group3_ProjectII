@@ -35,7 +35,7 @@
                     <td>{{$item->email}}</td>
                     <td>{{$item->phone}}</td>
                     <td>{{$item->address}}</td>
-                    <th>
+                    <td class="action">
                         <form action="{{route('customer.destroy',$item->id)}}" method="post">
                             @csrf
                             @method("DELETE")
@@ -44,7 +44,7 @@
                             </button>
                         </form>
                         <button><a href="{{route('customer.edit',$item->id)}}"><i class="fa-solid fa-pen-to-square"></i></a></button>
-                    </th>
+                    </td>
                 </tr>
 
                 @endforeach

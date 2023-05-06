@@ -12,31 +12,137 @@
 }
 
 .column {
-    flex: 1;
     background-color: #fff;
     border-radius: 5px;
     margin: 10px;
     padding: 10px;
+    
 }
 
-.column:first-child {
+.columns .column {
+    flex:1;
+    display: flex;
+    align-items: center;
+}
+.columns .column .icon{
+    border-radius: 5px;
+}
+.columns .column:nth-child(1) .icon{
+    background-color: #e8f1ff;
+}
+.columns .column:nth-child(2) .icon{
+    background-color: #feffdb;
+}
+.columns .column:nth-child(3) .icon{
+    background-color: #ffdede;
+}
+
+.columns .column .icon i{
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 75px;
+    text-align: center;
+}
+.columns .column:nth-child(1) .icon i{
+    color: rgb(65, 65, 255);
+}
+.columns .column:nth-child(2) .icon i{
+    color: rgb(255, 223, 65);
+}
+.columns .column:nth-child(3) .icon i{
+    color: rgb(255, 65, 65);
+}
+.columns .column .content{
+    width: 100%;
+    padding-left: 20px;
+}
+.columns .column .content h2{
+    margin-bottom: 5px;
+}
+.columns .column .content p{
+    font-size: 18px;
+}
+
+
+.recent_order{
+    display: flex;
+}
+.recent_order .column{
+    padding:20px
+}
+.recent_order .column table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.recent_order .column table thead{
+    border-bottom: 1px solid rgb(205, 205, 205);
+}
+.recent_order .column table thead td{
+    font-size: 14px;
+    font-weight: 750;
+}
+
+.recent_order .column table tbody tr:first-child td{
+    padding-top: 10px;
+}
+.recent_order .column table tbody .status p{
+    width: max-content;
+    text-align: center;
+    border-radius: 999px;
+    color: white;
+    padding:7px 10px;
+    font-size: 13px;
+}
+.recent_order .column table tbody .status .complete{
+    background-color: #4eeb6b;
+}
+.recent_order .column table tbody .status .process{
+    background-color: #f16969;
+}
+.recent_order .column table .name_image_user{
+    display: flex;
+    align-items: center;
+}
+
+.recent_order .column table .name_image_user p{
+    margin-left: 10px;
+}
+.recent_order .column table td {
+    padding-bottom: 20px;
+}
+
+.recent_order .column h2{
+    margin-bottom: 20px;
+}
+
+
+.recent_order .column:nth-child(1){
+    width: 60%;
     margin-left: 0;
 }
-
-.column:last-child {
+.recent_order .column:nth-child(2){
+    width: 40%;
     margin-right: 0;
 }
 
-footer {
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 15px;
+
+.columns .column:first-child {
+    margin-left: 0;
 }
+
+.columns .column:last-child {
+    margin-right: 0;
+}
+
+
 
 
 @media screen and (max-width: 980px) {
     .columns .column {
-        margin-bottom: 5px;
+        margin-bottom: 10px;
         flex-basis: 40%;
     }
 
@@ -47,6 +153,15 @@ footer {
     .columns .column:last-child {
         flex-basis: 100%;
         margin: 0;
+    }
+    .recent_order{
+        flex-direction: column;
+    }
+    .recent_order .column:nth-child(1),
+    .recent_order .column:nth-child(2){
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 @media screen and (max-width: 720px) {

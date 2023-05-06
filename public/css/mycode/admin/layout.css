@@ -374,6 +374,8 @@ li,i,button{
 .main .tab_header .input_search {
     width: 50%;
     position: relative;
+    border-radius: 18px;
+    overflow: hidden;
 }
 
 .main .tab_header .input_search input {
@@ -387,10 +389,18 @@ li,i,button{
 }
 
 .main .tab_header .input_search i {
+    user-select: none;
     position: absolute;
-    right: 16px;
-    top: 8px;
+    right: 0px;
+    top: 0px;
     font-size: 19px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 37px;
+    height: 36px;
+    background-color: rgb(80, 80, 255);
 }
 
 .main .tab_header .option{

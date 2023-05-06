@@ -41,7 +41,7 @@
                     <td>{{$item->capacities->name}}</td>
                     <td>{{$item->price}}$</td>
                     <td>{{$item->quantity}}</td>
-                    <th class="option">
+                    <td class="action">
                         <form action="{{route('macbook.destroy',$item->id)}}" method="post">
                             @csrf
                             @method("DELETE")

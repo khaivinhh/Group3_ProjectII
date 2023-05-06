@@ -1,20 +1,28 @@
 @extends('frontend/layout/layout')
+
+
+
 @section('mycss')
 <link rel="stylesheet" href="{{asset('/css/mycode/frontend/shop.css')}}">
-
 @endsection
 
-@section('contents')
 
+
+
+
+@section('contents')
 <section class="title">
     <h1>Products</h1>
     <a href="">Home</a>
     <span>/</span>
     <a href="">Products</a>
 </section>
+
 <section class="sort_by">
     <label for="">Sort by :</label>
-    <form action="{{route('sort_by',1)}}" class="form_sort_by">
+    <form action="{{route('sort_by')}}" class="form_sort_by">
+        <input type="hidden" name="category" class="category_sort">
+
         <select name="sort_by" id="sort_by">
             <option value="">Select</option>
             <option value="1">Alphabetically, A-Z</option>
@@ -45,8 +53,8 @@
 
         <button class="accordion">Price</button>
         <div class="panel">
-            <form action="{{route('search_price')}}">
-                <input type="text" name="category" value="1" style="display:none">
+            <form action="{{route('search_price')}}" class="form_search_price">
+                <input type="hidden" name="category" class="category_search">
                 <div class="from">
                     <label for="from">From</label><br>
                     <input type="text" name="from" id="from">
@@ -55,33 +63,26 @@
                     <label for="to">To</label><br>
                     <input type="text" name="to" id="to">
                 </div>
-                <button type="submit" class="filter">Filter</button>
-            </form>
+                <button class="search_price filter">Filter</button>
+                </formc>
         </div>
         <img class="img_option" src="{{asset('images/myimg/frontend/shop.webp')}}">
     </div>
 
 
-    <div class="product">
-        @foreach($iphones as $item)
-        <div class="item">
-            <a href="{{ route('iphone_detail', $item->id) }}"><img src="{{asset($item->image)}}" alt=""></a>
-            <p class="name_product">{{$item->categorydetails->name}}</p>
-            <p class="information_product">{{$item->rams->name}} / {{$item->capacities->name}} / {{$item->colors->name}}</p>
-            <h4 class="price_product">${{$item->price}}</h4>
-        </div>
-        @endforeach
-    </div>
+    @yield('product')
+
 
 
 </section>
-<div class="pagination">
-    {{ $iphones->onEachSide(0)->links() }}
-</div>
+
+@yield('link')
+
 @endsection
 
-@section('myjs')
 
+
+@section('myjs')
 <script>
     var acc = document.getElementsByClassName("accordion");
     var i;
@@ -89,16 +90,14 @@
         acc[i].addEventListener("click", function() {
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
-            if (panel.style.maxHeight == 'max-content' || panel.style.maxHeight == '' ) {
+            if (panel.style.maxHeight == 'max-content' || panel.style.maxHeight == '') {
                 panel.style.maxHeight = 0;
             } else {
                 panel.style.maxHeight = 'max-content';
             }
         });
     }
-
-    $('#sort_by').on('change', function() {
-        $('.form_sort_by').submit();
-    })
 </script>
+@yield('javascript')
+
 @endsection

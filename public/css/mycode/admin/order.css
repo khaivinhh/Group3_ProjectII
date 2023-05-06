@@ -1,0 +1,21 @@
+.layouttitle .body table tbody .information_user{
+    display: flex;
+    align-items: center;
+}
+.layouttitle .body table tbody .information_user p{
+    padding-left: 10px;
+}
+
+
+.layouttitle .body table tbody .success{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(47, 255, 89);
+}
+.layouttitle .body table tbody .processing{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: red;
+}

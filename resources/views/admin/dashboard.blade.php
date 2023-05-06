@@ -1,80 +1,101 @@
 @extends('admin/layout/layout')
-@section('mycss')
 <link rel="stylesheet" href="{{asset('/css/mycode/admin/dashboard.css')}}">
+
+@section('mycss')
 @endsection
 @section('contents')
-<!-- <div class="wrapper">
-    <header>
-        <h1>3 Column Responsive Layout</h1>
-    </header>
+<div class="wrapper">
+    <!-- <header>
+        <h1>Dashboard</h1>
+    </header> -->
+    <h1>Dashboard</h1>
 
     <section class="columns">
 
         <div class="column">
-            <h2>1st Content Area</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ratione architecto necessitatibus
-                cum praesentium dolor totam voluptatibus recusandae?</p>
+            <div class="icon">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div class="content">
+                <h2>1024</h2>
+                <p>New Order</p>
+            </div>
         </div>
 
         <div class="column">
-            <h2>2nd Content Area</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ratione architecto necessitatibus
-                cum praesentium dolor totam voluptatibus recusandae? Illo quod nemo ratione itaque dolores
-                laudantium error vero laborum blanditiis nostrum.</p>
+            <div class="icon">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <div class="content">
+                <h2>1520</h2>
+                <p>Visitors</p>
+            </div>
         </div>
 
         <div class="column">
-            <h2>3rd Content Area</h2>
-            <p>Illo quod nemo ratione itaque dolores laudantium error vero laborum blanditiis nostrum. Lorem
-                ipsum dolor sit amet consectetur adipisicing elit. Sequi ratione architecto cum praesentium
-                voluptatibus recusandae?</p>
+            <div class="icon">
+                <i class="fa-solid fa-sack-dollar"></i>
+            </div>
+            <div class="content">
+                @php
+                $total = 0;
+                @endphp
+                @foreach($orders as $item)
+                    @php
+                    $total += $item->total;
+                    @endphp
+                @endforeach
+                <h2>${{$total}}</h2>
+                <p>Total Sales</p>
+            </div>
         </div>
 
     </section>
 
-    <footer>
-        <h3>Footer</h3>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam, porro. Doloribus vitae non dolores
-            modi dolorum commodi perspiciatis dicta nostrum minus esse, totam officia, quibusdam amet quas
-            tempora? Voluptatibus, esse.</p>
-    </footer>
 
-</div> -->
-<!-- <div class="wrapper">
-    <header>
-        <h1>3 Column Responsive Layout</h1>
-    </header>
 
-    <section class="columns">
 
+    <section class="recent_order">
         <div class="column">
-            <h2>1st Content Area</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ratione architecto necessitatibus
-                cum praesentium dolor totam voluptatibus recusandae?</p>
+            <h2>Recent Order</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <td>User</td>
+                        <td>Date</td>
+                        <td>Status</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($orders as $item)
+                    <tr>
+                        <td>
+                            <div class="name_image_user">
+                                <img src="{{asset($item->customers->image)}}" alt="" width="50" height="50" style="border-radius:50%">
+                                <p>{{$item->customers->first_name.' '.$item->customers->last_name}}</p>
+                            </div>
+                        </td>
+                        <td>{{ date('Y-m-d', strtotime($item->date)) }}</td>
+                        <td class="status">
+                            @if($item->status == 'complete')
+                            <p class="complete">{{$item->status}}</p>
+                            @else
+                            <p class="process">{{$item->status}}</p>
+                            @endif
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+                <tfoot></tfoot>
+            </table>
         </div>
-
         <div class="column">
-            <h2>2nd Content Area</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ratione architecto necessitatibus
-                cum praesentium dolor totam voluptatibus recusandae? Illo quod nemo ratione itaque dolores
-                laudantium error vero laborum blanditiis nostrum.</p>
-        </div>
-
-        <div class="column">
-            <h2>3rd Content Area</h2>
-            <p>Illo quod nemo ratione itaque dolores laudantium error vero laborum blanditiis nostrum. Lorem
-                ipsum dolor sit amet consectetur adipisicing elit. Sequi ratione architecto cum praesentium
-                voluptatibus recusandae?</p>
+            
         </div>
 
     </section>
 
-    <footer>
-        <h3>Footer</h3>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam, porro. Doloribus vitae non dolores
-            modi dolorum commodi perspiciatis dicta nostrum minus esse, totam officia, quibusdam amet quas
-            tempora? Voluptatibus, esse.</p>
-    </footer>
 
-</div> -->
+</div>
+
 @endsection

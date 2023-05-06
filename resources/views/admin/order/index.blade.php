@@ -1,6 +1,7 @@
 @extends('admin/layout/layout')
 <link rel="stylesheet" href="{{asset('/css/mycode/admin/table.css')}}">
 <link rel="stylesheet" href="{{asset('/css/mycode/admin/layouttitle.css')}}">
+<link rel="stylesheet" href="{{asset('/css/mycode/admin/order.css')}}">
 
 @section('mycss')
 @endsection
@@ -19,8 +20,8 @@
         <table border="1">
             <thead>
                 <td>id</td>
-                <td>customer_id</td>
-                <td>image</td>
+                <td>user_id</td>
+                <td>information</td>
                 <td>address</td>
                 <td>date</td>
                 <td>status</td>
@@ -32,18 +33,23 @@
                 <tr>
                     <td>{{$item->id}}</td>
                     <td>{{$item->customer_id}}</td>
-                    <td><img src="{{asset($item->customers->image)}}" alt="" width="50" height="50" style="border-radius:50%"></td>
+                    <td>
+                        <div class="information_user">
+                            <img src="{{asset($item->customers->image)}}" alt="" width="50" height="50" style="border-radius:50%">
+                            <p>{{$item->customers->first_name.' '.$item->customers->last_name}}</p>
+                        </div>
+                    </td>
                     <td>{{$item->address}}</td>
                     <td>{{$item->date}}</td>
                     <td>
-                        @if($item->status == 'success')
+                        @if($item->status == 'complete')
                         <div class="success"></div>
                         @else
                         <div class="processing"></div>
                         @endif
                     </td>
                     <td>${{$item->total}}</td>
-                    <th>
+                    <td class="action">
                         <form action="{{route('order.destroy',$item->id)}}" method="post" style="display:inline">
                             @csrf
                             @method("DELETE")
@@ -51,8 +57,8 @@
                                 <i class="fa-solid fa-delete-left"></i>
                             </button>
                         </form>
-                        <button><a href="{{route('order.show',$item->id)}}"  style="color:blue"><i class="fa-solid fa-circle-info"></i></a></button>
-                    </th>
+                        <button><a href="{{route('order.show',$item->id)}}" style="color:blue"><i class="fa-solid fa-circle-info"></i></a></button>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

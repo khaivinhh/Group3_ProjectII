@@ -23,7 +23,6 @@
                     <label for="categorydetail_id">Category</label><br>
                     <select name="categorydetail_id" id="">
                     <option value="{{$iphone->categorydetails->id}}">{{$iphone->categorydetails->name}}</option>
-    
                         @foreach($categorydetail as $item)
                         @if($item->id != $iphone->categorydetails->id)
                         <option value="{{$item->id}}">{{$item->name}}</option>

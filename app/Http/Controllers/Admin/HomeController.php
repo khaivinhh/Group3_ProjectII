@@ -38,7 +38,9 @@ class HomeController extends Controller
     {
         $auth = Auth::user();
         // return view('admin/dashboard', ['auth' => $auth]);
-        return view('admin/dashboard', compact('auth'));
+        $orders = Order::all();
+        return view('admin/dashboard', compact('auth','orders'));
+
     }
 
 

@@ -80,9 +80,11 @@ Route::prefix('frontend')->group(function () {
     Route::get('myaccount', [CustomerinterfaceController::class, 'myaccount'])->name('myaccount');
     Route::get('profile', [CustomerinterfaceController::class, 'profile'])->name('profile');
     Route::get('search_by_name', [CustomerinterfaceController::class, 'search_by_name'])->name('search_by_name');
-
-
     Route::post('create_user', [CustomerinterfaceController::class, 'create_user'])->name('create_user');
+
+    Route::post('recover_password', [CustomerinterfaceController::class, 'recover_password'])->name('recover_password');
+
+
     Route::post('signin_user', [CustomerinterfaceController::class, 'signin_user'])->name('signin_user');
     Route::get('signout_user', [CustomerinterfaceController::class, 'signout_user'])->name('signout_user');
     Route::get('checkout', [CustomerinterfaceController::class, 'checkout'])->name('checkout');
@@ -91,7 +93,7 @@ Route::prefix('frontend')->group(function () {
     Route::get('macbook_detail/{id}', [CustomerinterfaceController::class, 'macbook_detail'])->name('macbook_detail');
     Route::get('appwatch_detail/{id}', [CustomerinterfaceController::class, 'appwatch_detail'])->name('appwatch_detail');
     Route::get('search_price', [CustomerinterfaceController::class, 'search_price'])->name('search_price');
-    Route::get('sort_by/{category_product}', [CustomerinterfaceController::class, 'sort_by'])->name('sort_by');
+    Route::get('sort_by', [CustomerinterfaceController::class, 'sort_by'])->name('sort_by');
 
 
     Route::get('category_detail/{id}/{category_id}', [CustomerinterfaceController::class, 'category_detail'])->name('category_detail');

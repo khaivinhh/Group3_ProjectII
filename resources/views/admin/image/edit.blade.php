@@ -22,16 +22,23 @@
                 <div>
                     <label for="categorydetail_id">Category Detail</label><br>
                     <select name="categorydetail_id" id="">
+                        <option value="{{$image->categorydetails->id}}">{{$image->categorydetails->name}}</option>
+
                         @foreach($categorydetail as $item)
+                        @if($item->id != $image->categorydetails->id)
                         <option value="{{$item->id}}">{{$item->name}}</option>
+                        @endif
                         @endforeach
                     </select>
                 </div>
                 <div>
                     <label for="color_id">Color</label><br>
                     <select name="color_id" id="">
+                        <option value="{{$image->colors->id}}">{{$image->colors->name}}</option>
                         @foreach($color as $item)
+                        @if($item->id != $image->colors->id)
                         <option value="{{$item->id}}">{{$item->name}}</option>
+                        @endif
                         @endforeach
                     </select>
                 </div>

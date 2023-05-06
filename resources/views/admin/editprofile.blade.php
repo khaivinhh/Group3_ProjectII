@@ -1,6 +1,7 @@
 @extends('admin/layout/layout')
-@section('mycss')
 <link rel="stylesheet" href="{{asset('/css/mycode/admin/editprofile.css')}}">
+
+@section('mycss')
 @endsection
 @section('contents')
 

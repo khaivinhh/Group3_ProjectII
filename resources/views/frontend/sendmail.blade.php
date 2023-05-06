@@ -24,10 +24,10 @@
 
 <body>
     <h2>Hi {{$name}}</h2>
-    <img src="https://th.bing.com/th/id/OIP.ZtrNE9GnhsrUDpGXFZ2gagHaJG?pid=ImgDet&rs=1" alt="" width="350" height="450">
-    <h1>Thank you for registering an account on our website. To activate your account, please click on the link below:</h1>
-    <a href="https://www.apple.com/store">Click here</a>
-    <h3>If you have not registered an account on our website, please ignore this email.</h3>
+    <img src="https://th.bing.com/th/id/OIP.ZtrNE9GnhsrUDpGXFZ2gagHaJG?pid=ImgDet&rs=1" alt="" width="250" height="350">
+    <h2>Thank you for registering an account on our website. Please click the link below to return to the website:</h1>
+    <a href="http://localhost/Group3_ProjectII/public/frontend/home">Click here</a>
+    <h4>If you have not registered an account on our website, please ignore this email.</h4>
 </body>
 
 </html>

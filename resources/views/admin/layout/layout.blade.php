@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @yield('mycss')
+
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="{{asset('/css/mycode/admin/layout.css')}}">
-    <!-- <link rel="stylesheet" href="{{asset('/css/mycode/frontend/bootstrap.min.css')}}"> -->
-    @yield('mycss')
-    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="{{asset('images/myimg/OIP-removebg-preview.png')}}">
+
+    <title>IShopApple</title>
 </head>
 
 <body>

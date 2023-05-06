@@ -41,7 +41,7 @@
                     <td>{{$item->capacities->name}}</td>
                     <td>{{$item->price}}$</td>
                     <td>{{$item->quantity}}</td>
-                    <th class="option">
+                    <td class="action">
                         <form action="{{route('appwatch.destroy',$item->id)}}" method="post">
                             @csrf
                             @method("DELETE")
@@ -51,7 +51,7 @@
                         </form>
                         <button><a href="{{route('appwatch.edit',$item->id)}}"><i class="fa-solid fa-pen-to-square"></i></a></button>
 
-                    </th>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
