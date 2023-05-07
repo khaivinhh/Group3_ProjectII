@@ -169,7 +169,9 @@
                     $('#email').val(data.email);
                     $('#phone').val(data.phone);
                     $('#address').val(data.address);
-                    alert('successful change');
+                    $('.text-2').text('Your changes has been saved');
+                    notification_complete();
+
 
                 }
             });
@@ -204,7 +206,8 @@
                         $('#curentpassword').val('');
                         $('#newpassword').val('');
                         $('#confirmpassword').val('');
-                        alert('successful change');
+                        $('.text-2').text('Your changes has been saved');
+                        notification_complete();
                     }
                 }
             });

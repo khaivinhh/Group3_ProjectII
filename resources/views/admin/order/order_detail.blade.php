@@ -6,20 +6,7 @@
 @endsection
 
 @section('contents')
-<style>
-    .confirm {
-        float: right;
-        border: none;
-        background-color: #00a0ff;
-        border-radius: 5px
-    }
-    .confirm a{
-        text-decoration: none;
-        color:white;
-        padding: 10px;
-        display: block;
-    }
-</style>
+
 <div class="layouttitle">
     <section class="header">
         <div class="title">
@@ -69,7 +56,7 @@
             </tfoot>
         </table>
         @if($order_status == 'process')
-        <button class="confirm"><a href="{{route('confirm_order',$order_id)}}">confirm</a></button>
+        <button class="confirm"><a href="{{route('confirm_order',$order_id)}}">Confirm</a></button>
         @endif
     </section>
 

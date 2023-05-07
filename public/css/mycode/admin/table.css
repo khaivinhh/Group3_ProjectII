@@ -45,3 +45,18 @@
     white-space: nowrap;
     text-align: center;
 }
+
+
+
+.main .layouttitle .body .confirm {
+    float: right;
+    border: none;
+    background-color: #5d5dff;
+    border-radius: 2px
+}
+.main .layouttitle .body .confirm a{
+    text-decoration: none;
+    color:white;
+    padding: 10px;
+    display: block;
+}

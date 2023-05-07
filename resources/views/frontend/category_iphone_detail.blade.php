@@ -164,7 +164,10 @@
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(data) {
-                    alert(data.notification);
+                    $('.text-2').text(data.notification);
+                    $('.count_cart').text(data.count_cart)
+                    notification_complete();
+
                 }
             });
 

@@ -11,6 +11,7 @@
     <span>/</span>
     <a href="">Cart</a>
 </div>
+
 <table border="1" class="cart">
     <thead>
         <th colspan="2">PRODUCT</th>

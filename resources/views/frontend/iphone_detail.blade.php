@@ -6,6 +6,11 @@
 
 
 @section('contents')
+<style>
+    
+</style>
+
+
 <section class="title">
     <h1>Products</h1>
     <a href="">Home</a>
@@ -14,11 +19,14 @@
     <span>/</span>
     <span>{{$iphone->categorydetails->name}}</span>
 </section>
+
+
+
 <section class="product_detail">
     <div class="image_product">
         @foreach($iphone->categorydetails->images as $image)
         @if($image->colors->id == $iphone->color_id)
-            <img src="{{asset($image->path)}}" alt="">
+        <img src="{{asset($image->path)}}" alt="">
         @endif
         @endforeach
     </div>
@@ -49,7 +57,7 @@
             <input class="input_quantity" type="number" max="{{$iphone->quantity}}" value="1" min="1">
         </div>
         <button class="addtocart">Add To Cart</button>
-       
+
     </div>
 </section>
 
@@ -239,6 +247,10 @@
 
         })
 
+
+
+
+        let timer1, timer2;
         $('.addtocart').click(function(e) {
             e.preventDefault();
             let quantity = $('.input_quantity').val();
@@ -252,11 +264,14 @@
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(data) {
-                    alert('Add To Cart Successfully!');
+                    $('.text-2').text(data.notification);
+                    $('.count_cart').text(data.count_cart)
+                    notification_complete();
                 }
+
+
             });
         });
-
 
 
         var rate_submit = 0;
@@ -286,10 +301,13 @@
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(data) {
-                    alert('Add Review Successfully!');
+                    $('.text-2').text('You just added a product review');
+                    notification_complete();
                 }
             });
         })
+
+       
 
     });
 </script>

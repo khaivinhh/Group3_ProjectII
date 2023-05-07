@@ -66,13 +66,11 @@ class HomeController extends Controller
 
 
         $order = Order::findOrFail($order_id);
-        $order->status = 'success';
+        $order->status = 'complete';
         $order->save();
 
 
 
-
-        $user = $request->session()->get('user');
         $cart_product = $request->session()->get('cart_copy');
 
         if (isset($cart_product['discount_code'])) {
@@ -88,10 +86,8 @@ class HomeController extends Controller
         session()->put('cart_copy', $cart_product);
 
 
-
-
         $cart = new Cart();
-        $cart->customer_id = $user->id;
+        $cart->customer_id = $order->customer_id;;
         $cart->save();
 
         foreach ($cart_product as $item) {

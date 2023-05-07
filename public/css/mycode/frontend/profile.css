@@ -90,6 +90,7 @@ section {
     background: #5d5dff;
     color: white;
     border-radius: 3px;
+    outline: none;
 }
 
 .profile section form .sign_out {

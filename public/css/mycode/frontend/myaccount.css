@@ -33,6 +33,7 @@ hr {
     width: 90px;
     height: 35px;
     color: white;
+    outline:none;
 }
 
 .myaccount div {
@@ -61,7 +62,7 @@ hr {
     z-index: 999;
     padding: 20px;
     opacity: 0;
-    top: 45%;
+    top: -17%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #f3f3f3;
@@ -103,6 +104,7 @@ hr {
     margin-top: 15px;
     float: right;
     border-radius: 3px;
+    outline:none;
 }
 
 .form_recover_password form p {

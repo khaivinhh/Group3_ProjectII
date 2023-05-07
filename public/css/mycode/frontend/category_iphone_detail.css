@@ -77,7 +77,8 @@
     border: none;
     background-color: #a0a0ff;
     color: white;
-    border-radius: 2px
+    border-radius: 2px;
+    outline: none;
 }
 
 

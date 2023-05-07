@@ -470,7 +470,8 @@ class CustomerinterfaceController extends Controller
                     // Nếu sản phẩm đã tồn tại, cộng dồn quantity vào sản phẩm đó
                     $item->quantity += $cartItem->quantity;
                     $request->session()->put('cart', $cart);
-                    return response()->json(['notification' => 'Add To Cart Successfully !']);
+                    $count_cart = count($request->session()->get('cart'));
+                    return response()->json(['notification' => 'You have just added a product to your cart' , 'count_cart' => $count_cart]);
                 }
             }
         }
@@ -478,7 +479,8 @@ class CustomerinterfaceController extends Controller
         $cart[] = $cartItem;
         //luu lai bien session
         $request->session()->put('cart', $cart);
-        return response()->json(['notification' => 'Add To Cart Successfully !']);
+        $count_cart = count($request->session()->get('cart'));
+        return response()->json(['notification' => 'You have just added a product to your cart', 'count_cart' => $count_cart]);
     }
 
 
@@ -525,7 +527,7 @@ class CustomerinterfaceController extends Controller
                 $value = Discount::where('name', $request->name)
                     ->value('value');
                 if ($value > 0 && $count > 0) {
-                    $notification = 'you have successfully entered ' . $value . '% discount code';
+                    $notification = 'You have successfully entered ' . $value . '% discount code';
                     return view('frontend/checkout', compact('cart', 'user', 'value', 'notification', 'discount_code'));
                 } elseif ($value > 0 && $count == 0) {
                     $notification = 'Expired code';
@@ -553,8 +555,6 @@ class CustomerinterfaceController extends Controller
         $order->total = $request->total;
         $order->save();
 
-
-
         foreach ($cart_product as $item) {
             if ($item->product->category_id == 1) {
                 $orderdetail = new Orderdetail();
@@ -568,6 +568,8 @@ class CustomerinterfaceController extends Controller
             } elseif ($item->product->category_id == 3) {
             }
         }
+
+        
         session()->put('cart_copy', $cart_product);
         $cart_copy = $request->session()->get('cart_copy');
 
@@ -697,6 +699,8 @@ class CustomerinterfaceController extends Controller
         }
     }
 
+
+
     public function view_cart(Request $request)
     {
         dd($request->session()->get('cart_copy'));
@@ -704,6 +708,6 @@ class CustomerinterfaceController extends Controller
 
     public function delete_cart(Request $request)
     {
-        $request->session()->forget('cart');
+        $request->session()->forget('cart_copy');
     }
 }

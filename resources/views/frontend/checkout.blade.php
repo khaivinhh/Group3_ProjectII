@@ -131,8 +131,9 @@
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(data) {
-                    alert('sucessfull !');
-                    window.location.href = "{{ route('home') }}";
+                    $('.text-2').text('You have 1 order please check in profile');
+                    notification_complete();
+                    // window.location.href = "{{ route('home') }}";
                 }
             });
         })

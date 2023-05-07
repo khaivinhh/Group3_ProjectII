@@ -73,6 +73,7 @@ main{
 }
 
 .cart tfoot tr td .update_cart button {
+    outline: none;
     padding: 8px 25px;
     outline: none;
     background-color: #5d5dff;

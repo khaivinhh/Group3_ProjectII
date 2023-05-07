@@ -101,7 +101,7 @@
 }
 
 .order .infopro button {
-
+    outline:none;
     border: none;
     background: #5d5dff;
     color: white

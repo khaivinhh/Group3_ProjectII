@@ -13,10 +13,45 @@
 
     @yield('mycss')
 
+
     <title>IShopApple</title>
 </head>
 
 <body>
+
+
+    <div class="my_toast complete_toast">
+        <div class="toast-content">
+            <i class="fas fa-solid fa-check check"></i>
+
+            <div class="message">
+                <span class="text text-1">Success</span>
+                <span class="text text-2">
+                </span>
+            </div>
+        </div>
+        <i class="fa-solid fa-xmark close"></i>
+
+        <div class="progress complete_progress"></div>
+    </div>
+
+    <div class="my_toast error_toast">
+        <div class="toast-content">
+            <i class="fa-solid fa-xmark"></i>
+
+            <div class="message">
+                <span class="text text-1">Error</span>
+                <span class="text text-2-error">
+                </span>
+            </div>
+        </div>
+        <i class="fa-solid fa-xmark close"></i>
+        <div class="progress error_progress"></div>
+    </div>
+
+
+
+
     <div id="preloader" class="preloader">
         <div class="animation-preloader">
             <div class="spinner">
@@ -66,7 +101,14 @@
                 <a href="{{route('shop',1)}}">Shop</a>
                 <a href="{{route('about')}}">About</a>
                 <a href="{{route('contact')}}">Contact</a>
-                <a href="{{route('cart')}}">Cart</a>
+                <a href="{{route('cart')}}">Cart
+                    @if(session()->has('cart'))
+                    <span class="count_cart">{{ count(session('cart')) }}</span>
+                    @else
+                    <span class="count_cart">0</span>
+                    @endif
+
+                </a>
             </div>
             <div class="right_sidebar_header">
                 <div class="header_mobie">
@@ -146,6 +188,42 @@
             $('.submit_search').attr('disabled', 'disabled');
         }
     });
+
+    function notification_complete() {
+        $('.complete_toast').addClass('active_notification');
+        $('.complete_progress').addClass('active_notification');
+
+        timer1 = setTimeout(() => {
+            $('.complete_toast').removeClass('active_notification');
+        }, 5000); //1s = 1000 milliseconds
+
+        timer2 = setTimeout(() => {
+            $('.complete_progress').removeClass('active_notification');
+        }, 5300);
+    }
+
+    function notification_error() {
+        $('.error_toast').addClass('active_notification');
+        $('.error_progress').addClass('active_notification');
+
+        timer1 = setTimeout(() => {
+            $('.error_toast').removeClass('active_notification');
+        }, 5000); //1s = 1000 milliseconds
+
+        timer2 = setTimeout(() => {
+            $('.error_progress').removeClass('active_notification');
+        }, 5300);
+    }
+
+
+    $('.close').on('click', function() {
+        $('.my_toast').removeClass('active_notification');
+        setTimeout(() => {
+            $('.progress').removeClass('active_notification');
+        }, 300);
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+    })
 </script>
 
 </html>
