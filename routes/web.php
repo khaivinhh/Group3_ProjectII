@@ -105,9 +105,8 @@ Route::prefix('frontend')->group(function () {
     Route::post('place_order', [CustomerinterfaceController::class, 'place_order'])->name('place_order');
     Route::post('add_review', [CustomerinterfaceController::class, 'add_review'])->name('add_review');
 
-    Route::get('purchase_history', [CustomerinterfaceController::class, 'purchase_history'])->name('purchase_history');
-    Route::get('order_status', [CustomerinterfaceController::class, 'order_status'])->name('order_status');
-    Route::post('re_order', [CustomerinterfaceController::class, 're_order'])->name('re_order');
+    Route::get('check_your_order', [CustomerinterfaceController::class, 'check_your_order'])->name('check_your_order');
+    Route::get('re_order/{order_id}', [CustomerinterfaceController::class, 're_order'])->name('re_order');
     Route::put('update_profile', [CustomerinterfaceController::class, 'update_profile'])->name('update_profile');
     Route::delete('delete_customer/{id}', [CustomerinterfaceController::class, 'delete_customer'])->name('delete_customer');
 

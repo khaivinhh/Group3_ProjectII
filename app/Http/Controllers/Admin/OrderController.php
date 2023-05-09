@@ -7,8 +7,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Orderdetail;
-use App\Models\orderdetailappwatch;
-use App\Models\orderdetailmacbook;
+
 
 class OrderController extends Controller
 {
@@ -45,15 +44,7 @@ class OrderController extends Controller
     {
         $auth = Auth::user();
         $orderdetail = Orderdetail::where('order_id', $order->id)
-            ->select('*')
-            ->union(
-                orderdetailmacbook::where('order_id', $order->id)
-                    ->select('*')
-            )
-            ->union(
-                orderdetailappwatch::where('order_id', $order->id)
-                    ->select('*')
-            )
+           
             ->get();
 
 

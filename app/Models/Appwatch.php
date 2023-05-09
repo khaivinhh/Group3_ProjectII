@@ -21,18 +21,7 @@ class Appwatch extends Model
     ];
    
 
-    public function comments()//primary key
-    {
-        return $this->hasMany(commentappwatch::class,'product_id');
-    }
-    public function cartdetails()//primary key
-    {
-        return $this->hasMany(cartdetailappwatch::class,'product_id');
-    }
-    public function orderdetails()//primary key
-    {
-        return $this->hasMany(orderdetailappwatch::class,'product_id');
-    }
+   
 
     public function categories()//foreign key
     {

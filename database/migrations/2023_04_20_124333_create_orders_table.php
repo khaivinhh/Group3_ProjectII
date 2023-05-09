@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('address');
             $table->dateTime('date');
             $table->string('status');
+            $table->string('discount');
             $table->integer('total');
             $table->timestamps();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');

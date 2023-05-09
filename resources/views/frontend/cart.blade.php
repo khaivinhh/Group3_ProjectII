@@ -31,7 +31,7 @@
             @foreach($cart as $index => $item)
             <tr>
                 <td>
-                    <img src="{{ asset($item->product->image) }}" alt="" width="50">
+                    <a href="{{route('iphone_detail',$item->product->id)}}"><img src="{{ asset($item->product->image) }}" alt="" width="50"></a>
                 </td>
                 <td>
                     <p>{{$item->product->categorydetails->name}}</p>

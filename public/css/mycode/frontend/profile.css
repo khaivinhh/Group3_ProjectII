@@ -1,34 +1,33 @@
-.title{
-    padding-left: 50px;
-}
+
 
 .profile{
-    width: 80%;
+    display: flex;
+    width: 90%;
     margin: auto;
 }
 .profile>.informationuser,
 section {
-    margin: 35px 0;
+    margin: 25px 0;
     border-radius: 5px;
     background-color: #fff;
 }
 
 .profile .informationuser {
-    display: flex;
-    align-items: center;
-    justify-content: start;
+    width: 40%;
+
 }
 
 
 .profile .informationuser .informationuser_header_right{
-    margin-left:50px;
+    text-align: center;
+    margin-top: 25px;
 }
 .profile .informationuser .header_informationuser_left{
-  
+    max-width: 400px;
+    margin: auto;
     position: relative;
 }
 .profile .informationuser .imguser {
-    max-width: 350px;
     aspect-ratio: 1/1;
     overflow: hidden;
     border-radius: 50%;
@@ -56,7 +55,16 @@ section {
 .profile .informationuser div h1 {
     margin-bottom: 15px;
 }
+.profile .flex {
+    width: 60%;
+    padding:100px 0 0 50px;
 
+}
+.profile .flex .profile_user,
+.profile .flex .update,
+.profile .flex .sign_out_account{
+    margin-top: 25px;
+}
 .profile section p {
     padding: 10px 0 20px 0;
     font-size: 14px;
@@ -81,10 +89,9 @@ section {
 
 
 }
-
-.profile section form .information,
-.profile section form .updatepassword ,
-.profile section form .sign_out {
+.profile .flex .information,
+.profile .flex .updatepassword ,
+.profile .flex  .sign_out {
     padding:10px 20px;
     border: none;
     background: #5d5dff;
@@ -92,8 +99,15 @@ section {
     border-radius: 3px;
     outline: none;
 }
+.profile .flex .btn_check_order {
+    background-color: #5d5dff;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 2px
+}
 
-.profile section form .sign_out {
+.profile .flex .sign_out {
     background: red;
 }
 /* .profile section form .deleteaccount {
@@ -143,7 +157,14 @@ section {
 }
 
 @media (max-width : 750px) {
-    .profile .informationuser {
+    .profile{
         flex-direction: column;
+    }
+    .profile .informationuser{
+        width: 100%;
+    }
+    .profile .flex{
+        width:100%;
+        padding:0;
     }
 }

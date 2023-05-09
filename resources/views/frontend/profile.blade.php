@@ -6,23 +6,11 @@
 @section('contents')
 
 
-<div class="title">
-    <h1>Profile</h1>
-    <a href="">Home</a>
-    <span>/</span>
-    <a href="">Account</a>
-    <span>/</span>
-    <a href="">Profile</a>
-</div>
 
 
 
-
-
-
-
-<div class="profile">
-    <div class="informationuser">
+<section class="profile">
+    <section class="informationuser">
         <div class="header_informationuser_left">
             <div class="imguser">
                 <img class="logo_user" src="{{asset($user->image)}}" alt="">
@@ -45,78 +33,84 @@
             <p>Created at : {{$user->created_at}}</p>
             <p id="updateat">Updated at : {{$user->updated_at}}</p>
         </div>
-    </div>
+    </section>
     <hr>
-    <section class="profile_user">
-        <h2>Profile Information</h1>
-            <p>Update your account's profile information and email address.</p>
-            <form id="form1" enctype="multipart/form-data">
+    <section class="flex">
+        <div class="check_order">
+            <h2>Order tracking and order scheduling</h2>
+            <p>Track and View Your Order History: Stay Up-to-Date with Your Purchases</p>
+            <a class="btn_check_order" href="{{route('check_your_order')}}">Check your order</a>
+        </div>
+        <div class="profile_user">
+            <h2>Change Profile Information</h1>
+                <p>Update your account's profile information and email address.</p>
+                <form id="form1" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div>
+                        <label for="fist_name">First Name</label><br>
+                        <input type="text" name="first_nam" id="first_name" value="{{$user->first_name}}">
+                    </div>
+                    <div>
+                        <label for="last_name">Last Name</label><br>
+                        <input type="text" name="name" id="last_name" value="{{$user->last_name}}">
+                    </div>
+                    <div>
+                        <label for="email">Email</label><br>
+                        <input type="email" name="email" id="email" value="{{$user->email}}">
+                    </div>
+                    <div>
+                        <label for="phone">Phone</label><br>
+                        <input type="text" name="phone" id="phone" value="{{$user->phone}}">
+                    </div>
+                    <div>
+                        <label for="address">Address</label><br>
+                        <input type="text" name="address" id="address" value="{{$user->address}}">
+                    </div>
+                    <button type="submit" class="information">Save</button>
+                </form>
+        </div>
+
+
+        <div class="update">
+            <h2>Update Password</h2>
+            <p>Ensure your account is using a long, random password to stay secure.</p>
+            <form id="form2">
                 @csrf
                 @method('PUT')
                 <div>
-                    <label for="fist_name">First Name</label><br>
-                    <input type="text" name="first_nam" id="first_name" value="{{$user->first_name}}">
+                    <label for="curentpassword">Current Password</label><br>
+                    <input type="password" name="curentpassword" id="curentpassword" required>
                 </div>
+                <p id="passworderror">password error</p>
                 <div>
-                    <label for="last_name">Last Name</label><br>
-                    <input type="text" name="name" id="last_name" value="{{$user->last_name}}">
+                    <label for="newpassword">New Password</label><br>
+                    <input type="password" name="newpassword" id="newpassword" required>
                 </div>
+                <p id="passwordincorrect">password incorrect</p>
                 <div>
-                    <label for="email">Email</label><br>
-                    <input type="email" name="email" id="email" value="{{$user->email}}">
+                    <label for="confirmpassword">Confirm Password</label><br>
+                    <input type="password" name="confirmpassword" id="confirmpassword" required>
                 </div>
-                <div>
-                    <label for="phone">Phone</label><br>
-                    <input type="text" name="phone" id="phone" value="{{$user->phone}}">
-                </div>
-                <div>
-                    <label for="address">Address</label><br>
-                    <input type="text" name="address" id="address" value="{{$user->address}}">
-                </div>
-                <button type="submit" class="information">Save</button>
+
+                <button type="submit" class="updatepassword">Save</button>
             </form>
-    </section>
-
-
-    <section class="update">
-        <h2>Update Password</h2>
-        <p>Ensure your account is using a long, random password to stay secure.</p>
-        <form id="form2">
-            @csrf
-            @method('PUT')
-            <div>
-                <label for="curentpassword">Current Password</label><br>
-                <input type="password" name="curentpassword" id="curentpassword" required>
-            </div>
-            <p id="passworderror">password error</p>
-            <div>
-                <label for="newpassword">New Password</label><br>
-                <input type="password" name="newpassword" id="newpassword" required>
-            </div>
-            <p id="passwordincorrect">password incorrect</p>
-            <div>
-                <label for="confirmpassword">Confirm Password</label><br>
-                <input type="password" name="confirmpassword" id="confirmpassword" required>
-            </div>
-
-            <button type="submit" class="updatepassword">Save</button>
-        </form>
-    </section>
+        </div>
 
 
 
 
-    <section class="sign_out_account">
-        <h2>Sign Out Account</h2>
-        <p>Don't forget to log out if you're using a public or shared device to keep your account secure.</p>
-        <form action="{{route('signout_user')}}">
-            <button class="sign_out">Sign Out</button>
-        </form>
-    </section>
+        <div class="sign_out_account">
+            <h2>Sign Out Account</h2>
+            <p>Don't forget to log out if you're using a public or shared device to keep your account secure.</p>
+            <form action="{{route('signout_user')}}">
+                <button class="sign_out">Sign Out</button>
+            </form>
+        </div>
 
 
 
-    <!-- <section class="delete">
+        <!-- <section class="delete">
         <h2>Delete Account</h2>
         <p>Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting
             your account, please download any data or information that you wish to retain.</p>
@@ -125,8 +119,9 @@
             @method("DELETE")
             <button type="submit" class="deleteaccount">Delete Account</button>
         </form>
-    </section> -->
-</div>
+        </section> -->
+    </section>
+</section>
 
 
 @endsection

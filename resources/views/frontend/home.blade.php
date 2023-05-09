@@ -106,11 +106,11 @@
     </div>
 
 
-    <div class="tab">
+    <!-- <div class="tab">
         <p id="defaultOpen" class="tablinks" onclick="openCity(event,'iphone')">iPhone</p>
         <p class="tablinks" onclick="openCity(event,'macbook')">Macbook</p>
         <p class="tablinks" onclick="openCity(event,'appwatch')">Appwatch</p>
-    </div>
+    </div> -->
 
     <div class="category_iphone tabcontent" id="iphone">
         @foreach($categorydetails as $item)
@@ -143,20 +143,20 @@
 
 @section('myjs')
 <script>
-    function openCity(evt, description_review) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(description_review).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-    document.getElementById("defaultOpen").click();
+    // function openCity(evt, description_review) {
+    //     var i, tabcontent, tablinks;
+    //     tabcontent = document.getElementsByClassName("tabcontent");
+    //     for (i = 0; i < tabcontent.length; i++) {
+    //         tabcontent[i].style.display = "none";
+    //     }
+    //     tablinks = document.getElementsByClassName("tablinks");
+    //     for (i = 0; i < tablinks.length; i++) {
+    //         tablinks[i].className = tablinks[i].className.replace(" active", "");
+    //     }
+    //     document.getElementById(description_review).style.display = "block";
+    //     evt.currentTarget.className += " active";
+    // }
+    // document.getElementById("defaultOpen").click();
 
 
 

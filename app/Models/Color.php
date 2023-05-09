@@ -12,7 +12,7 @@ class Color extends Model
         'name',
         'code',
     ];
-    public function iphons(){//primary key
+    public function iphones(){//primary key
         return $this->hasMany(Iphone::class,'color_id');
     }
     public function macbooks(){//primary key

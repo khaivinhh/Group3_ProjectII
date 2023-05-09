@@ -20,18 +20,6 @@ class Macbook extends Model
         'description',
     ];
    
-    public function comments()//primary key
-    {
-        return $this->hasMany(commentmacbook::class,'product_id');
-    }
-    public function cartdetails()//primary key
-    {
-        return $this->hasMany(cartdetailmacbook::class,'product_id');
-    }
-    public function orderdetails()//primary key
-    {
-        return $this->hasMany(orderdetailmacbook::class,'product_id');
-    }
 
     public function categories()//foreign key
     {

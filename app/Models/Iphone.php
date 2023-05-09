@@ -20,6 +20,8 @@ class Iphone extends Model
         'description',
     ];
    
+
+    
     public function comments()//primary key
     {
         return $this->hasMany(Comment::class,'product_id');
@@ -32,6 +34,10 @@ class Iphone extends Model
     {
         return $this->hasMany(Orderdetail::class,'product_id');
     }
+
+
+
+
 
     public function categories()//foreign key
     {

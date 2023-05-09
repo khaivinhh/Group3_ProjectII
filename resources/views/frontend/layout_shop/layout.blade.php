@@ -39,8 +39,8 @@
         <button class="accordion">Categories</button>
         <div class="panel">
             <a href="{{route('shop',1)}}">Apple iPhone ({{$count_iphone}})</a>
-            <a href="{{route('shop',2)}}">Apple Macbook ({{$count_macbook}})</a>
-            <a href="{{route('shop',3)}}">Apple Appwatch ({{$count_appwatch}})</a>
+            <!-- <a href="{{route('shop',2)}}">Apple Macbook ({{$count_macbook}})</a>
+            <a href="{{route('shop',3)}}">Apple Appwatch ({{$count_appwatch}})</a> -->
         </div>
 
         <button class="accordion">Custom Menu</button>

@@ -189,30 +189,56 @@
         }
     });
 
+    var timer1, timer2;
+
     function notification_complete() {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        $('.complete_progress').removeClass('active_notification');
+
+
         $('.complete_toast').addClass('active_notification');
-        $('.complete_progress').addClass('active_notification');
+
+
+        setTimeout(() => {
+            $('.complete_progress').addClass('active_notification');
+        }, 10);
 
         timer1 = setTimeout(() => {
             $('.complete_toast').removeClass('active_notification');
-        }, 5000); //1s = 1000 milliseconds
+        }, 5000);
 
         timer2 = setTimeout(() => {
             $('.complete_progress').removeClass('active_notification');
         }, 5300);
     }
 
+
+
+    var i = 0;
+
     function notification_error() {
+
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        $('.error_progress').removeClass('active_notification');
+
+
         $('.error_toast').addClass('active_notification');
-        $('.error_progress').addClass('active_notification');
+
+        setTimeout(() => {
+            $('.error_progress').addClass('active_notification');
+        }, 10);
 
         timer1 = setTimeout(() => {
             $('.error_toast').removeClass('active_notification');
-        }, 5000); //1s = 1000 milliseconds
+        }, 5000);
 
         timer2 = setTimeout(() => {
             $('.error_progress').removeClass('active_notification');
         }, 5300);
+
+
     }
 
 

@@ -1,0 +1,65 @@
+.status_order,
+.order_history {
+    margin: 0 50px;
+}
+
+.status_order hr,
+.order_history hr {
+    background-color: black;
+    width: 125px;
+    border-top: 2px solid black;
+}
+
+.item {
+    margin-bottom: 50px;
+}
+
+table {
+    text-align: center;
+    border-collapse: collapse;
+    border: none;
+    width: 75%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+
+table th,
+table td {
+    padding: 15px;
+}
+table tbody .information_product p:last-child {
+    font-size:13px;
+}
+
+
+table tfoot .total {
+    text-align: right;
+}
+table tfoot .total p:nth-child(1){
+    font-size:21px;
+    color:red;
+    
+}
+
+table tfoot .total > *{
+    margin: 5px 0;
+}
+
+table tfoot .total a {
+    display: block;
+    float: right;
+    padding: 10px 20px;
+    color: white;
+    background: #5d5dff;
+    border-radius: 2px;
+    text-decoration:none;
+}
+
+table tbody tr:first-child td:first-child {
+    width: 1px;
+}
+
+table tbody tr:first-child td:nth-child(2) {
+    width: 200px;
+}

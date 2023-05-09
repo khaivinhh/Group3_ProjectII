@@ -39,8 +39,7 @@ class HomeController extends Controller
         $auth = Auth::user();
         // return view('admin/dashboard', ['auth' => $auth]);
         $orders = Order::all();
-        return view('admin/dashboard', compact('auth','orders'));
-
+        return view('admin/dashboard', compact('auth', 'orders'));
     }
 
 
@@ -70,46 +69,39 @@ class HomeController extends Controller
         $order->save();
 
 
-
-        $cart_product = $request->session()->get('cart_copy');
-
-        if (isset($cart_product['discount_code'])) {
-            $discount = Discount::where('name', $cart_product['discount_code'])->first();
-            if ($discount) {
-                $discount->count -= 1;
-                $discount->save();
-            }
+        $discount = Discount::where('name', $order->discount)->first();
+        if ($discount) {
+            $discount->count -= 1;
+            $discount->save();
         }
 
-
-        unset($cart_product['discount_code']);
-        session()->put('cart_copy', $cart_product);
+        $order_detail = $order->orderdetails;
 
 
         $cart = new Cart();
         $cart->customer_id = $order->customer_id;;
         $cart->save();
 
-        foreach ($cart_product as $item) {
-            if ($item->product->category_id == 1) {
+        foreach ($order_detail as $item) {
+            if ($item->category_id == 1) {
                 $cartdetail = new Cartdetail();
                 $cartdetail->cart_id = $cart->id;
-                $cartdetail->category_id = $item->product->category_id;
-                $cartdetail->product_id = $item->product->id;
+                $cartdetail->category_id = $item->category_id;
+                $cartdetail->product_id = $item->product_id;
                 $cartdetail->quantity = $item->quantity;
                 $cartdetail->save();
             } elseif ($item->product->category_id == 2) {
             } elseif ($item->product->category_id == 3) {
             }
 
-            $iphone = Iphone::where('id', $item->product->id)
-                ->where('category_id', $item->product->category_id)
+            $iphone = Iphone::where('id', $item->product_id)
+                ->where('category_id', $item->category_id)
                 ->first();
-            $macbook = Macbook::where('id', $item->product->id)
-                ->where('category_id', $item->product->category_id)
+            $macbook = Macbook::where('id', $item->product_id)
+                ->where('category_id', $item->category_id)
                 ->first();
-            $appwatch = Appwatch::where('id', $item->product->id)
-                ->where('category_id', $item->product->category_id)
+            $appwatch = Appwatch::where('id', $item->product_id)
+                ->where('category_id', $item->category_id)
                 ->first();
             if ($iphone) {
                 $iphone->quantity -= $item->quantity;

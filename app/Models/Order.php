@@ -13,6 +13,7 @@ class Order extends Model
         'address',
         'date',
         'status',
+        'discount',
         'total',
     ];
     public function orderdetails()//foreign key

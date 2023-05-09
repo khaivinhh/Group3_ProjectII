@@ -22,6 +22,8 @@
 
 
 
+
+
 <section class="product_detail">
     <div class="image_product">
         @foreach($iphone->categorydetails->images as $image)

@@ -26,7 +26,7 @@
 
         <p class="name_color">Color</p>
         <div class="colors">
-            @foreach($categorydetail->iphones->unique('color_id') as $item)
+            @foreach($categorydetail->images->unique('color_id') as $item)
             <input type="radio" class="color" id="{{$item->colors->name}}" name="color" value="{{ $item->colors->id }}" />
             <label for="{{$item->colors->name}}" title="text" style="background-color:{{$item->colors->code}}"></label>
             @endforeach
@@ -164,10 +164,16 @@
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(data) {
-                    $('.text-2').text(data.notification);
+                    if(data.notification == 'error'){
+                        $('.text-2-error').text('The product is out of stock');
+                        notification_error();
+                    }
+                    else{
+                        $('.text-2').text(data.notification);
                     $('.count_cart').text(data.count_cart)
                     notification_complete();
-
+                    }
+                    
                 }
             });
 

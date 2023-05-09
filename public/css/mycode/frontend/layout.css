@@ -522,7 +522,7 @@ ul {
     }
 }
 
-@media (max-width : 600px) {
+@media (max-width : 620px) {
     header .sidebar_header {
         justify-content: start;
         height: 100%;
@@ -569,7 +569,7 @@ ul {
 
 }
 
-@media (max-width : 830px) {
+@media (max-width : 850px) {
     header .sidebar_header .left_sidebar_header h1 {
         display: none;
     }

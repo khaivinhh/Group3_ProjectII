@@ -188,7 +188,7 @@ body {
 }
 
 .all_category .tabcontent {
-    display: none;
+    /* display: none; */
     margin-top: 50px;
     padding: 0 100px;
 }
