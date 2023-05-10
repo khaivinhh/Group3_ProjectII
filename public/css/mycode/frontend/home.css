@@ -1,19 +1,19 @@
-body {
-    padding-top: 0;
+body{
+    padding: 0;
+    margin-top: -15px;
 }
-
-.fa-solid{
+.home_page .fa-solid{
     font-weight: 750;
     font-size: 13px;
 }
 
 
-.header {
+.home_page .header {
     margin-top: -15px;
 }
 
-.header .content a:first-child,
-.product_new .content a:first-child {
+.home_page .header .content a:first-child,
+.home_page .product_new .content a:first-child {
     padding: 7px 14px;
     background-color: #5d5dff;
     color: white;
@@ -21,13 +21,13 @@ body {
     margin-right: 10px;
 }
 
-.header div .content div {
+.home_page .header div .content div {
     margin-top: 15px;
 }
 
-.header .flex1,
-.header .flex2,
-.header .flex3 {
+.home_page .header .flex1,
+.home_page .header .flex2,
+.home_page .header .flex3 {
     display: flex;
     align-items: center;
     background-color: rgb(0, 0, 0);
@@ -37,90 +37,90 @@ body {
     text-align: center;
 }
 
-.header .flex1 {
+.home_page .header .flex1 {
     flex-direction: column;
     justify-content: space-between;
 }
 
-.header .flex1 .content {
+.home_page .header .flex1 .content {
     margin-top: 155px;
 }
 
-.header .flex1 .image img,
-.header .flex2 .image img {
+.home_page .header .flex1 .image img,
+.home_page .header .flex2 .image img {
     width: 100%;
     max-width: 750px;
 }
 
 
-.header .flex2 {
+.home_page .header .flex2 {
     justify-content: space-evenly;
 }
 
-.header .flex2 .image {
+.home_page .header .flex2 .image {
     margin-top: 125px;
 }
 
-.header .flex3 {
+.home_page .header .flex3 {
     position: relative;
     flex-direction: column;
 }
 
-.header .flex3 .content {
+.home_page .header .flex3 .content {
     top: 115px;
     position: absolute;
 
 }
 
-.header .flex3 .image,
-.header .flex3 .image img {
+.home_page .header .flex3 .image,
+.home_page .header .flex3 .image img {
     height: 100%;
 }
 
-.product_new {
+.home_page .product_new {
     text-align: center;
     width: 80%;
     margin: 150px auto 0;
 }
 
-.product_new h1 {
+.home_page .product_new h1 {
     font-weight: 750;
 }
 
-.product_new .content {
+.home_page .product_new .content {
     margin-top: 15px;
 }
 
-.product_new img {
+.home_page .product_new img {
     margin-top: 50px;
     width: 100%;
     max-width: 1000px;
 }
 
 
-.best_sellers,
-.all_category {
+.home_page .best_sellers,
+.home_page .all_category {
     width: 80%;
     margin: 250px auto 0
 }
 
-.best_sellers .title,
-.all_category .title {
+.home_page .best_sellers .title,
+.home_page .all_category .title {
     margin-bottom: 50px;
     text-align: center;
 }
 
-.best_sellers .title h1,
-.all_category .title h1 {
+.home_page .best_sellers .title h1,
+.home_page .all_category .title h1 {
     font-weight: 750;
 }
 
-.best_sellers .product {
+.home_page .best_sellers .product {
     display: flex;
     flex-wrap: wrap;
 }
 
-.best_sellers .product .item {
+.home_page .best_sellers .product .item {
     padding-bottom: 15px;
     display: flex;
     margin-bottom: 25px;
@@ -129,11 +129,11 @@ body {
     width: 33.33333%;
 }
 
-.best_sellers .product .item .image {
+.home_page .best_sellers .product .item .image {
     max-width: 50%;
 }
 
-.best_sellers .product .item .image a {
+.home_page .best_sellers .product .item .image a {
     float: right;
     position: relative;
     width: 100px;
@@ -142,7 +142,7 @@ body {
     background-color: #fafafa;
 }
 
-.best_sellers .product .item .image a img {
+.home_page .best_sellers .product .item .image a img {
     width: 60px;
     position: absolute;
     top: 50%;
@@ -151,29 +151,29 @@ body {
 
 }
 
-.best_sellers .product .item .information_product {
+.home_page .best_sellers .product .item .information_product {
     padding-left: 25px;
     width: 50%;
 }
 
-.best_sellers .product .item .information_product .name {
+.home_page .best_sellers .product .item .information_product .name {
     font-size: 17px;
 }
 
-.best_sellers .product .item .information_product .price {
+.home_page .best_sellers .product .item .information_product .price {
     font-size: 15px;
     color: red;
 }
 
-.all_category .tab {
+.home_page .all_category .tab {
     display: flex;
 }
 
-.all_category .tab p.active {
+.home_page .all_category .tab p.active {
     background-color: #ebebeb;
 }
 
-.all_category .tab p {
+.home_page .all_category .tab p {
     margin: 0 5px;
     font-size: 16px;
     padding: 10px 20px;
@@ -183,51 +183,51 @@ body {
     border-radius: 5px;
 }
 
-.all_category .tab p:hover {
+.home_page .all_category .tab p:hover {
     background-color: #ddd;
 }
 
-.all_category .tabcontent {
+.home_page .all_category .tabcontent {
     /* display: none; */
     margin-top: 50px;
     padding: 0 100px;
 }
-.all_category .tabcontent .slick-arrow{
+.home_page .all_category .tabcontent .slick-arrow{
     background-color:#dee2e6;
     top:17%;
     width: 35px;
     height: 35px;
     border-radius: 50%
 }
-.all_category .tabcontent .slick-next{
+.home_page .all_category .tabcontent .slick-next{
     right: 0;
 }
-.all_category .tabcontent .slick-prev{
+.home_page .all_category .tabcontent .slick-prev{
     left: 0;
 }
 
-.all_category .tabcontent .item {
+.home_page .all_category .tabcontent .item {
     text-align: center;
 }
 
-.all_category .tabcontent .item .name {
+.home_page .all_category .tabcontent .item .name {
     font-size: 17px;
 }
 
-.all_category .tabcontent .item .price {
+.home_page .all_category .tabcontent .item .price {
     font-size: 14px;
 }
 
-.all_category .tabcontent .item .buy a {
+.home_page .all_category .tabcontent .item .buy a {
     display: inherit;
 }
 
-.all_category .tabcontent .item .buy a i{
+.home_page .all_category .tabcontent .item .buy a i{
     font-weight: 750;
     font-size: 12px;
 }
 
-.all_category .tabcontent .item .buy a:first-child {
+.home_page .all_category .tabcontent .item .buy a:first-child {
     display: inline-block;
     padding: 4px 10px;
     background: #5d5dff;
@@ -238,40 +238,40 @@ body {
     text-decoration: none;
 }
 
-.all_category .tabcontent .item .buy a:last-child {
+.home_page .all_category .tabcontent .item .buy a:last-child {
     font-size: 14px;
     margin-top: 7px;
 }
 
-.all_category .tabcontent .item .color {
+.home_page .all_category .tabcontent .item .color {
     display: flex;
     justify-content: center;
     margin: 25px 0;
 }
 
-.all_category .tabcontent .item .color p {
+.home_page .all_category .tabcontent .item .color p {
     width: 10px;
     height: 10px;
     border-radius: 50%;
     margin: 0 2px;
 }
 
-.all_category .tabcontent .item a img {
+.home_page .all_category .tabcontent .item a img {
     width: 100%;
     margin: auto;
 }
 
-.all_category .tabcontent hr {
+.home_page .all_category .tabcontent hr {
     width: 80%;
     margin: 50px auto;
 }
 
 
-.rate {
+.home_page .rate {
     height: 30px;
 }
 
-.rate:not(:checked)>label {
+.home_page .rate:not(:checked)>label {
     width: 15.5px;
     overflow: hidden;
     white-space: nowrap;
@@ -280,29 +280,29 @@ body {
     color: #ccc;
 }
 
-.rate:not(:checked)>label:before {
+.home_page .rate:not(:checked)>label:before {
     content: '★';
 }
 
-.rate>input:checked~label {
+.home_page .rate>input:checked~label {
     color: #ffc700;
 }
 
-.rate input {
+.home_page .rate input {
     display: none;
 }
 
 @media (max-width:1051px) {
-    .header .flex1 .content {
+    .home_page .header .flex1 .content {
         margin-top: 200px;
     }
 
-    .header .flex2 {
+    .home_page .header .flex2 {
         flex-direction: column;
         justify-content: center;
     }
 
-    .all_category .tabcontent {
+    .home_page .all_category .tabcontent {
 
         padding: 0 50px;
     }
@@ -310,24 +310,24 @@ body {
 }
 
 @media (max-width:905px) {
-    .best_sellers .product .item {
+    .home_page .best_sellers .product .item {
         width: 50%;
     }
 }
 
 @media (max-width:610px) {
-    .best_sellers .product .item {
+    .home_page .best_sellers .product .item {
         width: 100%;
     }
 
-    .all_category .tab p {
+    .home_page .all_category .tab p {
         padding: 6px 10px;
         font-size: 13px;
     }
 
-    .product_new,
-    .best_sellers,
-    .all_category {
+    .home_page .product_new,
+    .home_page .best_sellers,
+    .home_page .all_category {
         margin: 75px auto 0;
 
     }

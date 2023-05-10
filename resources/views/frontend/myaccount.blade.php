@@ -1,9 +1,4 @@
 @extends('frontend/layout/layout')
-@section('mycss')
-<link rel="stylesheet" href="{{asset('/css/mycode/frontend/myaccount.css')}}">
-
-@endsection
-
 @section('contents')
 <div class="title">
     <h1>Account</h1>
@@ -92,8 +87,6 @@
         $('.form_recover_password').css('top', '-17%')
 
     })
-
-
 
 
 

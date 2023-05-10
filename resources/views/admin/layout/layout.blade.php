@@ -91,8 +91,7 @@
                 </li>
                 <div class="panel">
                     <a href="{{route('iphone.index')}}">List IPhone</a>
-                    <!-- <a href="{{route('macbook.index')}}">List MacBook</a>
-                    <a href="{{route('appwatch.index')}}">List AppWatch</a> -->
+                    <a href="{{route('iphone.create')}}">Create New Iphone</a>
                 </div>
 
 

@@ -18,12 +18,12 @@
         <hr>
         <table border="1">
             <thead>
-                <td>id</td>
-                <td>fullname</td>
-                <td>image</td>
-                <td>email</td>
-                <td>phone</td>
-                <td>address</td>
+                <td>ID</td>
+                <td>Fullname</td>
+                <td>Image</td>
+                <td>Email</td>
+                <td>Phone</td>
+                <td>Address</td>
                 <th><a href="{{route('customer.create')}}" style="color:lime"><i class="fa-solid fa-plus"></i></a></th>
             </thead>
             <tbody>

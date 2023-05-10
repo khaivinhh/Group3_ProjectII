@@ -9,6 +9,19 @@
     <link rel="stylesheet" href="{{asset('/css/mycode/frontend/slick.css')}}">
     <link rel="stylesheet" href="{{asset('/css/mycode/frontend/slick-theme.css')}}">
     <link rel="stylesheet" href="{{asset('/css/mycode/frontend/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/shop.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/about.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/cart.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/category_iphone_detail.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/check_your_order.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/checkout.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/contact.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/product_detail.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/myaccount.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/profile.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/shop.css')}}">
+
+
     <link rel="icon" type="image/x-icon" href="{{asset('images/myimg/OIP-removebg-preview.png')}}">
 
     @yield('mycss')
@@ -179,77 +192,10 @@
 <script src="{{asset('/js/mycode/jquery-3.6.4.min.js')}}"></script>
 <script src="{{asset('/js/mycode/slick.min.js')}}"></script>
 <script src="{{asset('/js/mycode/loader.js')}}"></script>
+<script src="{{asset('/js/mycode/frontend/layout.js')}}"></script>
+<script src="{{asset('/js/mycode/frontend/layout_shop.js')}}"></script>
+<script src="{{asset('/js/mycode/frontend/cart.js')}}"></script>
 @yield('myjs')
-<script>
-    $('.input_search_name').on('keyup', function() {
-        if ($(this).val().length > 0) {
-            $('.submit_search').removeAttr('disabled');
-        } else {
-            $('.submit_search').attr('disabled', 'disabled');
-        }
-    });
 
-    var timer1, timer2;
-
-    function notification_complete() {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-        $('.complete_progress').removeClass('active_notification');
-
-
-        $('.complete_toast').addClass('active_notification');
-
-
-        setTimeout(() => {
-            $('.complete_progress').addClass('active_notification');
-        }, 10);
-
-        timer1 = setTimeout(() => {
-            $('.complete_toast').removeClass('active_notification');
-        }, 5000);
-
-        timer2 = setTimeout(() => {
-            $('.complete_progress').removeClass('active_notification');
-        }, 5300);
-    }
-
-
-
-    var i = 0;
-
-    function notification_error() {
-
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-        $('.error_progress').removeClass('active_notification');
-
-
-        $('.error_toast').addClass('active_notification');
-
-        setTimeout(() => {
-            $('.error_progress').addClass('active_notification');
-        }, 10);
-
-        timer1 = setTimeout(() => {
-            $('.error_toast').removeClass('active_notification');
-        }, 5000);
-
-        timer2 = setTimeout(() => {
-            $('.error_progress').removeClass('active_notification');
-        }, 5300);
-
-
-    }
-
-
-    $('.close').on('click', function() {
-        $('.my_toast').removeClass('active_notification');
-        setTimeout(() => {
-            $('.progress').removeClass('active_notification');
-        }, 300);
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-    })
-</script>
 
 </html>

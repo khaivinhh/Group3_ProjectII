@@ -1,8 +1,4 @@
 @extends('frontend/layout/layout')
-@section('mycss')
-<link rel="stylesheet" href="{{asset('/css/mycode/frontend/profile.css')}}">
-@endsection
-
 @section('contents')
 
 
@@ -139,74 +135,75 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
-    $(document).ready(function() {
-        $('#form1').submit(function(e) {
-            e.preventDefault();
-            let form_data = new FormData();
-            form_data.append('first_name', $('#first_name').val());
-            form_data.append('last_name', $('#last_name').val());
-            form_data.append('email', $('#email').val());
-            form_data.append('phone', $('#phone').val());
-            form_data.append('address', $('#address').val());
-            form_data.append('newimguser', $('#changeimguser')[0].files[0]);
-            form_data.append('id', "{{$user->id}}");
-            form_data.append('_token', '{{ csrf_token() }}');
-            form_data.append('_method', 'PUT');
-            $.ajax({
-                type: 'post',
-                url: "{{route('update_profile')}}",
-                data: form_data,
-                contentType: false,
-                processData: false,
-                success: function(data) {
-                    $('#first_name').val(data.first_name);
-                    $('#last_name').val(data.last_name);
-                    $('#email').val(data.email);
-                    $('#phone').val(data.phone);
-                    $('#address').val(data.address);
+    
+    $('#form1').submit(function(e) {
+        e.preventDefault();
+        let form_data = new FormData();
+        form_data.append('first_name', $('#first_name').val());
+        form_data.append('last_name', $('#last_name').val());
+        form_data.append('email', $('#email').val());
+        form_data.append('phone', $('#phone').val());
+        form_data.append('address', $('#address').val());
+        form_data.append('newimguser', $('#changeimguser')[0].files[0]);
+        form_data.append('id', "{{$user->id}}");
+        form_data.append('_token', '{{ csrf_token() }}');
+        form_data.append('_method', 'PUT');
+        $.ajax({
+            type: 'post',
+            url: "{{route('update_profile')}}",
+            data: form_data,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                $('#first_name').val(data.first_name);
+                $('#last_name').val(data.last_name);
+                $('#email').val(data.email);
+                $('#phone').val(data.phone);
+                $('#address').val(data.address);
+                $('.text-2').text('Your changes has been saved');
+                notification_complete();
+
+
+            }
+        });
+    });
+
+
+    $('#form2').submit(function(e) {
+        e.preventDefault();
+        let curentpassword = $('#curentpassword').val();
+        let newpassword = $('#newpassword').val();
+        let confirmpassword = $('#confirmpassword').val();
+
+        $.ajax({
+            type: 'post',
+            url: "{{route('update_profile')}}",
+            data: {
+                _method: 'PUT',
+                id: "{{$user->id}}",
+                curentpassword: curentpassword,
+                newpassword: newpassword,
+                confirmpassword: confirmpassword,
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(data) {
+                if (data.notification == 'password error') {
+                    $('#passworderror').show();
+                    $('#passwordincorrect').hide();
+                } else if (data.notification == 'password incorrect') {
+                    $('#passwordincorrect').show();
+                    $('#passworderror').hide();
+                } else {
+                    $('#passwordincorrect').hide();
+                    $('#passworderror').hide();
+                    $('#curentpassword').val('');
+                    $('#newpassword').val('');
+                    $('#confirmpassword').val('');
                     $('.text-2').text('Your changes has been saved');
                     notification_complete();
-
-
                 }
-            });
+            }
         });
-        $('#form2').submit(function(e) {
-            e.preventDefault();
-            let curentpassword = $('#curentpassword').val();
-            let newpassword = $('#newpassword').val();
-            let confirmpassword = $('#confirmpassword').val();
-
-            $.ajax({
-                type: 'post',
-                url: "{{route('update_profile')}}",
-                data: {
-                    _method: 'PUT',
-                    id: "{{$user->id}}",
-                    curentpassword: curentpassword,
-                    newpassword: newpassword,
-                    confirmpassword: confirmpassword,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(data) {
-                    if (data.notification == 'password error') {
-                        $('#passworderror').show();
-                        $('#passwordincorrect').hide();
-                    } else if (data.notification == 'password incorrect') {
-                        $('#passwordincorrect').show();
-                        $('#passworderror').hide();
-                    } else {
-                        $('#passwordincorrect').hide();
-                        $('#passworderror').hide();
-                        $('#curentpassword').val('');
-                        $('#newpassword').val('');
-                        $('#confirmpassword').val('');
-                        $('.text-2').text('Your changes has been saved');
-                        notification_complete();
-                    }
-                }
-            });
-        });
-    })
+    });
 </script>
 @endsection

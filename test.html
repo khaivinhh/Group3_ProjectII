@@ -4,23 +4,43 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=k, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
 
-<body>
-  <form class="my_form">
-    <input type="email" name="email" required>
-    <input type="password" name="password" required>
-    <button id="myButton">click</button>
-  </form>
+<form action="">
+  <div>
+    <label for="">Ward</label><br>
+    <input type="text">
+  </div>
+  <div>
+    <label for="">District</label><br>
+    <input type="text">
+  </div>
+  <button>Check</button>
+</form>
+<div class="result"></div>
 
-  <script src="/public/js/mycode/jquery-3.6.4.min.js">
-  </script>
+<body>
+  <script src="/public/js/mycode/jquery-3.6.4.min.js"></script>
   <script>
-    $('.my_form').submit(function(e){
-      e.preventDefault();
-    })
+    $(document).ready(function () {
+      $.ajax({
+        url: 'https://online-gateway.ghn.vn/shiip/public-api/master-data/province',
+        dataType: 'json',
+        headers: {
+          'token': '156086da-ee0e-11ed-a281-3aa62a37e0a5'
+        },
+        success: function (data) {
+          console.log('successfully');
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log('error');
+        }
+      });
+    });
+
+
   </script>
 
 </body>

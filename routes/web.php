@@ -7,8 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CustomerController;
 
 use App\Http\Controllers\Admin\IphoneController;
-use App\Http\Controllers\Admin\MacbookController;
-use App\Http\Controllers\Admin\AppwatchController;
+
 
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\OrderController;
@@ -47,8 +46,6 @@ Route::prefix('admin')->middleware('checkUserRole')->group(function () {
     Route::Resource('/customer', CustomerController::class);
 
     Route::Resource('/iphone', IphoneController::class);
-    Route::Resource('/macbook', MacbookController::class);
-    Route::Resource('/appwatch', AppwatchController::class);
 
     Route::Resource('/category', CategoryController::class);
     Route::Resource('/categorydetail', CategorydetailController::class);
@@ -59,8 +56,6 @@ Route::prefix('admin')->middleware('checkUserRole')->group(function () {
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('searchcustomer', [CustomerController::class, 'searchcustomer'])->name('searchcustomer');
     Route::get('searchiphone', [IphoneController::class, 'searchiphone'])->name('searchiphone');
-    Route::get('searchmacbook', [MacbookController::class, 'searchmacbook'])->name('searchmacbook');
-    Route::get('searchappwatch', [AppwatchController::class, 'searchappwatch'])->name('searchappwatch');
     Route::get('searchcategorydetail', [CategorydetailController::class, 'searchcategorydetail'])->name('searchcategorydetail');
     Route::get('searchimage', [ImageController::class, 'searchimage'])->name('searchimage');
 
@@ -90,8 +85,6 @@ Route::prefix('frontend')->group(function () {
     Route::get('checkout', [CustomerinterfaceController::class, 'checkout'])->name('checkout');
 
     Route::get('iphone_detail/{id}', [CustomerinterfaceController::class, 'iphone_detail'])->name('iphone_detail');
-    Route::get('macbook_detail/{id}', [CustomerinterfaceController::class, 'macbook_detail'])->name('macbook_detail');
-    Route::get('appwatch_detail/{id}', [CustomerinterfaceController::class, 'appwatch_detail'])->name('appwatch_detail');
     Route::get('search_price', [CustomerinterfaceController::class, 'search_price'])->name('search_price');
     Route::get('sort_by', [CustomerinterfaceController::class, 'sort_by'])->name('sort_by');
 

@@ -7,8 +7,6 @@ use App\Models\CartItem;
 use App\Models\Customer;
 use Illuminate\Support\Str;
 
-use App\Models\Macbook;
-use App\Models\Appwatch;
 use App\Models\Cart;
 use App\Models\Cartdetail;
 use App\Models\Category;
@@ -42,15 +40,10 @@ class CustomerinterfaceController extends Controller
     public function shop($category_product)
     {
         $count_iphone = count(Iphone::all());
-        $count_macbook = count(Macbook::all());
-        $count_appwatch = count(Appwatch::all());
+
         if ($category_product == 1) {
             $iphones = Iphone::inRandomOrder()->paginate(9);
-            return view('frontend/shop_iphone', compact('iphones', 'count_iphone', 'count_macbook', 'count_appwatch'));
-        } elseif ($category_product == 2) {
-            return view('frontend/shop_macbook', compact('count_iphone', 'count_macbook', 'count_appwatch'));
-        } elseif ($category_product == 3) {
-            return view('frontend/shop_appwatch', compact('count_iphone', 'count_macbook', 'count_appwatch'));
+            return view('frontend/shop_iphone', compact('iphones', 'count_iphone'));
         }
     }
     public function about()
@@ -166,23 +159,22 @@ class CustomerinterfaceController extends Controller
     public function search_by_name(Request $request)
     {
         $count_iphone = count(Iphone::all());
-        $count_macbook = count(Macbook::all());
-        $count_appwatch = count(Appwatch::all());
+
         $categorydetail = Categorydetail::where('name', 'like', '%' . $request->name . '%')
             ->first();
 
         if ($categorydetail == '') {
-            return view('frontend/layout_shop/layout', compact('count_iphone', 'count_macbook', 'count_appwatch'));
+            return view('frontend/layout_shop/layout', compact('count_iphone'));
         } else {
             if ($categorydetail->category_id == 1) {
                 $iphones = Iphone::leftJoin('categorydetails', 'iphones.categorydetail_id', '=', 'categorydetails.id')
                     ->select('iphones.*')
-                    ->where('categorydetails.name', 'like', '%' . $request->name . '%')
+                    ->where('categorydetails.name', '=',  $request->name)
                     ->with('categorydetails')
                     ->paginate(9);
                 $iphones->appends(['name' => $request->name]);
 
-                return view('frontend/shop_iphone', compact('iphones', 'count_iphone', 'count_macbook', 'count_appwatch'));
+                return view('frontend/shop_iphone', compact('iphones', 'count_iphone'));
             } elseif ($categorydetail->category_id == 2) {
             } elseif ($categorydetail->category_id == 3) {
             }
@@ -194,8 +186,7 @@ class CustomerinterfaceController extends Controller
     public function search_price(Request $request)
     {
         $count_iphone = count(Iphone::all());
-        $count_macbook = count(Macbook::all());
-        $count_appwatch = count(Appwatch::all());
+
         if ($request->category == 1) {
             $from = $request->from;
             $to = $request->to;
@@ -204,18 +195,13 @@ class CustomerinterfaceController extends Controller
             }
             $iphones = Iphone::whereBetween('price', [$from, $to])->inRandomOrder()->paginate(9);
             $iphones->appends(['category' => $request->category, 'from' => $request->from, 'to' => $request->to]);
-            return view('frontend/shop_iphone', compact('iphones', 'count_iphone', 'count_macbook', 'count_appwatch'));
-        } elseif ($request->category == 2) {
-            return view('frontend/shop_macbook', compact('count_iphone', 'count_macbook', 'count_appwatch'));
-        } elseif ($request->category == 3) {
-            return view('frontend/shop_appwatch', compact('count_iphone', 'count_macbook', 'count_appwatch'));
+            return view('frontend/shop_iphone', compact('iphones', 'count_iphone'));
         }
     }
     public function sort_by(Request $request)
     {
         $count_iphone = count(Iphone::all());
-        $count_macbook = count(Macbook::all());
-        $count_appwatch = count(Appwatch::all());
+
         switch ($request->category) {
             case 1:
                 switch ($request->sort_by) {
@@ -225,46 +211,40 @@ class CustomerinterfaceController extends Controller
                             ->select('iphones.*')
                             ->paginate(9);
                         $iphones->appends(['category' => $request->category, 'sort_by' => $request->sort_by]);
-                        return view('frontend/shop_iphone', compact('iphones', 'count_iphone', 'count_macbook', 'count_appwatch'));
+                        return view('frontend/shop_iphone', compact('iphones', 'count_iphone'));
                     case 2:
                         $iphones = Iphone::join('categorydetails', 'iphones.categorydetail_id', '=', 'categorydetails.id')
                             ->orderBy('categorydetails.name', 'desc')
                             ->select('iphones.*')
                             ->paginate(9);
                         $iphones->appends(['category' => $request->category, 'sort_by' => $request->sort_by]);
-                        return view('frontend/shop_iphone', compact('iphones', 'count_iphone', 'count_macbook', 'count_appwatch'));
+                        return view('frontend/shop_iphone', compact('iphones', 'count_iphone'));
                     case 3:
                         $iphones = Iphone::select('*')
                             ->orderBy('price', 'asc')
                             ->paginate(9);
                         $iphones->appends(['category' => $request->category, 'sort_by' => $request->sort_by]);
 
-                        return view('frontend/shop_iphone', compact('iphones', 'count_iphone', 'count_macbook', 'count_appwatch'));
+                        return view('frontend/shop_iphone', compact('iphones', 'count_iphone'));
                     case 4:
                         $iphones = Iphone::select('*')
                             ->orderBy('price', 'desc')
                             ->paginate(9);
                         $iphones->appends(['category' => $request->category, 'sort_by' => $request->sort_by]);
-                        return view('frontend/shop_iphone', compact('iphones', 'count_iphone', 'count_macbook', 'count_appwatch'));
+                        return view('frontend/shop_iphone', compact('iphones', 'count_iphone'));
                     case 5:
                         $iphones = Iphone::select('*')
                             ->orderBy('created_at', 'asc')
                             ->paginate(9);
                         $iphones->appends(['category' => $request->category, 'sort_by' => $request->sort_by]);
-                        return view('frontend/shop_iphone', compact('iphones', 'count_iphone', 'count_macbook', 'count_appwatch'));
+                        return view('frontend/shop_iphone', compact('iphones', 'count_iphone'));
                     case 6:
                         $iphones = Iphone::select('*')
                             ->orderBy('created_at', 'desc')
                             ->paginate(9);
                         $iphones->appends(['category' => $request->category, 'sort_by' => $request->sort_by]);
-                        return view('frontend/shop_iphone', compact('iphones', 'count_iphone', 'count_macbook', 'count_appwatch'));
+                        return view('frontend/shop_iphone', compact('iphones', 'count_iphone'));
                 }
-                break;
-            case 2:
-                echo 'mac';
-                break;
-            case 3:
-                echo 'watch';
                 break;
         }
     }
@@ -296,14 +276,13 @@ class CustomerinterfaceController extends Controller
         }
 
         // kiểm tra người dùng có quyền đánh giá sản phẩm hay chưa
-        $name_user = '';
+        $user = $request->session()->get('user');
         $write_review = 'false';
         if (session()->has('user')) {
-            $user = $request->session()->get('user');
             $orders = Order::where('customer_id', $user->id)
                 ->where('status', 'complete')
                 ->get();
-            $name_user = $user->first_name . ' ' . $user->last_name;
+
             if (count($orders) > 0) {
                 foreach ($orders as $order) {
                     $orderdetails = Orderdetail::where('order_id', $order->id)
@@ -319,7 +298,6 @@ class CustomerinterfaceController extends Controller
 
         // kiểm tra người dùng đã đánh giá sản phẩm này hay chưa
         if (session()->has('user')) {
-            $user = $request->session()->get('user');
             $comments_user = Comment::where('category_id', $iphone->category_id)
                 ->where('customer_id', $user->id)
                 ->where('product_id', $iphone->id)
@@ -329,74 +307,18 @@ class CustomerinterfaceController extends Controller
                     $star_user =  $item->rate;
                     $content_user = $item->content;
                 }
-                return view('frontend/iphone_detail', compact('iphone', 'products_relate', 'comments', 'write_review', 'star_product', 'count_review_product', 'star_user', 'content_user', 'name_user'));
+                return view('frontend/iphone_detail', compact('iphone', 'products_relate', 'comments', 'write_review', 'star_product', 'count_review_product', 'star_user', 'content_user', 'user'));
             }
         }
 
 
         // truyền sản phẩm , tất cả comments sản phẩm , sao sản phẩm , số lượt đánh giá của sản phẩm
-        return view('frontend/iphone_detail', compact('iphone', 'products_relate', 'comments', 'write_review', 'star_product', 'count_review_product', 'name_user'));
-    }
-
-    public function macbook_detail(Request $request, $id)
-    {
-        $macbook = Macbook::find($id);
-        $comments = Comment::where('category_id', $macbook->category_id)
-            ->where('product_id', $macbook->id)
-            ->get();
-        $check = 'fail';
-
-        if (session()->has('user')) {
-            $user = $request->session()->get('user');
-            $orders = Order::where('customer_id', $user->id)
-                ->where('status', 'complete')
-                ->get();
-
-            if (count($orders) > 0) {
-                foreach ($orders as $order) {
-                    $orderdetails = Orderdetail::where('order_id', $order->id)
-                        ->where('category_id', $macbook->category_id)
-                        ->where('product_id', $macbook->id)
-                        ->get();
-                    if (count($orderdetails) > 0) {
-                        $check = 'complete';
-                    }
-                }
-            }
-        }
-        return view('frontend/macbook_detail', compact('macbook', 'comments', 'check'));
+        return view('frontend/iphone_detail', compact('iphone', 'products_relate', 'comments', 'write_review', 'star_product', 'count_review_product', 'user'));
     }
 
 
 
-    public function appwatch_detail(Request $request, $id)
-    {
-        $appwatch = Appwatch::find($id);
-        $comments = Comment::where('category_id', $appwatch->category_id)
-            ->where('product_id', $appwatch->id)
-            ->get();
-        $check = 'fail';
 
-        if (session()->has('user')) {
-            $user = $request->session()->get('user');
-            $orders = Order::where('customer_id', $user->id)
-                ->where('status', 'complete')
-                ->get();
-
-            if (count($orders) > 0) {
-                foreach ($orders as $order) {
-                    $orderdetails = Orderdetail::where('order_id', $order->id)
-                        ->where('category_id', $appwatch->category_id)
-                        ->where('product_id', $appwatch->id)
-                        ->get();
-                    if (count($orderdetails) > 0) {
-                        $check = 'complete';
-                    }
-                }
-            }
-        }
-        return view('frontend/appwatch_detail', compact('appwatch', 'comments', 'check'));
-    }
 
 
 
@@ -407,12 +329,6 @@ class CustomerinterfaceController extends Controller
             $categorydetail = Categorydetail::find($id);
             $categorydetails = Categorydetail::all();
             return view('frontend/category_iphone_detail', compact('categorydetail', 'categorydetails'));
-        } elseif ($category_id == 2) {
-            $categorydetail = Categorydetail::find($id);
-            return view('frontend/category_macbook_detail', compact('categorydetail'));
-        } elseif ($category_id == 3) {
-            $categorydetail = Categorydetail::find($id);
-            return view('frontend/category_appwatch_detail', compact('categorydetail'));
         }
     }
 
@@ -436,7 +352,7 @@ class CustomerinterfaceController extends Controller
             } else {
                 $product = Iphone::find($request->product_id);
             }
-        } 
+        }
 
         $quantity = $request->quantity;
         $cartItem = new CartItem($product, $quantity);
@@ -591,36 +507,36 @@ class CustomerinterfaceController extends Controller
 
     public function check_your_order(Request $request)
     {
-        
+
 
         $user = $request->session()->get('user');
 
-        $status_product = Order::where('customer_id',$user->id)
-        ->where('status','process')
-        ->get();
+        $status_product = Order::where('customer_id', $user->id)
+            ->where('status', 'process')
+            ->get();
 
-        $history_product = Order::where('customer_id',$user->id)
-        ->where('status','complete')
-        ->get();
+        $history_product = Order::where('customer_id', $user->id)
+            ->where('status', 'complete')
+            ->get();
 
-        
-        return view('frontend/check_your_order',compact('status_product','history_product'));
+
+        return view('frontend/check_your_order', compact('status_product', 'history_product'));
     }
 
-    public function re_order(Request $request , $order_id)
+    public function re_order(Request $request, $order_id)
     {
-        $products = Orderdetail::where('order_id',$order_id)
-        ->get();
+        $products = Orderdetail::where('order_id', $order_id)
+            ->get();
 
 
         $carts = [];
-        foreach($products as $item){
+        foreach ($products as $item) {
             $cartItem = new CartItem(Iphone::find($item->product_id), $item->quantity);
             $carts[] = $cartItem;
             $request->session()->put('cart', $carts);
         }
         $cart = $request->session()->get('cart');
-        return view('frontend/cart',compact('cart'));
+        return view('frontend/cart', compact('cart'));
     }
 
 

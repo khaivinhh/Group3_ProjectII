@@ -1,12 +1,4 @@
 @extends('frontend/layout_shop/layout')
-
-@section('mycss')
-<link rel="stylesheet" href="{{asset('/css/mycode/frontend/shop.css')}}">
-@endsection
-
-
-
-
 @section('product')
 <div class="product">
     @foreach($iphones as $item)

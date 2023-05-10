@@ -18,10 +18,10 @@
         <hr>
         <table border="1">
             <thead>
-                <td>id</td>
-                <td>category</td>
-                <td>name</td>
-                <td>image</td>
+                <td>ID</td>
+                <td>Category</td>
+                <td>Name</td>
+                <td>Image</td>
                 <th><a href="{{route('categorydetail.create')}}" style="color:lime"><i class="fa-solid fa-plus"></i></a></th>
             </thead>
             <tbody>

@@ -1,20 +1,20 @@
-.status_order,
-.order_history {
+.check_your_order .status_order,
+.check_your_order .order_history {
     margin: 0 50px;
 }
 
-.status_order hr,
-.order_history hr {
+.check_your_order .status_order hr,
+.check_your_order .order_history hr {
     background-color: black;
     width: 125px;
     border-top: 2px solid black;
 }
 
-.item {
+.check_your_order .item {
     margin-bottom: 50px;
 }
 
-table {
+.check_your_order table {
     text-align: center;
     border-collapse: collapse;
     border: none;
@@ -24,29 +24,29 @@ table {
 }
 
 
-table th,
-table td {
+.check_your_order table th,
+.check_your_order table td {
     padding: 15px;
 }
-table tbody .information_product p:last-child {
+.check_your_order table tbody .information_product p:last-child {
     font-size:13px;
 }
 
 
-table tfoot .total {
+.check_your_order table tfoot .total {
     text-align: right;
 }
-table tfoot .total p:nth-child(1){
+.check_your_order table tfoot .total p:nth-child(1){
     font-size:21px;
     color:red;
     
 }
 
-table tfoot .total > *{
+.check_your_order table tfoot .total > *{
     margin: 5px 0;
 }
 
-table tfoot .total a {
+.check_your_order table tfoot .total a {
     display: block;
     float: right;
     padding: 10px 20px;
@@ -56,10 +56,10 @@ table tfoot .total a {
     text-decoration:none;
 }
 
-table tbody tr:first-child td:first-child {
+.check_your_order table tbody tr:first-child td:first-child {
     width: 1px;
 }
 
-table tbody tr:first-child td:nth-child(2) {
+.check_your_order table tbody tr:first-child td:nth-child(2) {
     width: 200px;
 }
