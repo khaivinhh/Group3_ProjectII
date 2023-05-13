@@ -8,6 +8,7 @@ use App\Models\Categorydetail;
 use App\Models\Iphone;
 use App\Models\Cart;
 use App\Models\Cartdetail;
+use App\Models\Customer;
 use App\Models\Discount;
 use App\Models\Order;
 use App\Models\Product;
@@ -37,7 +38,8 @@ class HomeController extends Controller
         $auth = Auth::user();
         // return view('admin/dashboard', ['auth' => $auth]);
         $orders = Order::all();
-        return view('admin/dashboard', compact('auth', 'orders'));
+        $customers = Customer::all();
+        return view('admin/dashboard', compact('auth', 'orders','customers'));
     }
 
 

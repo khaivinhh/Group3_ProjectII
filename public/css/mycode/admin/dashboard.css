@@ -67,28 +67,28 @@
 }
 
 
-.recent_order{
+.recent{
     display: flex;
 }
-.recent_order .column{
+.recent .column{
     padding:20px
 }
-.recent_order .column table{
+.recent .recent_orders table{
     width: 100%;
     border-collapse: collapse;
 }
-.recent_order .column table thead{
+.recent .recent_orders table thead{
     border-bottom: 1px solid rgb(205, 205, 205);
 }
-.recent_order .column table thead td{
+.recent .recent_orders table thead td{
     font-size: 14px;
     font-weight: 750;
 }
 
-.recent_order .column table tbody tr:first-child td{
+.recent .recent_orders table tbody tr:first-child td{
     padding-top: 10px;
 }
-.recent_order .column table tbody .status p{
+.recent .recent_orders table tbody .status p{
     width: max-content;
     text-align: center;
     border-radius: 999px;
@@ -96,34 +96,51 @@
     padding:7px 10px;
     font-size: 13px;
 }
-.recent_order .column table tbody .status .complete{
+.recent .recent_orders table tbody .status .complete{
     background-color: #4eeb6b;
 }
-.recent_order .column table tbody .status .process{
+.recent .recent_orders table tbody .status .process{
     background-color: #f16969;
 }
-.recent_order .column table .name_image_user{
+.recent .recent_orders table .name_image_user{
     display: flex;
     align-items: center;
 }
 
-.recent_order .column table .name_image_user p{
+.recent .recent_orders table .name_image_user p{
     margin-left: 10px;
 }
-.recent_order .column table td {
+.recent .recent_orders table td {
     padding-bottom: 20px;
 }
 
-.recent_order .column h2{
+.recent .recent_orders h2{
     margin-bottom: 20px;
 }
 
+.recent .recent_customers .item{
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+.recent .recent_customers .item img{
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.recent .recent_customers .item div{
+    padding-left: 10px;
+}
+.recent .recent_customers .item div p:nth-child(2){
+    font-size: 13px;
+}
 
-.recent_order .column:nth-child(1){
+.recent .column:nth-child(1){
     width: 60%;
     margin-left: 0;
 }
-.recent_order .column:nth-child(2){
+.recent .column:nth-child(2){
     width: 40%;
     margin-right: 0;
 }
@@ -154,11 +171,11 @@
         flex-basis: 100%;
         margin: 0;
     }
-    .recent_order{
+    .recent{
         flex-direction: column;
     }
-    .recent_order .column:nth-child(1),
-    .recent_order .column:nth-child(2){
+    .recent .column:nth-child(1),
+    .recent .column:nth-child(2){
         width: 100%;
         margin-left: 0;
         margin-right: 0;

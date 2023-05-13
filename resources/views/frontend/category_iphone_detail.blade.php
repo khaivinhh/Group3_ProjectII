@@ -50,7 +50,7 @@
 </section>
 
 
-<secsion class="all_category">
+<secsion class="all_category categorydetail">
     <div class="title">
         <h1>Which iPhone is right for you?</h1>
     </div>

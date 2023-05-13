@@ -2,6 +2,9 @@ body{
     padding: 0;
     margin-top: -15px;
 }
+main{
+    max-width: 100%;
+}
 .home_page .fa-solid{
     font-weight: 750;
     font-size: 13px;
@@ -100,7 +103,7 @@ body{
 
 .home_page .best_sellers,
 .home_page .all_category {
-    width: 80%;
+    max-width: 1172px;
     margin: 250px auto 0
 }
 
@@ -190,7 +193,8 @@ body{
 .home_page .all_category .tabcontent {
     /* display: none; */
     margin-top: 50px;
-    padding: 0 100px;
+    padding: 0 60px;
+    margin: 0 40px;
 }
 .home_page .all_category .tabcontent .slick-arrow{
     background-color:#dee2e6;

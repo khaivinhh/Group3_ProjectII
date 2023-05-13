@@ -65,3 +65,4 @@ $('.close').on('click', function() {
     clearTimeout(timer1);
     clearTimeout(timer2);
 })
+AOS.init();

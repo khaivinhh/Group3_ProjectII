@@ -50,25 +50,25 @@
     </section>
 
     <section class="product_new">
-        <div>
+        <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0">
             <p>New</p>
             <p>iPhone 14</p>
             <h1>Wonderfull.</h1>
             <p>From $799 or $33.29/mo. for 24 mo. before trade‑in2</p>
         </div>
-        <div class="content">
+        <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0" class="content">
             <a href="{{ route('category_detail', [18,1])  }}">Buy</a>
             <a tabindex="0">Learn more <i class="fa-solid fa-chevron-right"></i></a>
         </div>
-        <img src="{{asset('images/myimg/frontend/new_product.jpg')}}" alt="">
+        <img data-aos="fade-right" src="{{asset('images/myimg/frontend/new_product.jpg')}}" alt="">
     </section>
 
     <section class="best_sellers">
-        <div class="title">
+        <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0" class="title">
             <h1>Top Rating</h1>
             <p>Discover our top-rated products as rated by our customers.</p>
         </div>
-        <div class="product">
+        <div data-aos="fade-left" class="product">
             @foreach($top_rated_products as $item)
             <div class="item">
                 <div class="image">
@@ -98,7 +98,7 @@
     </section>
 
     <section class="all_category">
-        <div class="title">
+        <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0" class="title">
             <h1>All Category</h1>
             <p>Discover something new in our comprehensive list of categories</p>
         </div>
@@ -108,9 +108,9 @@
         <p id="defaultOpen" class="tablinks" onclick="openCity(event,'iphone')">iPhone</p>
         <p class="tablinks" onclick="openCity(event,'macbook')">Macbook</p>
         <p class="tablinks" onclick="openCity(event,'appwatch')">Appwatch</p>
-    </div> -->
+        </div> -->
 
-        <div class="category_iphone tabcontent" id="iphone">
+        <div data-aos="fade-up" data-aos-duration="1000" class="category_iphone tabcontent" id="iphone">
             @foreach($categorydetails as $item)
             <div class="item">
                 <a href="{{ route('category_detail', [$item->id , $item->category_id])  }}"><img src="{{ asset($item->image) }}"></a>

@@ -1,20 +1,26 @@
-.check_your_order .status_order,
-.check_your_order .order_history {
+.order_status_page,
+.order_history_page  {
     margin: 0 50px;
 }
 
-.check_your_order .status_order hr,
-.check_your_order .order_history hr {
+.order_status hr,
+.order_history hr {
     background-color: black;
     width: 125px;
     border-top: 2px solid black;
 }
 
-.check_your_order .item {
-    margin-bottom: 50px;
+.order_status .item ,
+.order_history .item {
+    margin: 50px 0 ;
+}
+.order_status .item > p,
+.order_history .item > p{
+    padding-bottom: 10px;
 }
 
-.check_your_order table {
+.order_status table ,
+.order_history table {
     text-align: center;
     border-collapse: collapse;
     border: none;
@@ -24,42 +30,56 @@
 }
 
 
-.check_your_order table th,
-.check_your_order table td {
+
+.order_history table th,
+.order_history table td,
+.order_status table th,
+.order_status table td
+ {
     padding: 15px;
 }
-.check_your_order table tbody .information_product p:last-child {
-    font-size:13px;
+
+.order_history table tbody .information_product p:last-child ,
+.order_status table tbody .information_product p:last-child {
+    font-size: 13px;
 }
 
 
-.check_your_order table tfoot .total {
+.order_history table tfoot .total ,
+.order_status table tfoot .total {
+    padding-right:50px;
     text-align: right;
 }
-.check_your_order table tfoot .total p:nth-child(1){
-    font-size:21px;
-    color:red;
-    
+
+.order_history table tfoot .total p:nth-child(1) ,
+.order_status table tfoot .total p:nth-child(1) {
+    font-size: 21px;
+    color: red;
+
 }
 
-.check_your_order table tfoot .total > *{
+.order_status table tfoot .total>* ,
+.order_history table tfoot .total>* {
     margin: 5px 0;
 }
 
-.check_your_order table tfoot .total a {
+.order_status table tfoot .total a ,
+.order_history table tfoot .total a {
     display: block;
     float: right;
-    padding: 10px 20px;
+    padding: 7px 20px;
     color: white;
     background: #5d5dff;
     border-radius: 2px;
-    text-decoration:none;
+    text-decoration: none;
 }
 
-.check_your_order table tbody tr:first-child td:first-child {
+.order_status table tbody tr:first-child td:first-child ,
+.order_history table tbody tr:first-child td:first-child {
     width: 1px;
 }
 
-.check_your_order table tbody tr:first-child td:nth-child(2) {
+.order_status table tbody tr:first-child td:nth-child(2) ,
+.order_history table tbody tr:first-child td:nth-child(2) {
     width: 200px;
 }

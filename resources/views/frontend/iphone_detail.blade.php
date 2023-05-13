@@ -86,7 +86,7 @@
 
                 <div class="rate_content_user">
                     <p>{{$item->customers->first_name.' '.$item->customers->last_name}}</p>
-                    <p>{{ date('d-m-Y', strtotime($item->created_at)) }}</p>
+                    <p>{{$item->diffForHumans}}</p>
                     <div class="rate">
                         <input class="star" type="radio" id="star5" name="rate_user-{{$item->customers->id}}" value="5" disabled {{ $item->rate == 5 ? 'checked' : '' }} />
                         <label for="star5" title="text">5 stars</label>
@@ -111,7 +111,6 @@
             <div class="img_name">
                 <div>
                     <img src="{{asset($user->image)}}" alt="">
-
                 </div>
                 <p>{{$user->first_name.' '.$user->last_name}}</p>
             </div>
@@ -286,13 +285,14 @@
             type: 'post',
             url: urladdreview,
             data: {
-                rate: rate_submit,
+                rate: parseInt(rate_submit),
                 content: content,
                 product_id: product_id,
                 category_id: category_id,
                 _token: '{{ csrf_token() }}'
             },
             success: function(data) {
+                // alert(data.notification)
                 $('.text-2').text('You just added a product review');
                 notification_complete();
             }

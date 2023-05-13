@@ -69,4 +69,12 @@
 </div>@endsection
 
 @section('myjs')
+<script>
+    $(document).ready(function() {
+        $('.btn-search').on('click', function() {
+            var valuesearch = $('.valuesearch').val();
+            window.location.href = "{{ route('searchorder', ['valuesearch' => 'replacevaluesearch']) }}".replace('replacevaluesearch', valuesearch);
+        });
+    });
+</script>
 @endsection

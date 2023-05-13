@@ -276,6 +276,7 @@ li,i,button{
     width: 75px;
     height: 75px;
     border-radius: 50%;
+    object-fit: cover;
     margin: 0 auto;
     overflow: hidden;
 }

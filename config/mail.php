@@ -39,8 +39,8 @@ return [
             'host' => 'smtp.gmail.com',
             'port' => 587,
             'encryption' => 'tls',
-            'username' => 'nguyenhoangan3102@gmail.com',
-            'password' => 'msyyggophoigenot',
+            'username' => 'ishoppapple@gmail.com',
+            'password' => 'iynzclyqghimbuew',
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
@@ -98,7 +98,7 @@ return [
     */
 
     'from' => [
-        'address' => 'nguyenhoangan3102@gmail.com',
+        'address' => 'ishoppapple@gmail.com',
         'name' => 'IShopApple',
     ],
 

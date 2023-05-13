@@ -177,7 +177,7 @@
 
 .description_review .tabcontent .flex .reviewer {
     width: 100%;
-    padding: 20px;
+    padding: 20px 50px 20px 20px;
     height: 500px;
     overflow: auto;
 }
@@ -375,5 +375,10 @@
     }
     .description_review .tabcontent .flex .write_review .flex{
         flex-direction: row;
+    }
+}
+@media (max-width:480px){
+    .slick_product_relate{
+        width: 75%;
     }
 }

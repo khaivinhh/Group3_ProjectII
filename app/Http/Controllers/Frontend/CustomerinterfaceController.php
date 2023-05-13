@@ -20,27 +20,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
+use Carbon\Carbon;
 
 
 class CustomerinterfaceController extends Controller
 {
     public function home()
     {
-        $new_value = 1;
         $categorydetails = Categorydetail::all();
-
         $top_rated_products = Comment::selectRaw('product_id, AVG(rate) as avg_rate')
             ->groupBy('product_id')
             ->orderByDesc('avg_rate')
             ->take(9)
             ->get();
+        // $new_value = 1;
         // $iphones = Iphone::select('*', DB::raw("$new_value AS new_col"))->take(9)->get();
         return view('frontend/home', compact('categorydetails', 'top_rated_products'));
     }
     public function shop($category_product)
     {
         $count_iphone = count(Iphone::all());
-
+        if ($category_product == 0) {
+            return view('frontend/layout_shop/layout', compact('count_iphone'));
+        }
         if ($category_product == 1) {
             $iphones = Iphone::inRandomOrder()->paginate(9);
             return view('frontend/shop_iphone', compact('iphones', 'count_iphone'));
@@ -53,6 +56,14 @@ class CustomerinterfaceController extends Controller
     public function contact()
     {
         return view('frontend/contact');
+    }
+
+    public function send_mail_contact(Request $request)
+    {
+        $name = $request->name;
+        Mail::send('frontend.sendmail_contact', compact('name'), function ($email) use ($request) {
+            $email->to($request->email)->subject('Email from IShopApple');
+        });
     }
 
 
@@ -140,16 +151,11 @@ class CustomerinterfaceController extends Controller
 
     public function checkout(Request $request)
     {
-        if (!($request->session()->has('user'))) {
-            return view('frontend/myaccount');
-        } elseif (!($request->session()->has('cart'))) {
+        if (!($request->session()->has('cart')) || $request->session()->get('cart') == null) {
             return view('frontend/cart');
         } else {
             $user = $request->session()->get('user');
             $cart = $request->session()->get('cart');
-            if ($request->session()->get('cart') == null) {
-                return view('frontend/cart');
-            }
             return view('frontend/checkout', compact('user', 'cart'));
         }
     }
@@ -163,8 +169,8 @@ class CustomerinterfaceController extends Controller
         $categorydetail = Categorydetail::where('name', 'like', '%' . $request->name . '%')
             ->first();
 
-        if ($categorydetail == '') {
-            return view('frontend/layout_shop/layout', compact('count_iphone'));
+        if ($categorydetail == null) {
+            return view('frontend/shop_iphone', compact('count_iphone'));
         } else {
             if ($categorydetail->category_id == 1) {
                 $iphones = Iphone::leftJoin('categorydetails', 'iphones.categorydetail_id', '=', 'categorydetails.id')
@@ -175,8 +181,6 @@ class CustomerinterfaceController extends Controller
                 $iphones->appends(['name' => $request->name]);
 
                 return view('frontend/shop_iphone', compact('iphones', 'count_iphone'));
-            } elseif ($categorydetail->category_id == 2) {
-            } elseif ($categorydetail->category_id == 3) {
             }
         }
     }
@@ -257,7 +261,12 @@ class CustomerinterfaceController extends Controller
         // tìm tất cả comment của sản phẩm 
         $comments = Comment::where('category_id', $iphone->category_id)
             ->where('product_id', $iphone->id)
-            ->get();
+            ->get()
+            ->map(function ($comment) {
+                $comment->diffForHumans = $comment->updated_at->diffForHumans();
+                return $comment;
+            });
+
 
         // lấy tất cả categorydetail liên quan đến sản phẩm
         $products_relate = Iphone::where('categorydetail_id', $iphone->categorydetail_id)
@@ -298,20 +307,17 @@ class CustomerinterfaceController extends Controller
 
         // kiểm tra người dùng đã đánh giá sản phẩm này hay chưa
         if (session()->has('user')) {
-            $comments_user = Comment::where('category_id', $iphone->category_id)
+            $comment_user = Comment::where('category_id', $iphone->category_id)
                 ->where('customer_id', $user->id)
                 ->where('product_id', $iphone->id)
-                ->get();
-            if (count($comments_user) > 0) {
-                foreach ($comments_user as $item) {
-                    $star_user =  $item->rate;
-                    $content_user = $item->content;
-                }
+                ->first();
+            if ($comment_user != null) {
+                $star_user =  $comment_user->rate;
+                $content_user = $comment_user->content;
+
                 return view('frontend/iphone_detail', compact('iphone', 'products_relate', 'comments', 'write_review', 'star_product', 'count_review_product', 'star_user', 'content_user', 'user'));
             }
         }
-
-
         // truyền sản phẩm , tất cả comments sản phẩm , sao sản phẩm , số lượt đánh giá của sản phẩm
         return view('frontend/iphone_detail', compact('iphone', 'products_relate', 'comments', 'write_review', 'star_product', 'count_review_product', 'user'));
     }
@@ -474,21 +480,19 @@ class CustomerinterfaceController extends Controller
 
     public function add_review(Request $request)
     {
-
         if ($request->category_id == 1) {
 
             $user = $request->session()->get('user');
-            $comments_user = Comment::where('customer_id', $user->id)
+            $comment_user = Comment::where('customer_id', $user->id)
                 ->where('category_id', $request->category_id)
                 ->where('product_id', $request->product_id)
-                ->get();
+                ->first();
 
-            if (count($comments_user) > 0) {
-                foreach ($comments_user as $item) {
-                    $item->rate = $request->rate;
-                    $item->content = $request->content;
-                    $item->save();
-                }
+            if ($comment_user != null) {
+                $comment_user->content = $request->content;
+                $comment_user->rate = $request->rate;
+                $comment_user->save();
+                // return ['notification' => $request->rate];
             } else {
                 $review = new Comment();
                 $review->customer_id = $user->id;
@@ -497,41 +501,41 @@ class CustomerinterfaceController extends Controller
                 $review->rate = $request->rate;
                 $review->content = $request->content;
                 $review->save();
-                // return ['notification' => 'add comment'];
+                // return ['notification' => 'comment not exist'];
             }
-        } elseif ($request->category_id == 2) {
-        } elseif ($request->category_id == 3) {
         }
     }
 
 
-    public function check_your_order(Request $request)
+    public function order_status(Request $request)
     {
-
-
         $user = $request->session()->get('user');
-
         $status_product = Order::where('customer_id', $user->id)
             ->where('status', 'process')
             ->get();
 
+        return view('frontend/order_status', compact('status_product'));
+    }
+
+
+    public function order_history(Request $request)
+    {
+        $user = $request->session()->get('user');
         $history_product = Order::where('customer_id', $user->id)
             ->where('status', 'complete')
             ->get();
-
-
-        return view('frontend/check_your_order', compact('status_product', 'history_product'));
+        return view('frontend/order_history', compact('history_product'));
     }
+
+
 
     public function re_order(Request $request, $order_id)
     {
         $products = Orderdetail::where('order_id', $order_id)
             ->get();
-
-
         $carts = [];
         foreach ($products as $item) {
-            $cartItem = new CartItem(Iphone::find($item->product_id), $item->quantity);
+            $cartItem = new CartItem(Iphone::findOrFail($item->product_id), $item->quantity);
             $carts[] = $cartItem;
             $request->session()->put('cart', $carts);
         }
