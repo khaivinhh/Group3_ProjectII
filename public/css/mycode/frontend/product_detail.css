@@ -88,11 +88,14 @@
 }
 
 
-.rate {
+.description_review .rate ,
+.product_detail .rate {
     height: 30px;
 }
 
-.rate:not(:checked)>label {
+.description_review .rate:not(:checked)>label,
+.product_detail .rate:not(:checked)>label
+ {
     float: right;
     width: 1em;
     overflow: hidden;
@@ -102,14 +105,17 @@
     color: #ccc;
 }
 
-.rate:not(:checked)>label:before {
+.description_review .rate:not(:checked)>label:before ,
+.product_detail .rate:not(:checked)>label:before {
     content: '★ ';
 }
 
-.rate>input:checked~label {
+.description_review .rate>input:checked~label ,
+.product_detail .rate>input:checked~label {
     color: #ffc700;
 }
-.rate input{
+.description_review .rate input,
+.product_detail .rate input{
     display: none;
 }
 
@@ -171,7 +177,7 @@
 
 .description_review .tabcontent .flex .reviewer {
     width: 100%;
-    padding: 20px;
+    padding: 20px 50px 20px 20px;
     height: 500px;
     overflow: auto;
 }
@@ -201,6 +207,10 @@
 .description_review .tabcontent .flex .reviewer .user_review .rate_content_user {
     padding-left: 20px;
 }
+.description_review .tabcontent .flex .reviewer .user_review .rate_content_user p:nth-child(2)
+{
+    font-size: 13px;
+}
 .description_review .tabcontent .flex .reviewer .user_review .rate_content_user .rate {
     float: left;
 }
@@ -213,6 +223,23 @@
 
 .description_review .tabcontent .flex .write_review{
     padding-left: 20px;
+}
+.description_review .tabcontent .flex .write_review .img_name{
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.description_review .tabcontent .flex .write_review .img_name div{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.description_review .tabcontent .flex .write_review .img_name div img{
+    width: 50px;
+}
+.description_review .tabcontent .flex .write_review .img_name p{
+    padding-left: 10px;
 }
 .description_review .tabcontent .flex .write_review .addreview{
     float: right;
@@ -233,6 +260,7 @@
 
 
 .description_review .tabcontent .flex .write_review textarea{
+    height: 265px !important;
     border: 1px solid #ddd;
     width: 100%;
     margin-top: 5px;
@@ -347,5 +375,10 @@
     }
     .description_review .tabcontent .flex .write_review .flex{
         flex-direction: row;
+    }
+}
+@media (max-width:480px){
+    .slick_product_relate{
+        width: 75%;
     }
 }

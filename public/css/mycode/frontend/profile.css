@@ -1,23 +1,13 @@
-
-
 .profile{
     display: flex;
     width: 90%;
     margin: auto;
-}
-.profile>.informationuser,
-section {
-    margin: 25px 0;
-    border-radius: 5px;
-    background-color: #fff;
 }
 
 .profile .informationuser {
     width: 40%;
 
 }
-
-
 .profile .informationuser .informationuser_header_right{
     text-align: center;
     margin-top: 25px;
@@ -34,6 +24,7 @@ section {
 }
 
 .profile .informationuser .imguser img {
+    height: 100%;
     display: block;
     width: 100%;
     margin:auto
@@ -57,7 +48,7 @@ section {
 }
 .profile .flex {
     width: 60%;
-    padding:100px 0 0 50px;
+    padding:50px 0 0 50px;
 
 }
 .profile .flex .profile_user,
@@ -99,12 +90,19 @@ section {
     border-radius: 3px;
     outline: none;
 }
-.profile .flex .btn_check_order {
+.profile .flex .order_status
+{
+    margin-right:10px;
+}
+.profile .flex .order_status ,
+.profile .flex .order_history 
+{
     background-color: #5d5dff;
     color: white;
     padding: 10px;
     text-decoration: none;
-    border-radius: 2px
+    border-radius: 2px;
+    font-size:13px;
 }
 
 .profile .flex .sign_out {

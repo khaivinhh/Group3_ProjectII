@@ -18,10 +18,10 @@
         <hr>
         <table border="1">
             <thead>
-                <td>id</td>
-                <td>name</td>
-                <td>color</td>
-                <td>img</td>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Color</td>
+                <td>Image</td>
                 <th><a href="{{route('image.create')}}" style="color:lime"><i class="fa-solid fa-plus"></i></a></th>
             </thead>
             <tbody>

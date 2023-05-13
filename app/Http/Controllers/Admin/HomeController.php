@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Appwatch;
 use App\Models\Category;
 use App\Models\Categorydetail;
 use App\Models\Iphone;
 use App\Models\Cart;
 use App\Models\Cartdetail;
+use App\Models\Customer;
 use App\Models\Discount;
-use App\Models\Macbook;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -39,7 +38,8 @@ class HomeController extends Controller
         $auth = Auth::user();
         // return view('admin/dashboard', ['auth' => $auth]);
         $orders = Order::all();
-        return view('admin/dashboard', compact('auth', 'orders'));
+        $customers = Customer::all();
+        return view('admin/dashboard', compact('auth', 'orders','customers'));
     }
 
 
@@ -97,26 +97,12 @@ class HomeController extends Controller
             $iphone = Iphone::where('id', $item->product_id)
                 ->where('category_id', $item->category_id)
                 ->first();
-            $macbook = Macbook::where('id', $item->product_id)
-                ->where('category_id', $item->category_id)
-                ->first();
-            $appwatch = Appwatch::where('id', $item->product_id)
-                ->where('category_id', $item->category_id)
-                ->first();
+           
             if ($iphone) {
                 $iphone->quantity -= $item->quantity;
                 $iphone->save();
             }
-            if ($macbook) {
-
-                $macbook->quantity -= $item->quantity;
-                $macbook->save();
-            }
-            if ($appwatch) {
-
-                $appwatch->quantity -= $item->quantity;
-                $appwatch->save();
-            }
+           
         }
         $request->session()->forget('cart_copy');
         return redirect('admin/order');

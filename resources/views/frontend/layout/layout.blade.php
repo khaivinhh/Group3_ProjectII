@@ -9,15 +9,32 @@
     <link rel="stylesheet" href="{{asset('/css/mycode/frontend/slick.css')}}">
     <link rel="stylesheet" href="{{asset('/css/mycode/frontend/slick-theme.css')}}">
     <link rel="stylesheet" href="{{asset('/css/mycode/frontend/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/shop.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/about.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/cart.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/category_iphone_detail.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/check_your_order.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/checkout.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/contact.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/product_detail.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/myaccount.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/profile.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/shop.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/about.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/mycode/frontend/aos.css')}}">
+
+
     <link rel="icon" type="image/x-icon" href="{{asset('images/myimg/OIP-removebg-preview.png')}}">
+    <title>IShopApple</title>
+
 
     @yield('mycss')
 
 
-    <title>IShopApple</title>
 </head>
 
 <body>
+    <div class="mfp-bg mfp-fade mfp-ready" style="display:none;"></div>
 
 
     <div class="my_toast complete_toast">
@@ -94,35 +111,37 @@
         </div>
     </div>
     <header>
-        <nav class="sidebar_header">
-            <div class="left_sidebar_header">
-                <h1><a href="{{route('home')}}" class="name_brand">IShopApple</a></h1>
-                <a href="{{route('home')}}">Home</a>
-                <a href="{{route('shop',1)}}">Shop</a>
-                <a href="{{route('about')}}">About</a>
-                <a href="{{route('contact')}}">Contact</a>
-                <a href="{{route('cart')}}">Cart
-                    @if(session()->has('cart'))
-                    <span class="count_cart">{{ count(session('cart')) }}</span>
-                    @else
-                    <span class="count_cart">0</span>
-                    @endif
+        <nav>
+            <div class="sidebar_header">
+                <div class="left_sidebar_header">
+                    <h1><a href="{{route('home')}}" class="name_brand">IShopApple</a></h1>
+                    <a href="{{route('home')}}">Home</a>
+                    <a href="{{route('shop',1)}}">Shop</a>
+                    <a href="{{route('about')}}">About</a>
+                    <a href="{{route('contact')}}">Contact</a>
+                    <a href="{{route('cart')}}">Cart
+                        @if(session()->has('cart'))
+                        <span class="count_cart">{{ count(session('cart')) }}</span>
+                        @else
+                        <span class="count_cart">0</span>
+                        @endif
 
-                </a>
-            </div>
-            <div class="right_sidebar_header">
-                <div class="header_mobie">
-                    <img class="logo" src="{{asset('images/myimg/OIP.jpg')}}" alt="">
-                    <div class="search">
-                        <form class="search_by_name" action="{{route('search_by_name')}}">
-                            <input type="text" placeholder="search" name="name" class="input_search_name">
-                            <button class="submit_search" style="padding:0;border:0" type="submit" disabled><i class="btn_search fa-solid fa-magnifying-glass"></i></button>
-                        </form>
-                    </div>
-                    <i class="fa-solid fa-bars"></i>
+                    </a>
                 </div>
-                <a href="{{route('myaccount')}}">Account</a>
+                <div class="right_sidebar_header">
+                    <div class="header_mobie">
+                        <img class="logo" src="{{asset('images/myimg/OIP.jpg')}}" alt="">
+                        <div class="search">
+                            <form class="search_by_name" action="{{route('search_by_name')}}">
+                                <input type="text" placeholder="search" name="name" class="input_search_name">
+                                <button class="submit_search" style="padding:0;border:0" type="submit" disabled><i class="btn_search fa-solid fa-magnifying-glass"></i></button>
+                            </form>
+                        </div>
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                    <a href="{{route('myaccount')}}">Account</a>
 
+                </div>
             </div>
         </nav>
 
@@ -149,15 +168,14 @@
                         <li><a href="#">shipping</a></li>
                         <li><a href="#">returns</a></li>
                         <li><a href="#">order status</a></li>
-                        <li><a href="#">payment options</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>online shop</h4>
                     <ul>
-                        <li><a href="#">iPhone</a></li>
-                        <li><a href="#">MacBook</a></li>
-                        <li><a href="#">AppWatch</a></li>
+                        <li><a href="{{route('shop',1)}}">iPhone</a></li>
+                        <li><a href="{{route('shop',0)}}">MacBook</a></li>
+                        <li><a href="{{route('shop',0)}}">AppWatch</a></li>
 
                     </ul>
                 </div>
@@ -179,77 +197,12 @@
 <script src="{{asset('/js/mycode/jquery-3.6.4.min.js')}}"></script>
 <script src="{{asset('/js/mycode/slick.min.js')}}"></script>
 <script src="{{asset('/js/mycode/loader.js')}}"></script>
+<script src="{{asset('/js/mycode/aos.js')}}"></script>
+<script src="{{asset('/js/mycode/frontend/layout.js')}}"></script>
+<script src="{{asset('/js/mycode/frontend/layout_shop.js')}}"></script>
+<script src="{{asset('/js/mycode/frontend/cart.js')}}"></script>
+
 @yield('myjs')
-<script>
-    $('.input_search_name').on('keyup', function() {
-        if ($(this).val().length > 0) {
-            $('.submit_search').removeAttr('disabled');
-        } else {
-            $('.submit_search').attr('disabled', 'disabled');
-        }
-    });
 
-    var timer1, timer2;
-
-    function notification_complete() {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-        $('.complete_progress').removeClass('active_notification');
-
-
-        $('.complete_toast').addClass('active_notification');
-
-
-        setTimeout(() => {
-            $('.complete_progress').addClass('active_notification');
-        }, 10);
-
-        timer1 = setTimeout(() => {
-            $('.complete_toast').removeClass('active_notification');
-        }, 5000);
-
-        timer2 = setTimeout(() => {
-            $('.complete_progress').removeClass('active_notification');
-        }, 5300);
-    }
-
-
-
-    var i = 0;
-
-    function notification_error() {
-
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-        $('.error_progress').removeClass('active_notification');
-
-
-        $('.error_toast').addClass('active_notification');
-
-        setTimeout(() => {
-            $('.error_progress').addClass('active_notification');
-        }, 10);
-
-        timer1 = setTimeout(() => {
-            $('.error_toast').removeClass('active_notification');
-        }, 5000);
-
-        timer2 = setTimeout(() => {
-            $('.error_progress').removeClass('active_notification');
-        }, 5300);
-
-
-    }
-
-
-    $('.close').on('click', function() {
-        $('.my_toast').removeClass('active_notification');
-        setTimeout(() => {
-            $('.progress').removeClass('active_notification');
-        }, 300);
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-    })
-</script>
 
 </html>

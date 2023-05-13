@@ -1,11 +1,5 @@
 @extends('frontend/layout/layout')
-@section('mycss')
-<link rel="stylesheet" href="{{asset('/css/mycode/frontend/checkout.css')}}">
-
-@endsection
-
 @section('contents')
-
 <div class="title">
     <h1>Check Out</h1>
     <a href="">Home</a>
@@ -114,8 +108,7 @@
 @section('myjs')
 <script>
    
-    $(document).ready(function() {
-        $('.place_order').click(function(e) {
+        $('.place_order').on('click',function(e) {
             let address = $('.address').val();
             let total = "{{$total}}";
             let discount_code = $('#discount_code').val();
@@ -133,11 +126,9 @@
                 success: function(data) {
                     $('.text-2').text('You have 1 order please check in profile');
                     notification_complete();
-                    // window.location.href = "{{ route('home') }}";
                 }
             });
         })
 
-    })
 </script>
 @endsection

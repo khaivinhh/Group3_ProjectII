@@ -1,14 +1,6 @@
 @extends('frontend/layout/layout')
-@section('mycss')
-<link rel="stylesheet" href="{{asset('/css/mycode/frontend/product_detail.css')}}">
-@endsection
-
-
-
 @section('contents')
-<style>
-    
-</style>
+
 
 
 <section class="title">
@@ -19,8 +11,6 @@
     <span>/</span>
     <span>{{$iphone->categorydetails->name}}</span>
 </section>
-
-
 
 
 
@@ -91,12 +81,12 @@
                 <div class="img_user_review">
                     <div>
                         <img src="{{asset($item->customers->image)}}" alt="" width="100%">
-
                     </div>
                 </div>
 
                 <div class="rate_content_user">
                     <p>{{$item->customers->first_name.' '.$item->customers->last_name}}</p>
+                    <p>{{$item->diffForHumans}}</p>
                     <div class="rate">
                         <input class="star" type="radio" id="star5" name="rate_user-{{$item->customers->id}}" value="5" disabled {{ $item->rate == 5 ? 'checked' : '' }} />
                         <label for="star5" title="text">5 stars</label>
@@ -118,7 +108,12 @@
         @if($write_review == 'true')
         <div class="write_review">
             <p class="title">Add Your Review</p>
-            <p>Name : {{$name_user}}</p>
+            <div class="img_name">
+                <div>
+                    <img src="{{asset($user->image)}}" alt="">
+                </div>
+                <p>{{$user->first_name.' '.$user->last_name}}</p>
+            </div>
             <div class="flex">
                 <p>Your Rating : </p>
                 <div class="rate">
@@ -178,12 +173,6 @@
 
 @section('myjs')
 <script>
-    const product_id = "{{$iphone->id}}";
-    const category_id = "{{$iphone->categories->id}}";
-    const urladditem = "{{route('add_to_cart')}}";
-    const urladdreview = "{{route('add_review')}}";
-
-
     function openCity(evt, description_review) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
@@ -204,113 +193,110 @@
 
 
 
-    $(document).ready(function() {
-
-        $('.image_product').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            arrows: false,
-            dots: true,
-        })
-        $('.slick_product_relate').slick({
-            slidesToShow: 4,
-            slidesToScroll: 2,
-            // autoplay: true,
-            autoplaySpeed: 2000,
-            arrows: true,
-            dots: false,
-            responsive: [{
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
-                        infinite: true,
-                        dots: true
-                    }
-                },
-                {
-                    breakpoint: 800,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
+    $('.image_product').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        arrows: false,
+        dots: true,
+    })
+    $('.slick_product_relate').slick({
+        slidesToShow: 4,
+        slidesToScroll: 2,
+        // autoplay: true,
+        autoplaySpeed: 2000,
+        arrows: true,
+        dots: false,
+        responsive: [{
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
                 }
-
-            ]
-
-        })
-
-
-
-
-        let timer1, timer2;
-        $('.addtocart').click(function(e) {
-            e.preventDefault();
-            let quantity = $('.input_quantity').val();
-            $.ajax({
-                type: 'post',
-                url: urladditem,
-                data: {
-                    product_id: product_id,
-                    quantity: quantity,
-                    category_id: category_id,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(data) {
-                    $('.text-2').text(data.notification);
-                    $('.count_cart').text(data.count_cart)
-                    notification_complete();
+            },
+            {
+                breakpoint: 800,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
                 }
-
-
-            });
-        });
-
-
-        var rate_submit = 0;
-        $('.submit_rate').each(function() {
-            if ($(this).is(":checked")) {
-                rate_submit = $(this).val();
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
             }
-        });
-        $('.submit_rate').on('click', function() {
-            if ($(this).prop('checked')) {
-                rate_submit = $(this).val();
+
+        ]
+
+    })
+
+
+    const product_id = "{{$iphone->id}}";
+    const category_id = "{{$iphone->categories->id}}";
+    const urladditem = "{{route('add_to_cart')}}";
+    const urladdreview = "{{route('add_review')}}";
+
+    $('.addtocart').click(function(e) {
+        e.preventDefault();
+        let quantity = $('.input_quantity').val();
+        $.ajax({
+            type: 'post',
+            url: urladditem,
+            data: {
+                product_id: product_id,
+                quantity: quantity,
+                category_id: category_id,
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(data) {
+                $('.text-2').text(data.notification);
+                $('.count_cart').text(data.count_cart)
+                notification_complete();
             }
+
+
         });
-
-
-
-        $('.addreview').on('click', function(e) {
-            var content = $('#content').val();
-            $.ajax({
-                type: 'post',
-                url: urladdreview,
-                data: {
-                    rate: rate_submit,
-                    content: content,
-                    product_id: product_id,
-                    category_id: category_id,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(data) {
-                    $('.text-2').text('You just added a product review');
-                    notification_complete();
-                }
-            });
-        })
-
-       
-
     });
+
+
+    var rate_submit = 0;
+    $('.submit_rate').each(function() {
+        if ($(this).is(":checked")) {
+            rate_submit = $(this).val();
+        }
+    });
+    $('.submit_rate').on('click', function() {
+        if ($(this).prop('checked')) {
+            rate_submit = $(this).val();
+        }
+    });
+
+
+
+    $('.addreview').on('click', function(e) {
+        var content = $('#content').val();
+        $.ajax({
+            type: 'post',
+            url: urladdreview,
+            data: {
+                rate: parseInt(rate_submit),
+                content: content,
+                product_id: product_id,
+                category_id: category_id,
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(data) {
+                // alert(data.notification)
+                $('.text-2').text('You just added a product review');
+                notification_complete();
+            }
+        });
+    })
 </script>
 @endsection

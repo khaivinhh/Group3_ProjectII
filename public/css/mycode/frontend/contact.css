@@ -82,7 +82,7 @@
     outline:none;
 }
 
-iframe {
+.iframe_contact  {
     width: 80%;
     border: 0;
     display: flex;

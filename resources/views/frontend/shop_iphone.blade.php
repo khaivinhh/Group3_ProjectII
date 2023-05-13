@@ -1,13 +1,8 @@
 @extends('frontend/layout_shop/layout')
 
-@section('mycss')
-<link rel="stylesheet" href="{{asset('/css/mycode/frontend/shop.css')}}">
-@endsection
-
-
-
 
 @section('product')
+@if(isset($iphones))
 <div class="product">
     @foreach($iphones as $item)
     <div class="item">
@@ -18,26 +13,30 @@
     </div>
     @endforeach
 </div>
+@else
+<h1 class="no_result">No Result</h1>
+@endif
+
 @endsection
 
 
 
 @section('link')
+@if(isset($iphones))
 <div class="pagination">
     {{ $iphones->onEachSide(0)->links() }}
 </div>
+@endif
 @endsection
 
 
 @section('myjs')
 <script>
-    
     $('#sort_by').on('change', function() {
         $('.category_sort').val('1');
         $('.form_sort_by').submit();
     });
 
     $('.category_search').val('1');
-    
 </script>
 @endsection

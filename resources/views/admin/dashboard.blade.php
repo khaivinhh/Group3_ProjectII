@@ -41,9 +41,9 @@
                 $total = 0;
                 @endphp
                 @foreach($orders as $item)
-                    @php
-                    $total += $item->total;
-                    @endphp
+                @php
+                $total += $item->total;
+                @endphp
                 @endforeach
                 <h2>${{$total}}</h2>
                 <p>Total Sales</p>
@@ -55,9 +55,9 @@
 
 
 
-    <section class="recent_order">
-        <div class="column">
-            <h2>Recent Order</h2>
+    <section class="recent">
+        <div class="column recent_orders">
+            <h2>Recent Orders</h2>
             <table>
                 <thead>
                     <tr>
@@ -89,12 +89,20 @@
                 <tfoot></tfoot>
             </table>
         </div>
-        <div class="column">
-            
+        <div class="column recent_customers">
+            <h2>Recent Customers</h2>
+            @foreach($customers as $item)
+            <div class="item">
+                <img src="{{asset($item->image)}}">
+                <div>
+                    <p>{{$item->first_name.' '.$item->last_name}}</p>
+                    <p>{{$item->address}}</p>
+                </div>
+            </div>
+            @endforeach
         </div>
 
     </section>
-
 
 </div>
 

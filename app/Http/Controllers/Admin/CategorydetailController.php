@@ -91,7 +91,7 @@ class CategorydetailController extends Controller
     }
     public function searchcategorydetail(Request $request)
     {
-        $categorydetail = Categorydetail::where('name', 'like', '%' . $request->valuesearch . '%')
+        $categorydetail = Categorydetail::where('name', '=', $request->valuesearch)
             ->get();
 
         $auth = Auth::user();

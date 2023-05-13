@@ -1,18 +1,13 @@
 @extends('frontend/layout/layout')
-@section('mycss')
-<link rel="stylesheet" href="{{asset('/css/mycode/frontend/myaccount.css')}}">
-
-@endsection
-
 @section('contents')
-<div class="title">
+<section class="title">
     <h1>Account</h1>
     <a href="">Home</a>
     <span>/</span>
     <a href="">Account</a>
-</div>
+</section>
 
-<div class="form_recover_password">
+<section class="form_recover_password">
     <i class="btn_close fa-solid fa-xmark"></i>
     <h3>Enter Your Email</h3>
     <form id="form_recover_password">
@@ -21,11 +16,11 @@
         <button type="submit" class="btn_recover_password">Enter</button>
         <!-- <p class="notification_recover"></p> -->
     </form>
-</div>
+</section>
 
 
 
-<div class="myaccount">
+<section class="myaccount">
     <form id="form_sign_in">
         <h3>LOGIN</h3>
         <hr>
@@ -76,7 +71,7 @@
         <!-- <p class="notification_sign_up" style="margin-top:20px;color:red"></p> -->
         <button type="submit" class="sign_up">Register</button>
     </form>
-</div>
+</section>
 
 @endsection
 
@@ -92,8 +87,6 @@
         $('.form_recover_password').css('top', '-17%')
 
     })
-
-
 
 
 

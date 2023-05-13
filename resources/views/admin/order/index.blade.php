@@ -19,14 +19,14 @@
         <hr>
         <table border="1">
             <thead>
-                <td>id</td>
-                <td>user_id</td>
-                <td>information</td>
-                <td>address</td>
-                <td>date</td>
-                <td>status</td>
-                <td>total</td>
-                <th>action</th>
+                <td>ID</td>
+                <td>User_ID</td>
+                <td>Information</td>
+                <td>Address</td>
+                <td>Date</td>
+                <td>Status</td>
+                <td>Total</td>
+                <th>Action</th>
             </thead>
             <tbody>
                 @foreach($order as $item)
@@ -69,4 +69,12 @@
 </div>@endsection
 
 @section('myjs')
+<script>
+    $(document).ready(function() {
+        $('.btn-search').on('click', function() {
+            var valuesearch = $('.valuesearch').val();
+            window.location.href = "{{ route('searchorder', ['valuesearch' => 'replacevaluesearch']) }}".replace('replacevaluesearch', valuesearch);
+        });
+    });
+</script>
 @endsection

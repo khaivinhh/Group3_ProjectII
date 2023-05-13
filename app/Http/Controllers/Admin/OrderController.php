@@ -7,6 +7,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Orderdetail;
+use Illuminate\Support\Facades\DB;
 
 
 class OrderController extends Controller
@@ -76,5 +77,15 @@ class OrderController extends Controller
     {
         $order->delete();
         return redirect('admin/order');
+    }
+    public function searchorder(Request $request){
+        $fullname = $request->valuesearch;
+        $order = Order::leftJoin('customers','orders.customer_id','=','customers.id')
+        ->select('orders.*')
+        ->where(DB::raw("CONCAT(first_name, ' ', last_name)"), 'like', '%' . $fullname . '%')
+        ->with('customers')
+        ->get();
+        $auth = Auth::user();
+        return view('admin/order/index', compact('auth', 'order'));
     }
 }

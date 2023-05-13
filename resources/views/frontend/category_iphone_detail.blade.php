@@ -1,10 +1,4 @@
 @extends('frontend/layout/layout')
-@section('mycss')
-<link rel="stylesheet" href="{{asset('/css/mycode/frontend/category_iphone_detail.css')}}">
-@endsection
-
-
-
 @section('contents')
 <section class="title">
     <h1>Category</h1>
@@ -56,7 +50,7 @@
 </section>
 
 
-<secsion class="all_category">
+<secsion class="all_category categorydetail">
     <div class="title">
         <h1>Which iPhone is right for you?</h1>
     </div>
@@ -80,151 +74,145 @@
         @endforeach
     </div>
 </secsion>
-
-
 @endsection
 
 
 @section('myjs')
 <script>
-    $(document).ready(function() {
-        var images = @json($categorydetail -> images);
+    var images = @json($categorydetail -> images);
 
-        var colors = document.querySelectorAll('.color');
+    var colors = document.querySelectorAll('.color');
 
-        function generateImageHtml() {
-            var container = '';
-            $.each(images, function(index, value) {
-                if (value.color_id == colors[0].value) {
-                    var imagePath = "{{ asset(':path') }}".replace(':path', value.path);
-                    container += '<img src="' + imagePath + '" alt="">';
-                }
-            });
-            return container;
-        }
-        $('.image_product').html(generateImageHtml());
-
-
-        color = '';
-        $('.color').on('click', function() {
-            var value_color = this.value;
-            color = this.value;
-            var i = 1;
-            var y = 1;
-            var name_color = this.id;
-            $('.name_color').text('Color - ' + name_color.toString());
-            $.each(images, function(index, value) {
-                if (value.color_id == value_color) {
-                    var imagePath = "{{ asset(':path') }}".replace(':path', value.path);
-                    $('.image_product img').eq(i).attr('src', imagePath);
-                    if (i == 3) {
-                        $('.image_product img').eq(y).prev().attr('src', imagePath);
-                    }
-                    $('.image_product img').eq(i).next().next().next().attr('src', imagePath)
-                    i++;
-                    name_color = value.name;
-                }
-            });
-            check_addtocart();
-        });
-
-        var capacity = '';
-        $('.capacity').on('click', function() {
-            capacity = this.value;
-            check_addtocart();
-        });
-
-
-        function check_addtocart() {
-            if (color != '' && capacity != '') {
-                $('.addtocart').removeAttr('disabled');
-                $('.addtocart').css('background-color', '#5d5dff');
+    function generateImageHtml() {
+        var container = '';
+        $.each(images, function(index, value) {
+            if (value.color_id == colors[0].value) {
+                var imagePath = "{{ asset(':path') }}".replace(':path', value.path);
+                container += '<img src="' + imagePath + '" alt="">';
             }
+        });
+        return container;
+    }
+    $('.image_product').html(generateImageHtml());
+
+
+    color = '';
+    $('.color').on('click', function() {
+        var value_color = this.value;
+        color = this.value;
+        var i = 1;
+        var y = 1;
+        var name_color = this.id;
+        $('.name_color').text('Color - ' + name_color.toString());
+        $.each(images, function(index, value) {
+            if (value.color_id == value_color) {
+                var imagePath = "{{ asset(':path') }}".replace(':path', value.path);
+                $('.image_product img').eq(i).attr('src', imagePath);
+                if (i == 3) {
+                    $('.image_product img').eq(y).prev().attr('src', imagePath);
+                }
+                $('.image_product img').eq(i).next().next().next().attr('src', imagePath)
+                i++;
+                name_color = value.name;
+            }
+        });
+        check_addtocart();
+    });
+
+    var capacity = '';
+    $('.capacity').on('click', function() {
+        capacity = this.value;
+        check_addtocart();
+    });
+
+
+    function check_addtocart() {
+        if (color != '' && capacity != '') {
+            $('.addtocart').removeAttr('disabled');
+            $('.addtocart').css('background-color', '#5d5dff');
         }
+    }
 
 
 
-        const urladd = "{{route('add_to_cart')}}";
-        $('.addtocart').click(function(e) {
-            e.preventDefault();
-            let quantity = 1;
-            let category_id = "{{$categorydetail->categories->id}}";
-            let categorydetail_id = "{{$categorydetail->id}}";
+    const urladd = "{{route('add_to_cart')}}";
+    $('.addtocart').on('click',function(e) {
+        e.preventDefault();
+        let quantity = 1;
+        let category_id = "{{$categorydetail->categories->id}}";
+        let categorydetail_id = "{{$categorydetail->id}}";
 
 
-            $.ajax({
-                type: 'post',
-                url: urladd,
-                data: {
-                    quantity: quantity,
-                    category_id: category_id,
-                    categorydetail_id: categorydetail_id,
-                    color: color,
-                    capacity: capacity,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(data) {
-                    if(data.notification == 'error'){
-                        $('.text-2-error').text('The product is out of stock');
-                        notification_error();
-                    }
-                    else{
-                        $('.text-2').text(data.notification);
+        $.ajax({
+            type: 'post',
+            url: urladd,
+            data: {
+                quantity: quantity,
+                category_id: category_id,
+                categorydetail_id: categorydetail_id,
+                color: color,
+                capacity: capacity,
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(data) {
+                if (data.notification == 'error') {
+                    $('.text-2-error').text('The product is out of stock');
+                    notification_error();
+                } else {
+                    $('.text-2').text(data.notification);
                     $('.count_cart').text(data.count_cart)
                     notification_complete();
-                    }
-                    
-                }
-            });
-
-        });
-
-
-
-        $('.category_iphone').slick({
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            // autoplay: true,
-            autoplaySpeed: 2000,
-            arrows: true,
-            dots: false,
-            responsive: [{
-                    breakpoint: 1100,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
-                        infinite: true,
-                        dots: true
-                    }
-                },
-                {
-                    breakpoint: 800,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
                 }
 
-            ]
-
-        })
-
-        $('.image_product').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            arrows: false,
-            dots: true,
+            }
         });
 
+    });
+
+
+
+    $('.category_iphone').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        // autoplay: true,
+        autoplaySpeed: 2000,
+        arrows: true,
+        dots: false,
+        responsive: [{
+                breakpoint: 1100,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 800,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+
+        ]
+
+    })
+
+    $('.image_product').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        arrows: false,
+        dots: true,
     });
 </script>
 @endsection

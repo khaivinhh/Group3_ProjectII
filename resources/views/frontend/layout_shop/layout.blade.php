@@ -1,15 +1,4 @@
 @extends('frontend/layout/layout')
-
-
-
-@section('mycss')
-<link rel="stylesheet" href="{{asset('/css/mycode/frontend/shop.css')}}">
-@endsection
-
-
-
-
-
 @section('contents')
 <section class="title">
     <h1>Products</h1>
@@ -39,8 +28,6 @@
         <button class="accordion">Categories</button>
         <div class="panel">
             <a href="{{route('shop',1)}}">Apple iPhone ({{$count_iphone}})</a>
-            <!-- <a href="{{route('shop',2)}}">Apple Macbook ({{$count_macbook}})</a>
-            <a href="{{route('shop',3)}}">Apple Appwatch ({{$count_appwatch}})</a> -->
         </div>
 
         <button class="accordion">Custom Menu</button>
@@ -71,33 +58,8 @@
 
 
     @yield('product')
-
-
-
 </section>
-
 @yield('link')
 
-@endsection
-
-
-
-@section('myjs')
-<script>
-    var acc = document.getElementsByClassName("accordion");
-    var i;
-    for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
-            if (panel.style.maxHeight == 'max-content' || panel.style.maxHeight == '') {
-                panel.style.maxHeight = 0;
-            } else {
-                panel.style.maxHeight = 'max-content';
-            }
-        });
-    }
-</script>
-@yield('javascript')
 
 @endsection

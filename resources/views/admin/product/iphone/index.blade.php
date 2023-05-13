@@ -18,14 +18,14 @@
         <hr>
         <table border="1">
             <thead>
-                <td>id</td>
-                <td>name</td>
-                <td>image</td>
-                <td>color</td>
-                <td>ram</td>
-                <td>capacity</td>
-                <td>price</td>
-                <td>quantity</td>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Image</td>
+                <td>Color</td>
+                <td>Ram</td>
+                <td>Capacity</td>
+                <td>Price</td>
+                <td>Quantity</td>
                 <th><a href="{{route('iphone.create')}}" style="color:lime"><i class="fa-solid fa-plus"></i></a></th>
             </thead>
             <tbody>
