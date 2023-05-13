@@ -26,7 +26,7 @@
             <tbody>
                 @foreach($items->orderdetails as $item)
                 <tr>
-                    <td><a href="{{route('iphone_detail,$item->iphones->id')}}"><img src="{{asset($item->iphones->image)}}" alt="" width="50"></a></td>
+                <td><a href="{{route('iphone_detail',$item->iphones->id)}}"><img src="{{asset($item->iphones->image)}}" alt="" width="50"></a></td>
                     <td class="information_product">
                         <p>{{$item->iphones->categorydetails->name}}</p>
                         <p>{{$item->iphones->rams->name}}/{{$item->iphones->capacities->name}}/{{$item->iphones->colors->name}}</p>
