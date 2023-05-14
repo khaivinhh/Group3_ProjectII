@@ -2,7 +2,7 @@
 
 
 @section('product')
-@if(isset($iphones))
+@if(isset($iphones)  && count($iphones)>0)
 <div class="product">
     @foreach($iphones as $item)
     <div class="item">

@@ -38,6 +38,7 @@
         <!-- <p class="notification_login" style="margin-top:20px;color:red;display:none">Email or Password error !</p> -->
         <button class="sign_in">Login</button>
         <a class="recoverpass" tabindex="0">lost your password?</a>
+        <a href="{{route('login_google')}}">login with google</a>
     </form>
 
 

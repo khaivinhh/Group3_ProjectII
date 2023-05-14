@@ -15,8 +15,15 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CategorydetailController;
 use App\Http\Controllers\Admin\OrderdetailController;
 use App\Http\Controllers\Frontend\CustomerinterfaceController;
-use App\Models\Order;
-use App\Models\Orderdetail;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Auth;
+
+
+
+;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +39,25 @@ use App\Models\Orderdetail;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('test', [HomeController::class, 'test'])->name('test');
+
+ 
+// Route::get('/auth/google/redirect', function () {
+//     return Socialite::driver('google')->redirect();
+// })->name('login_google');
+ 
+// Route::get('/auth/google/callback', function () {
+//     $user = Socialite::driver('google')->user();
+//     // session()->forget('user');
+//     // Lưu thông tin người dùng mới vào session
+//     session(['user' => $user]);
+//     return redirect('frontend/profile');
+//     // dd($user);
+//     // $user->token
+// });
+
+
+
+
 
 Route::prefix('admin')->group(function () {
     Route::get('login', [HomeController::class, 'login'])->name('login');
@@ -98,3 +123,5 @@ Route::prefix('frontend')->group(function () {
 
     });
 });
+Route::get('/auth/google/redirect', [CustomerinterfaceController::class, 'google_redirect'])->name('login_google');
+Route::get('/auth/google/callback', [CustomerinterfaceController::class, 'google_callback']);

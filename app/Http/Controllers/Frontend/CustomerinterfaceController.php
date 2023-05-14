@@ -20,12 +20,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Auth;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use Carbon\Carbon;
 
 
 class CustomerinterfaceController extends Controller
 {
+
+
     public function home()
     {
         $categorydetails = Categorydetail::all();
@@ -79,6 +83,18 @@ class CustomerinterfaceController extends Controller
         else {
             return view('frontend/myaccount');
         }
+    }
+
+
+    public function google_redirect()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+    public function google_callback()
+    {
+        $user = Socialite::driver('google')->user();
+        session(['user' => $user]);
+        return redirect('frontend/profile');
     }
 
     public function create_user(Request $request)
