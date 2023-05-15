@@ -3,7 +3,7 @@
 }
 
 
-.myaccount hr {
+.myaccount .hr_title {
     margin-top: 5px;
     max-width: 65px;
     border: 1px solid;
@@ -11,7 +11,7 @@
 
 .myaccount {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     margin-top: 50px;
 }
 
@@ -25,15 +25,49 @@
     font-size: 15px;
 }
 
-.myaccount form button {
+.myaccount form .sign_in ,
+.myaccount form .sign_up {
     border-radius: 3px;
     border: none;
     background-color: #5d5dff;
     margin-top: 20px;
     width: 90px;
-    height: 35px;
     color: white;
-    outline:none;
+    outline: none;
+    height: 40px;
+}
+.myaccount #form_sign_in {
+    max-width: 350px;
+}
+.myaccount #form_sign_in .email_sign_in,
+.myaccount #form_sign_in .password_sign_in,
+.myaccount #form_sign_up span
+{
+    color: red;
+    display: none;
+}
+.myaccount #form_sign_in .sign_in_google{
+    border: none;   
+    outline: none;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    border-radius: 2px;
+    background-color: #5d5dff;
+    width: 70%;
+    margin: 10px auto 0 auto;
+    cursor: pointer;
+}
+.myaccount #form_sign_in .sign_in_google img{
+    width: 40px;
+    background-color: white;
+}
+.myaccount #form_sign_in .sign_in_google span{
+    margin: auto;
+    color: white;
+}
+.myaccount form .sign_in {
+    width: 100%;
 }
 
 .myaccount div {
@@ -45,17 +79,35 @@
     font-size: 17px;
     padding: 0 10px;
     width: 100%;
-    height: 45px;
+    height: 40px;
     outline: none;
     border-radius: 2px;
     border: 1px solid rgb(205, 205, 205);
 }
 
+.myaccount .chooise_option_login {
+    width: 100%;
+    display: flex;
+    margin: auto;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.myaccount .chooise_option_login hr {
+    border: 1px solid;
+    height: 0px;
+    background-color: black;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.myaccount .chooise_option_login span {
+    padding: 0 7px;
+}
+
 .recoverpass {
     margin-top: 20px;
     display: block;
-    color: black;
-    text-decoration: none;
 }
 
 .form_recover_password {
@@ -104,7 +156,7 @@
     margin-top: 15px;
     float: right;
     border-radius: 3px;
-    outline:none;
+    outline: none;
 }
 
 .form_recover_password form p {

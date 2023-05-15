@@ -201,6 +201,7 @@
 <script src="{{asset('/js/mycode/frontend/layout.js')}}"></script>
 <script src="{{asset('/js/mycode/frontend/layout_shop.js')}}"></script>
 <script src="{{asset('/js/mycode/frontend/cart.js')}}"></script>
+<script src="{{asset('/js/mycode/frontend/transport_fee.js')}}"></script>
 
 @yield('myjs')
 

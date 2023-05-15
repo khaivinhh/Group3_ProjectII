@@ -36,7 +36,7 @@
                     <td>
                         <div class="information_user">
                             <img src="{{asset($item->customers->image)}}" alt="" width="50" height="50" style="border-radius:50%">
-                            <p>{{$item->customers->first_name.' '.$item->customers->last_name}}</p>
+                            <p>{{$item->customers->name}}</p>
                         </div>
                     </td>
                     <td>{{$item->address}}</td>

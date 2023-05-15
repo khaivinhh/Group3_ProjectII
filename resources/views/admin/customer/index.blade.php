@@ -30,7 +30,7 @@
                 @foreach($customer as $item)
                 <tr>
                     <td>{{$item->id}}</td>
-                    <td>{{$item->first_name." ".$item->last_name}}</td>
+                    <td>{{$item->name}}</td>
                     <td><img src="{{asset($item->image)}}" alt="" width="50" height="50" style="border-radius:50%"></td>
                     <td>{{$item->email}}</td>
                     <td>{{$item->phone}}</td>

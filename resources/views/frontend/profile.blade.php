@@ -11,21 +11,20 @@
             <div class="imguser">
                 <img class="logo_user" src="{{asset($user->image)}}" alt="">
             </div>
+            @if($user->source == 'register')
             <form>
                 <label class="image-input">
                     <input id="changeimguser" type="file" name="image" onchange="changeImage(this)">
                     <i class="fa fa-pencil"></i>
                 </label>
             </form>
+            @endif
         </div>
 
         <div class="informationuser_header_right">
             <h1>Information</h1>
-            <p>First Name : {{$user->first_name}}</p>
-            <p>Last Name : {{$user->last_name}}</p>
+            <p>Name : {{$user->name}}</p>
             <p>Email : {{$user->email}}</p>
-            <p>Phone : {{$user->phone}}</p>
-            <p>Address : {{$user->address}}</p>
             <p>Created at : {{$user->created_at}}</p>
             <p id="updateat">Updated at : {{$user->updated_at}}</p>
         </div>
@@ -43,18 +42,16 @@
                 <form id="form1" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+                    @if($user->source == 'register')
                     <div>
-                        <label for="fist_name">First Name</label><br>
-                        <input type="text" name="first_nam" id="first_name" value="{{$user->first_name}}">
-                    </div>
-                    <div>
-                        <label for="last_name">Last Name</label><br>
-                        <input type="text" name="name" id="last_name" value="{{$user->last_name}}">
+                        <label for="name">Name</label><br>
+                        <input type="text" name="name" id="name" value="{{$user->name}}">
                     </div>
                     <div>
                         <label for="email">Email</label><br>
                         <input type="email" name="email" id="email" value="{{$user->email}}">
                     </div>
+                    @endif
                     <div>
                         <label for="phone">Phone</label><br>
                         <input type="text" name="phone" id="phone" value="{{$user->phone}}">
@@ -67,7 +64,7 @@
                 </form>
         </div>
 
-
+        @if($user->source == 'register')
         <div class="update">
             <h2>Update Password</h2>
             <p>Ensure your account is using a long, random password to stay secure.</p>
@@ -92,6 +89,7 @@
                 <button type="submit" class="updatepassword">Save</button>
             </form>
         </div>
+        @endif
 
 
 
@@ -103,9 +101,6 @@
                 <button class="sign_out">Sign Out</button>
             </form>
         </div>
-
-
-
         <!-- <section class="delete">
         <h2>Delete Account</h2>
         <p>Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting
@@ -123,6 +118,8 @@
 @endsection
 @section('myjs')
 <script>
+
+    
     function changeImage(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -135,16 +132,17 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
-    
+
     $('#form1').submit(function(e) {
         e.preventDefault();
         let form_data = new FormData();
-        form_data.append('first_name', $('#first_name').val());
-        form_data.append('last_name', $('#last_name').val());
-        form_data.append('email', $('#email').val());
+        if ("{{$user->source}}" == "register") {
+            form_data.append('name', $('#name').val());
+            form_data.append('email', $('#email').val());
+            form_data.append('newimguser', $('#changeimguser')[0].files[0]);
+        }
         form_data.append('phone', $('#phone').val());
         form_data.append('address', $('#address').val());
-        form_data.append('newimguser', $('#changeimguser')[0].files[0]);
         form_data.append('id', "{{$user->id}}");
         form_data.append('_token', '{{ csrf_token() }}');
         form_data.append('_method', 'PUT');
@@ -155,9 +153,10 @@
             contentType: false,
             processData: false,
             success: function(data) {
-                $('#first_name').val(data.first_name);
-                $('#last_name').val(data.last_name);
-                $('#email').val(data.email);
+                if ("{{$user->source}}" == "register") {
+                    $('#name').val(data.name);
+                    $('#email').val(data.email);
+                }
                 $('#phone').val(data.phone);
                 $('#address').val(data.address);
                 $('.text-2').text('Your changes has been saved');

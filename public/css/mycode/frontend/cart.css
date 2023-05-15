@@ -1,10 +1,11 @@
-.title{
+.title {
     padding-left: 50px;
 }
 
-.cart{
+.cart {
     overflow: auto;
 }
+
 .cart table {
     border-collapse: collapse;
     border: none;
@@ -63,6 +64,7 @@
 }
 
 .cart table tfoot tr td .total {
+    color: #ff5151;
     text-align: right;
     padding-bottom: 20px;
 }
@@ -99,7 +101,7 @@
 */
 .cart table tfoot tr td .update_cart .submit {
     margin: 0 10px
-} 
+}
 
 .cart table tfoot tr td .update_cart button a {
     text-decoration: none;

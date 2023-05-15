@@ -17,13 +17,10 @@
         <h2 id="check">Profile Information</h1>
             <p>Add your account's profile information and email address.</p>
             <form>
+
                 <div>
-                    <label for="first_name">First Name</label><br>
-                    <input type="text" name="first_name" id="first_name" required>
-                </div>
-                <div>
-                    <label for="last_name">Last Name</label><br>
-                    <input type="text" name="last_name" id="last_name" required>
+                    <label for="name">Name</label><br>
+                    <input type="text" name="name" id="name" required>
                 </div>
                 <div>
                     <label for="email">Email</label><br>
@@ -37,6 +34,7 @@
                     <label for="address">Address</label><br>
                     <input type="text" name="address" id="address" required>
                 </div>
+
                 <div>
                     <label for="password">Password</label><br>
                     <input type="password" name="password" id="password" required>
@@ -50,12 +48,10 @@
 
 @section('myjs')
 <script>
-    
     $(document).ready(function() {
         $('#sign_up').click(function(e) {
             e.preventDefault();
-            let first_name = $('#first_name').val();
-            let last_name = $('#last_name').val();
+            let name = $('#name').val();
             let email = $('#email').val();
             let phone = $('#phone').val();
             let address = $('#address').val();
@@ -64,8 +60,7 @@
                 type: 'post',
                 url: "{{route('customer.store')}}",
                 data: {
-                    first_name: first_name,
-                    last_name: last_name,
+                    name: name,
                     email: email,
                     phone: phone,
                     address: address,

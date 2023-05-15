@@ -37,13 +37,13 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $customer = Customer::firstOrCreate(['email' => $request->email], [
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
+            'name' => $request->name,
             'image' => "images/myimg/admin/logo-user-default.png",
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
             'password' => $request->password,
+            'source' => 'register',
         ]);
         if ($customer->wasRecentlyCreated) {
             return response()->json('successfully');
@@ -90,7 +90,9 @@ class CustomerController extends Controller
     public function searchcustomer(Request $request)
     {
         $fullname = $request->valuesearch;
-        $customer = Customer::where(DB::raw("CONCAT(first_name, ' ', last_name)"), 'like', '%' . $fullname . '%')
+        // $customer = Customer::where(DB::raw("CONCAT(first_name, ' ', last_name)"), 'like', '%' . $fullname . '%')
+        //      ->get();
+        $customer = Customer::where('name', 'like', '%' . $fullname . '%')
              ->get();
 
 
