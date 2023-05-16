@@ -63,7 +63,6 @@ class HomeController extends Controller
     public function confirm_order(Request $request, $order_id)
     {
 
-
         $order = Order::findOrFail($order_id);
         $order->status = 'complete';
         $order->save();
