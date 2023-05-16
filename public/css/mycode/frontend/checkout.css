@@ -64,7 +64,20 @@
     padding: 20px;
     border: 1px solid rgb(205, 205, 205);
 }
-
+.order .infopro .infopro_detail{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.order .infopro .infopro_detail div{
+    padding: 0 0 0 10px;;
+}
+.order .infopro .infopro_detail div p:last-child{
+    font-size: 13px;
+}
+.order .infopro .infopro_detail p:last-child{
+    width: 100%;
+}
 .order .infopro table {
     width: 100%;
     margin-top: 30px;
@@ -80,7 +93,7 @@
 
 .order .infopro table tbody td {
     padding: 10px 0;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .order .infopro table tbody tr:first-child td {
@@ -102,6 +115,9 @@
 }
 .order .infopro table tfoot .total_billing{
     color: #ff4c4c;
+}
+.order .infopro table tfoot .total_billing td:last-child{
+    width: 90px;
 }
 .order .infopro button {
     outline:none;

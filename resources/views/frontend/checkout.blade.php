@@ -73,7 +73,16 @@
             <tbody>
                 @foreach($cart as $item)
                 <tr>
-                    <td>{{$item->product->categorydetails->name}} x {{$item->quantity}}</td>
+                    <td>
+                        <div class="infopro_detail">
+                            <img src="{{asset($item->product->image)}}" alt="" width="50">
+                            <div>
+                                <p>{{$item->product->categorydetails->name}}</p>
+                                <p>{{$item->product->rams->name.'/'.$item->product->capacities->name.'/'.$item->product->colors->name}}</p>
+                            </div>
+                            <p>x {{$item->quantity}}</p>
+                        </div>
+                    </td>
                     <td>${{$item->product->price * $item->quantity}}</td>
                 </tr>
                 @php
@@ -91,15 +100,11 @@
 
                 <tr>
                     <td>Discount : </td>
-                    @if(isset($value))
-                    <td>${{$total * $value / 100}}</td>
-                    @else
-                    <td>$0</td>
-                    @endif
+                    <td class="discount_price">$0</td>
                 </tr>
                 <tr class="shipping">
                     <td>Total Shipping Fee : </td>
-                    <td>$0</td>
+                    <td class="fee">$0</td>
                 </tr>
                 <tr class="total_billing">
                     <td>
@@ -111,28 +116,18 @@
                             @endphp
                             @endif
                             Total Price :
-
                         </h3>
                     </td>
                     <td>
-                        <h3>${{$total}}</h3>
+                        <h3 class="total_price"></h3>
                     </td>
                 </tr>
             </tfoot>
         </table>
-        @if(isset($notification))
-        <p class="notification_coupon">{{$notification}}</p>
-        @endif
-        <form action="{{route('check_coupon',$total)}}" method="POST">
-            @csrf
-            @if(isset($discount_code))
-            <input type="text" id="discount_code" name="name" placeholder="Enter your coupon code" value="{{$discount_code}}">
-
-            @else
-            <input type="text" id="discount_code" name="name" placeholder="Enter your coupon code">
-
-            @endif
-            <button class="coupon" type="submit">Coupon</button>
+        <p class="notification_coupon"></p>
+        <form id="form_coupon">
+            <input type="text" id="discount_code" placeholder="Enter your coupon code" required>
+            <button class="coupon">Coupon</button>
         </form>
         <button class="place_order">Place Order</button>
     </div>
@@ -145,7 +140,7 @@
 
 @section('myjs')
 <script>
-    selectElement_ward.addEventListener("change", function() {
+    function transport_fee(callback) {
         var myHeaders = new Headers();
         let insurance_value = "{{$total*23500}}";
         let insurance_quantity = "{{$quantity}}";
@@ -179,20 +174,62 @@
             .then(response => response.text())
             .then(result => {
                 var result_total = JSON.parse(result)
-                console.log(result_total.data.total)
+                callback(result_total.data.total)
+
             })
+
             .catch(error => console.log('error', error));
+    }
+
+    selectElement_ward.addEventListener("change", function() {
+        transport_fee(function(total) {
+            fee = Math.round((total / 23500));
+            $('.fee').text('$' + fee);
+            total_price(total_order, fee, discount)
+        });
+    })
+
+
+    var total_order = parseInt("{{$total}}");
+    var fee = 0;
+    var discount = 0;
+    var coupon_value = 0;
+
+    function total_price(total_order, fee, discount) {
+        $('.total_price').text("$" + (total_order + fee - discount))
+        return total_order + fee - discount;
+    }
+    total_price(total_order, fee, discount)
+
+
+    $('.coupon').on('click', function(e) {
+        e.preventDefault()
+        if ($('#form_coupon')[0].checkValidity()) {
+            $.ajax({
+                type: 'post',
+                url: "{{route('check_coupon')}}",
+                data: {
+                    name: $('#discount_code').val(),
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    $('.notification_coupon').text(data.notification);
+                    if (data.value) {
+                        coupon_value = data.value;
+                        discount = Math.round(total_order / 100 * data.value);
+                        $('.discount_price').text("$" + discount);
+                        total_price(total_order, fee, discount);
+                    }
+                }
+            });
+        } else {
+            return false;
+        }
 
     })
 
-    function shipping() {
-        if ($('#ward').val() == '' || $('#ward').val() == null) {
-            $('.shipping').css('visibility', 'hidden')
-        } else {
-            $('.shipping').css('visibility', 'visible')
-        }
-    }
-    shipping()
+
+
 
 
     $('.place_order').on('click', function(e) {
@@ -202,9 +239,8 @@
             let ward = $('#ward option:selected').text();
             let address = $('#address').val();
             let total = "{{$total}}";
-            let discount_code = $('#discount_code').val();
+            let discount_value = discount;
             let url = "{{route('place_order')}}";
-            console.log(discount_code);
             $.ajax({
                 type: 'post',
                 url: url,
@@ -213,8 +249,9 @@
                     district: district,
                     ward: ward,
                     address: address,
-                    total: total,
-                    discount_code: discount_code,
+                    total: total_price(total_order, fee, discount),
+                    discount_value: coupon_value,
+                    transport_fee: fee,
                     _token: '{{ csrf_token() }}'
                 },
                 success: function(data) {

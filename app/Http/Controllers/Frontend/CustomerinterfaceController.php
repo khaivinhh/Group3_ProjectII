@@ -447,28 +447,18 @@ class CustomerinterfaceController extends Controller
 
     public function check_coupon(Request $request)
     {
-        if ($request->session()->has('cart')) {
-            $user = $request->session()->get('user');
-            $cart = $request->session()->get('cart');
-            if ($request->name) {
-                $discount_code = $request->name;
-                $count = Discount::where('name', $request->name)
-                    ->value('count');
-                $value = Discount::where('name', $request->name)
-                    ->value('value');
-                if ($value > 0 && $count > 0) {
-                    $notification = 'You have successfully entered ' . $value . '% discount code';
-                    return view('frontend/checkout', compact('cart', 'user', 'value', 'notification', 'discount_code'));
-                } elseif ($value > 0 && $count == 0) {
-                    $notification = 'Expired code';
-                    return view('frontend/checkout', compact('cart', 'user', 'notification'));
-                } else {
-                    $notification = 'Incorrect discount code';
-                    return view('frontend/checkout', compact('cart', 'user', 'notification'));
-                }
+
+        $count = Discount::where('name', $request->name)
+            ->first();
+
+        if ($count != null) {
+            if ($count->count > 0) {
+                return response()->json(['notification' => 'You have successfully entered ' . $count->value . '% discount code','value'=>$count->value]);
             } else {
-                return redirect('frontend/checkout');
+                return response()->json(['notification' => 'Expired code']);
             }
+        } else {
+            return response()->json(['notification' => 'Incorrect discount code']);
         }
     }
 
@@ -479,10 +469,11 @@ class CustomerinterfaceController extends Controller
         $cart_product = $request->session()->get('cart');
         $order = new Order();
         $order->customer_id = $user->id;
-        $order->address = $request->address.' , '.$request->ward.' , '.$request->district.' , '.$request->province;
+        $order->address = $request->address . ' , ' . $request->ward . ' , ' . $request->district . ' , ' . $request->province;
         $order->date = date('Y-m-d H:i:s', time());
-        $order->status = 'process';
-        $order->discount = $request->discount_code;
+        $order->status = 'processing';
+        $order->discount_value = $request->discount_value;
+        $order->transport_fee = $request->transport_fee;
         $order->total = $request->total;
         $order->save();
 
@@ -538,7 +529,7 @@ class CustomerinterfaceController extends Controller
     {
         $user = $request->session()->get('user');
         $status_product = Order::where('customer_id', $user->id)
-            ->where('status', 'process')
+            ->where('status', 'processing')
             ->get();
 
         return view('frontend/order_status', compact('status_product'));
@@ -598,7 +589,7 @@ class CustomerinterfaceController extends Controller
             }
             $customer->phone = $request->phone;
             $customer->address = $request->address;
-         
+
 
             $customer->save();
             session()->put('user', $customer);
@@ -608,7 +599,7 @@ class CustomerinterfaceController extends Controller
                 'email' => $customer->email,
                 'phone' => $customer->phone,
                 'address' => $customer->address,
-              
+
             ];
         }
     }
@@ -625,8 +616,8 @@ class CustomerinterfaceController extends Controller
     {
         // return response()->json(['notification' => $request->email]);
         $account_customers = Customer::where('email', $request->email)
-        ->where('source','register')
-        ->first();
+            ->where('source', 'register')
+            ->first();
         if ($account_customers == null) {
             return response()->json(['notification' => 'error']);
         } else {

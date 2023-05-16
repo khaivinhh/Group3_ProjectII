@@ -51,8 +51,8 @@
     text-align: right;
 }
 
-.order_history table tfoot .total p:nth-child(1) ,
-.order_status table tfoot .total p:nth-child(1) {
+.order_history table tfoot .total p:nth-child(3) ,
+.order_status table tfoot .total p:last-child {
     font-size: 21px;
     color: red;
 

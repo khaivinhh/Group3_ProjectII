@@ -1,46 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
-
 <body>
-
-  <form action="" id="form">
-    <div>
-      <label for="name">name </label><span class="name" style="display:none">(required)</span><br>
-      <input type="text" id="name" required>
-    </div>
-    <div>
-      <label for="email">email </label><span class="email" style="display: none">(required)</span><br>
-      <input type="text" id="email" required>
-    </div>
+  <form action="" class="form">
+    <input type="text" required>
+    <button class="btn">Click</button>
   </form>
-  <button class="click">click</button>
+
   <script src="/public/js/mycode/jquery-3.6.4.min.js"></script>
   <script>
-    $('.click').on('click', function () {
-      if ($("#form")[0].checkValidity()) {
-        alert('yes');
-      } else {
-        var invalidInputs = $("#form")[0].querySelectorAll(':invalid');
-        var all_input = $("#form")[0].querySelectorAll('input');
-        all_input.forEach((item)=>{
-          $("."+item.id+"").css('display','none')
-        })
-        var missingFields = Array.from(invalidInputs).map(function (input) {
-          $("."+input.id+"").css('display','-webkit-inline-box')
-        });
-      }
-
-    })
-
+    $('.btn').on('click', function(e) {
+      e.preventDefault();
+    });
   </script>
 </body>
-
-
 </html>

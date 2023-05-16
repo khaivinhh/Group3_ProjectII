@@ -335,5 +335,8 @@ main{
         margin: 75px auto 0;
 
     }
+    .home_page .all_category .tabcontent {
+        margin: 0;
+    }
 
 }

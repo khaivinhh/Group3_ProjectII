@@ -41,13 +41,15 @@
             <tfoot>
                 <tr>
                     <td class="total" colspan="5">
-                        <p>Total : ${{$items->total}}</p>
-                        @if($items->discount != '')
-                        <p>Discount : {{floor(($total_status-$items->total)/($total_status/100))}}%</p>
+                        @if($items->discount_value != '')
+                        <p>Discount : {{$items->discount_value}}%</p>
+                        <p>Transport Fee : {{$items->transport_fee}}$</p>
                         @else
                         <p>Discount : No</p>
                         @endif
                         <p>Status : {{$items->status }}</p>
+                        <p>Total : ${{$items->total}}</p>
+
                     </td>
                 </tr>
             </tfoot>
