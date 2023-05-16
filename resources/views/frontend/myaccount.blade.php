@@ -126,10 +126,11 @@
             validate_sign_in();
         }
     });
+
     var all_tag_sign_in = $("#form_sign_in")[0].querySelectorAll('input');
     all_tag_sign_in.forEach((item) => {
         item.addEventListener('keyup', function() {
-            validate_sign_in();
+            validate_input(item);
         })
     });
 
@@ -181,9 +182,17 @@
     var all_tag_sign_up = $("#form_sign_up")[0].querySelectorAll('input');
     all_tag_sign_up.forEach((item) => {
         item.addEventListener('keyup', function() {
-            validate_sign_up();
+            validate_input(item);
         })
     });
+
+    function validate_input(item) {
+        if (item.value.length > 0) {
+            $("." + item.id + "").css('display', 'none')
+        } else {
+            $("." + item.id + "").css('display', '-webkit-inline-box')
+        }
+    }
 
     function validate_sign_up() {
         var invalidInputs = $("#form_sign_up")[0].querySelectorAll(':invalid');

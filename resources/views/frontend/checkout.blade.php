@@ -32,7 +32,7 @@
             <div>
                 <label for="province">Province</label><span class="province">_(required)</span><br>
                 <select name="province" id="province" required>
-                    <option value=""> Select Province </option>
+                    <option value="" disabled selected hidden></option>
                 </select>
             </div>
 
@@ -61,6 +61,7 @@
         <table>
             @php
             $total = 0;
+            $quantity = 0;
             @endphp
             <thead>
                 <tr>
@@ -76,7 +77,8 @@
                     <td>${{$item->product->price * $item->quantity}}</td>
                 </tr>
                 @php
-                $total += $item->product->price * $item->quantity
+                $total += $item->product->price * $item->quantity;
+                $quantity += $item->quantity;
                 @endphp
                 @endforeach
 
@@ -143,6 +145,46 @@
 
 @section('myjs')
 <script>
+    selectElement_ward.addEventListener("change", function() {
+        var myHeaders = new Headers();
+        let insurance_value = "{{$total*23500}}";
+        let insurance_quantity = "{{$quantity}}";
+        let to_district_id = selectElement_district.value
+        let to_ward_code = selectElement_ward.value
+        myHeaders.append("token", "156086da-ee0e-11ed-a281-3aa62a37e0a5");
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "service_id": 53322,
+            "service_type_id": 2,
+            "insurance_value": parseInt(insurance_value),
+            "coupon": null,
+            "from_district_id": 3193,
+            "to_district_id": parseInt(to_district_id),
+            "to_ward_code": parseInt(to_ward_code),
+            "weight": 250 * insurance_quantity,
+            "width": 7 * insurance_quantity,
+            "height": 3 * insurance_quantity,
+            "length": 14 * insurance_quantity
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                var result_total = JSON.parse(result)
+                console.log(result_total.data.total)
+            })
+            .catch(error => console.log('error', error));
+
+    })
+
     function shipping() {
         if ($('#ward').val() == '' || $('#ward').val() == null) {
             $('.shipping').css('visibility', 'hidden')
@@ -190,11 +232,20 @@
     all_tag.forEach((item) => {
         if (item.tagName == 'INPUT') {
             item.addEventListener('keyup', function() {
-                validate()
+                if (item.value.length > 0) {
+                    $("." + item.id + "").css('display', 'none')
+                } else {
+                    $("." + item.id + "").css('display', '-webkit-inline-box')
+                }
             });
         } else if (item.tagName == 'SELECT') {
             item.addEventListener('change', function() {
-                validate()
+                if (item.value == '' || item.value == null) {
+                    $("." + item.id + "").css('display', '-webkit-inline-box')
+                } else {
+                    $("." + item.id + "").css('display', 'none')
+
+                }
             });
         }
     });
