@@ -60,7 +60,7 @@
             <a href="{{ route('category_detail', [18,1])  }}">Buy</a>
             <a tabindex="0">Learn more <i class="fa-solid fa-chevron-right"></i></a>
         </div>
-        <img data-aos="fade-left"  src="{{asset('images/myimg/frontend/new_product.jpg')}}" alt="">
+        <img data-aos="fade-up" src="{{asset('images/myimg/frontend/new_product.jpg')}}" alt="">
     </section>
 
     <section class="best_sellers">
@@ -68,7 +68,7 @@
             <h1>Top Rating</h1>
             <p>Discover our top-rated products as rated by our customers.</p>
         </div>
-        <div data-aos="fade-right"  class="product">
+        <div data-aos="fade-up" class="product">
             @foreach($top_rated_products as $item)
             <div class="item">
                 <div class="image">

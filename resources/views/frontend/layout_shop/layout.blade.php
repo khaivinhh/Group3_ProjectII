@@ -8,23 +8,36 @@
 </section>
 
 <section class="sort_by">
-    <label for="">Sort by :</label>
-    <form action="{{route('sort_by')}}" class="form_sort_by">
-        <input type="hidden" name="category" class="category_sort">
+    <div class="open_option btn_open_option">
+        <button class="icon_filter">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <span>Filter</span>
+    </div>
+    <div>
+        <label for="">Sort by :</label>
+        <form action="{{route('sort_by')}}" class="form_sort_by">
+            <input type="hidden" name="category" class="category_sort">
 
-        <select name="sort_by" id="sort_by">
-            <option value="">Select</option>
-            <option value="1">Alphabetically, A-Z</option>
-            <option value="2">Alphabetically, Z-A</option>
-            <option value="3">Price, low to high</option>
-            <option value="4">Price, high to low</option>
-            <option value="5">Date, new to old</option>
-            <option value="6">Date, old to new</option>
-        </select>
-    </form>
+            <select name="sort_by" id="sort_by">
+                <option value="">Select</option>
+                <option value="1">Alphabetically, A-Z</option>
+                <option value="2">Alphabetically, Z-A</option>
+                <option value="3">Price, low to high</option>
+                <option value="4">Price, high to low</option>
+                <option value="5">Date, new to old</option>
+                <option value="6">Date, old to new</option>
+            </select>
+        </form>
+    </div>
+
 </section>
 <section class="shop">
     <div class="option">
+        <i class="fa-solid fa-xmark btn_close_option"></i>
+
         <button class="accordion">Categories</button>
         <div class="panel">
             <a href="{{route('shop',1)}}">Apple iPhone ({{$count_iphone}})</a>
@@ -60,6 +73,5 @@
     @yield('product')
 </section>
 @yield('link')
-
-
 @endsection
+

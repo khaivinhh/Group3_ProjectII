@@ -127,19 +127,21 @@
                         @endif
 
                     </a>
+                    <i class="fa-solid fa-xmark close_sidebar"></i>
                 </div>
                 <div class="right_sidebar_header">
                     <div class="header_mobie">
-                        <img class="logo" src="{{asset('images/myimg/OIP.jpg')}}" alt="">
+                        <i class="fa-solid fa-bars open_sidebar"></i>
+
                         <div class="search">
                             <form class="search_by_name" action="{{route('search_by_name')}}">
                                 <input type="text" placeholder="search" name="name" class="input_search_name">
                                 <button class="submit_search" style="padding:0;border:0" type="submit" disabled><i class="btn_search fa-solid fa-magnifying-glass"></i></button>
                             </form>
                         </div>
-                        <i class="fa-solid fa-bars"></i>
+                        <a href="{{route('myaccount')}}"><i class="fa-solid fa-user"></i></a> 
                     </div>
-                    <a href="{{route('myaccount')}}">Account</a>
+                    <a class="btn-account" href="{{route('myaccount')}}">Account</a>
 
                 </div>
             </div>
@@ -203,6 +205,7 @@
 <script src="{{asset('/js/mycode/frontend/cart.js')}}"></script>
 <script src="{{asset('/js/mycode/frontend/transport_fee.js')}}"></script>
 <script src="{{asset('/js/mycode/frontend/validate_form.js')}}"></script>
+<script src="{{asset('/js/mycode/frontend/shop.js')}}"></script>
 
 @yield('myjs')
 
