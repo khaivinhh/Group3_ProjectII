@@ -107,7 +107,8 @@
                     },
                     success: function(data) {
                         if (data == 'successfully') {
-                            $('#notification-checkcreate').text('successfully !');
+                            $('#notification-checkcreate').text('successfully !')
+                            container.removeClass("right-panel-active");
                         } else {
                             $('#notification-checkcreate').text('Email already exists !');
                         }
