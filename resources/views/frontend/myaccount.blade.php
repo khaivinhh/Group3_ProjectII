@@ -25,12 +25,12 @@
         <hr class="hr_title">
 
         <div>
-            <label for="email_sign_in">Email</label><span class="email_sign_in">_(required)</span><br>
+            <label for="email_sign_in">Email</label><span class="email_sign_in">&nbsp;&nbsp;*The Email field is required.</span><br>
             <input type="email" id="email_sign_in" required>
         </div>
 
         <div>
-            <label for="password_sign_in">Password</label><span class="password_sign_in">_(required)</span><br>
+            <label for="password_sign_in">Password</label><span class="password_sign_in">&nbsp;&nbsp;*The Password field is required.</span><br>
             <input type="password" id="password_sign_in" required>
         </div>
 
@@ -55,23 +55,23 @@
         <h3>REGISTER</h3>
         <hr class="hr_title">
         <div>
-            <label for="name_sign_up">Name</label><span class="name_sign_up">_(required)</span><br>
+            <label for="name_sign_up">Name</label><span class="name_sign_up">&nbsp;&nbsp;*The Name field is required.</span><br>
             <input type="text" id="name_sign_up" required>
         </div>
         <div>
-            <label for="email_sign_up">Email </label><span class="email_sign_up">_(required)</span><br>
+            <label for="email_sign_up">Email </label><span class="email_sign_up">&nbsp;&nbsp;*The Email field is required.</span><br>
             <input type="email" id="email_sign_up" required>
         </div>
         <div>
-            <label for="phone_sign_up">Phone</label><span class="phone_sign_up">_(required)</span><br>
+            <label for="phone_sign_up">Phone</label><span class="phone_sign_up">&nbsp;&nbsp;*The Phone field is required.</span><br>
             <input type="text" id="phone_sign_up" required>
         </div>
         <div>
-            <label for="address_sign_up">Address</label><span class="address_sign_up">_(required)</span><br>
+            <label for="address_sign_up">Address</label><span class="address_sign_up">&nbsp;&nbsp;*The Address field is required.</span><br>
             <input type="text" id="address_sign_up" required>
         </div>
         <div>
-            <label for="password_sign_up">Password</label><span class="password_sign_up">_(required)</span><br>
+            <label for="password_sign_up">Password</label><span class="password_sign_up">&nbsp;&nbsp;*The Password field is required.</span><br>
             <input type="password" id="password_sign_up" required>
         </div>
         <button class="sign_up">Register</button>
@@ -119,30 +119,22 @@
                         $('.text-2-error').text('Email or Password error !');
                         notification_error();
                     }
-
                 }
             });
         } else {
-            validate_sign_in();
+            validate_form('form_sign_in');
         }
     });
+
 
     var all_tag_sign_in = $("#form_sign_in")[0].querySelectorAll('input');
     all_tag_sign_in.forEach((item) => {
         item.addEventListener('keyup', function() {
-            validate_input(item);
+            validate_fields(item);
         })
     });
 
-    function validate_sign_in() {
-        var invalidInputs = $("#form_sign_in")[0].querySelectorAll(':invalid');
-        all_tag_sign_in.forEach((item) => {
-            $("." + item.id + "").css('display', 'none')
-        })
-        var missingFields = Array.from(invalidInputs).map(function(tag) {
-            $("." + tag.id + "").css('display', '-webkit-inline-box')
-        });
-    }
+
 
     $('.sign_up').on('click', function(e) {
         e.preventDefault();
@@ -175,34 +167,19 @@
                 }
             });
         } else {
-            validate_sign_up();
+            validate_form('form_sign_up');
         }
     });
 
     var all_tag_sign_up = $("#form_sign_up")[0].querySelectorAll('input');
     all_tag_sign_up.forEach((item) => {
         item.addEventListener('keyup', function() {
-            validate_input(item);
+            validate_fields(item);
         })
     });
 
-    function validate_input(item) {
-        if (item.value.length > 0) {
-            $("." + item.id + "").css('display', 'none')
-        } else {
-            $("." + item.id + "").css('display', '-webkit-inline-box')
-        }
-    }
+    
 
-    function validate_sign_up() {
-        var invalidInputs = $("#form_sign_up")[0].querySelectorAll(':invalid');
-        all_tag_sign_up.forEach((item) => {
-            $("." + item.id + "").css('display', 'none')
-        })
-        var missingFields = Array.from(invalidInputs).map(function(tag) {
-            $("." + tag.id + "").css('display', '-webkit-inline-box')
-        });
-    }
 
     $('#form_recover_password').on('submit', function(e) {
         let email = $('.email_recover_password').val()

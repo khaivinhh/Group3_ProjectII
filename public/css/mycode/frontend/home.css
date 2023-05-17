@@ -107,14 +107,14 @@ main{
     margin: 250px auto 0
 }
 
-.home_page .best_sellers .title,
-.home_page .all_category .title {
+.home_page .best_sellers .title_best_sellers,
+.home_page .all_category .title_all_category {
     margin-bottom: 50px;
     text-align: center;
 }
 
-.home_page .best_sellers .title h1,
-.home_page .all_category .title h1 {
+.home_page .best_sellers .title_best_sellers h1,
+.home_page .all_category .title_all_category h1 {
     font-weight: 750;
 }
 

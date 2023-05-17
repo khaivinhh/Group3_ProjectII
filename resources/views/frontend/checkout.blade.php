@@ -15,41 +15,41 @@
 
             <div class="f-l-name">
                 <div>
-                    <label for="name">Name</label><span class="name">_(required)</span><br>
+                    <label for="name">Name</label><span class="name">&nbsp;&nbsp;*The Name field is required.</span><br>
                     <input type="text" value="{{$user->name}}" id="name" required>
                 </div>
                 <div>
-                    <label for="email">Email</label><span class="email">_(required)</span><br>
+                    <label for="email">Email</label><span class="email">&nbsp;&nbsp;*The Email field is required.</span><br>
                     <input type="email" value="{{$user->email}}" id="email" required>
                 </div>
             </div>
 
             <div>
-                <label for="phone">Phone</label><span class="phone">_(required)</span><br>
+                <label for="phone">Phone</label><span class="phone">&nbsp;&nbsp;*The Phone field is required.</span><br>
                 <input type="text" value="{{$user->phone}}" id="phone" required>
             </div>
 
             <div>
-                <label for="province">Province</label><span class="province">_(required)</span><br>
+                <label for="province">Province</label><span class="province">&nbsp;&nbsp;*The Province field is required.</span><br>
                 <select name="province" id="province" required>
                     <option value="" disabled selected hidden></option>
                 </select>
             </div>
 
             <div>
-                <label for="district">District</label><span class="district">_(required)</span><br>
+                <label for="district">District</label><span class="district">&nbsp;&nbsp;*The District field is required.</span><br>
                 <select name="district" id="district" required>
                 </select>
             </div>
 
             <div>
-                <label for="address">Ward</label><span class="ward">_(required)</span><br>
+                <label for="address">Ward</label><span class="ward">&nbsp;&nbsp;*The Ward field is required.</span><br>
                 <select name="ward" id="ward" required>
                 </select>
             </div>
 
             <div>
-                <label for="address">Address</label><span class="address">_(required)</span><br>
+                <label for="address">Address</label><span class="address">&nbsp;&nbsp;*The Address field is required.</span><br>
                 <input type="text" id="address" name="address" required>
             </div>
 
@@ -230,8 +230,6 @@
 
 
 
-
-
     $('.place_order').on('click', function(e) {
         if ($("#form_checkout")[0].checkValidity()) {
             let province = $('#province option:selected').text();
@@ -260,7 +258,7 @@
                 }
             });
         } else {
-            validate();
+            validate_form('form_checkout');
         }
     })
 
@@ -269,33 +267,16 @@
     all_tag.forEach((item) => {
         if (item.tagName == 'INPUT') {
             item.addEventListener('keyup', function() {
-                if (item.value.length > 0) {
-                    $("." + item.id + "").css('display', 'none')
-                } else {
-                    $("." + item.id + "").css('display', '-webkit-inline-box')
-                }
+                validate_fields(item);
             });
         } else if (item.tagName == 'SELECT') {
             item.addEventListener('change', function() {
-                if (item.value == '' || item.value == null) {
-                    $("." + item.id + "").css('display', '-webkit-inline-box')
-                } else {
-                    $("." + item.id + "").css('display', 'none')
-
-                }
+                validate_fields(item);
             });
         }
     });
 
+  
 
-    function validate() {
-        var invalidInputs = $("#form_checkout")[0].querySelectorAll(':invalid');
-        all_tag.forEach((item) => {
-            $("." + item.id + "").css('display', 'none')
-        })
-        var missingFields = Array.from(invalidInputs).map(function(tag) {
-            $("." + tag.id + "").css('display', '-webkit-inline-box')
-        });
-    }
 </script>
 @endsection

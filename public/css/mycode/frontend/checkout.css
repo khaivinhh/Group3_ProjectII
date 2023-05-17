@@ -18,8 +18,9 @@
     margin-top: 25px;
 }
 .order .form .infouser span {
-    display: none;
+    display:none ;
     color: red;
+    font-size: 13px !important;
 }
 .order .form .infouser span,
 .order .form .infouser div label {
@@ -59,7 +60,7 @@
 
 .order .infopro {
     height:max-content;
-    margin: 75px 30px 0 30px;
+    margin: 0 30px;
     width: 400px;
     padding: 20px;
     border: 1px solid rgb(205, 205, 205);

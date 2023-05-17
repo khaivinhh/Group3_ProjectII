@@ -45,6 +45,8 @@
 {
     color: red;
     display: none;
+    font-size: 13px;
+
 }
 .myaccount #form_sign_in .sign_in_google{
     border: none;   
@@ -165,9 +167,16 @@
     font-size: 14px;
 }
 
-@media (max-width : 551px) {
+@media (max-width : 650px) {
     .myaccount {
         display: flex;
         flex-direction: column;
+        align-items: center;
+    }
+    .myaccount #form_sign_in{
+        max-width: 500px;
+    }
+    .myaccount #form_sign_up{
+        margin-top: 75px;
     }
 }
