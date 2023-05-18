@@ -130,7 +130,7 @@
     <main class="main">
 
         <div class="tab_header">
-            <a class="logo_brand" href=""><img src="{{ asset('/images/myimg/logo-apple.png')}}" alt="" width="50px" height="60px"></a>
+            <a class="logo_brand" href="{{route('home')}}"><img src="{{ asset('/images/myimg/logo-apple.png')}}" alt="" width="50px" height="60px"></a>
             <i class="menu_icon_open fa-solid fa-bars"></i>
             <div class="input_search">
                 <input type="text" placeholder="Search ..." class="valuesearch">

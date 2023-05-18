@@ -64,3 +64,25 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Google Cloud API Reference
+
+Go to the Google API Console: https://console.cloud.google.com/
+
+Create a new project or select an existing project.
+
+Enable the APIs you want to use with your application. For example, if you want to integrate with the Google Calendar API, you would need to enable that API for your project.
+
+In the sidebar, click on "Credentials".
+
+Click on the "Create credentials" button and select "OAuth client ID".
+
+Choose the application type based on your needs. If you are developing a web application, select "Web application". If you are developing a mobile or desktop application, select the respective option.
+
+Enter the necessary information such as the name of your application and the authorized JavaScript origins or redirect URLs.
+
+After completing the form, Google will generate the GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET for your application.
+
+## Class "Laravel\Socialite\Facades\Socialite" not found
+run this command
+"composer require laravel/socialite"
