@@ -19,29 +19,26 @@
             <form action="{{route('customer.update',$customer->id)}}" method="post">
                 @csrf
                 @method("PUT")
+             
                 <div>
-                    <label for="first_name">First Name</label><br>
-                    <input type="text" name="first_name" id="first_name" value="{{$customer->first_name}}" required>
-                </div>
-                <div>
-                    <label for="last_name">Last Name</label><br>
-                    <input type="text" name="last_name" id="last_name" value="{{$customer->last_name}}" required>
+                    <label for="name">Name</label><br>
+                    <input type="text" name="name" id="name" value="{{$customer->name}}" >
                 </div>
                 <div>
                     <label for="email">Email</label><br>
-                    <input type="email" name="email" id="email" value="{{$customer->email}}" required>
+                    <input type="email" name="email" id="email" value="{{$customer->email}}" >
                 </div>
                 <div>
                     <label for="phone">Phone</label><br>
-                    <input type="text" name="phone" id="phone" value="{{$customer->phone}}" required>
+                    <input type="text" name="phone" id="phone" value="{{$customer->phone}}" >
                 </div>
                 <div>
                     <label for="address">Address</label><br>
-                    <input type="text" name="address" id="address" value="{{$customer->address}}" required>
+                    <input type="text" name="address" id="address" value="{{$customer->address}}" >
                 </div>
                 <div>
                     <label for="password">Password</label><br>
-                    <input type="password" name="password" id="password" value="{{$customer->password}}" required>
+                    <input type="password" name="password" id="password" value="{{$customer->password}}" >
                 </div>
                 <button id="sign_up">Update</button>
             </form>

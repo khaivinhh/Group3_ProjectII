@@ -65,4 +65,11 @@ $('.close').on('click', function() {
     clearTimeout(timer1);
     clearTimeout(timer2);
 })
+
+$('.close_sidebar').on('click',function(){
+    $('.left_sidebar_header').css('left','-100%')
+})
+$('.open_sidebar').on('click',function(){
+    $('.left_sidebar_header').css('left','0')
+})
 AOS.init();

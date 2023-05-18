@@ -56,6 +56,13 @@
 .profile .flex .sign_out_account{
     margin-top: 25px;
 }
+.profile .flex .profile_user #form1 span,
+.profile .flex .update #form2 span{
+    color:red;
+    font-size: 13px;
+    display: none;
+}
+
 .profile section p {
     padding: 10px 0 20px 0;
     font-size: 14px;
@@ -80,7 +87,7 @@
 
 
 }
-.profile .flex .information,
+.profile .flex .change_information_user,
 .profile .flex .updatepassword ,
 .profile .flex  .sign_out {
     padding:10px 20px;

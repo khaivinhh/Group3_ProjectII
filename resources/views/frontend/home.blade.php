@@ -60,15 +60,15 @@
             <a href="{{ route('category_detail', [18,1])  }}">Buy</a>
             <a tabindex="0">Learn more <i class="fa-solid fa-chevron-right"></i></a>
         </div>
-        <img data-aos="fade-right" src="{{asset('images/myimg/frontend/new_product.jpg')}}" alt="">
+        <img data-aos="fade-up" src="{{asset('images/myimg/frontend/new_product.jpg')}}" alt="">
     </section>
 
     <section class="best_sellers">
-        <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0" class="title">
+        <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0" class="title_best_sellers">
             <h1>Top Rating</h1>
             <p>Discover our top-rated products as rated by our customers.</p>
         </div>
-        <div data-aos="fade-left" class="product">
+        <div data-aos="fade-up" class="product">
             @foreach($top_rated_products as $item)
             <div class="item">
                 <div class="image">
@@ -98,7 +98,7 @@
     </section>
 
     <section class="all_category">
-        <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0" class="title">
+        <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="100" data-aos-offset="0" class="title_all_category">
             <h1>All Category</h1>
             <p>Discover something new in our comprehensive list of categories</p>
         </div>

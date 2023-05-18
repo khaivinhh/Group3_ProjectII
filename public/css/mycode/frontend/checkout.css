@@ -4,7 +4,7 @@
 
 .order {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     margin-top: 50px;
 }
 
@@ -17,14 +17,23 @@
 .order .form .infouser div {
     margin-top: 25px;
 }
-
+.order .form .infouser span {
+    display:none ;
+    color: red;
+    font-size: 13px !important;
+}
+.order .form .infouser span,
 .order .form .infouser div label {
     font-size: 14px;
+}
+.order .form .infouser div label {
     color: gray;
 }
 
 .order .form .infouser div input,
-.order .form .infouser .f-l-name div input {
+.order .form .infouser .f-l-name div input,
+.order .form .infouser div select
+{
     font-size: 16px;
     width: 100%;
     max-width: 100%;
@@ -45,17 +54,31 @@
 }
 
 .order .form {
-    width: 40%;
+    width: 550px;
     margin: 0 30px;
 }
 
 .order .infopro {
+    height:max-content;
     margin: 0 30px;
-    width: 30%;
-    padding: 30px;
+    width: 400px;
+    padding: 20px;
     border: 1px solid rgb(205, 205, 205);
 }
-
+.order .infopro .infopro_detail{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.order .infopro .infopro_detail div{
+    padding: 0 0 0 10px;;
+}
+.order .infopro .infopro_detail div p:last-child{
+    font-size: 13px;
+}
+.order .infopro .infopro_detail p:last-child{
+    width: 100%;
+}
 .order .infopro table {
     width: 100%;
     margin-top: 30px;
@@ -71,7 +94,7 @@
 
 .order .infopro table tbody td {
     padding: 10px 0;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .order .infopro table tbody tr:first-child td {
@@ -91,7 +114,12 @@
 .order .infopro table tfoot {
     border-bottom: 1px solid rgb(205, 205, 205);
 }
-
+.order .infopro table tfoot .total_billing{
+    color: #ff4c4c;
+}
+.order .infopro table tfoot .total_billing td:last-child{
+    width: 90px;
+}
 .order .infopro button {
     outline:none;
     border: none;

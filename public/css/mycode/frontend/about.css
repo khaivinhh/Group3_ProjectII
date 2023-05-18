@@ -507,6 +507,9 @@ screen and (max-height:300px) {
     width: 100%;
     margin-bottom:15px;
 }
+.about .information_shop div:first-child div p:last-child{
+    font-size: 13px;
+}
 .about .information_shop div:first-child div p:first-child{
     padding-bottom:5px;
 }

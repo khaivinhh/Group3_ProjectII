@@ -25,7 +25,7 @@
                 <td>product_id</td>
                 <td>quantity</td>
                 <td>price</td>
-                @if($order_status == 'process')
+                @if($order_status == 'processing')
                 <th>action</th>
                 @endif
             </thead>
@@ -38,7 +38,7 @@
                     <td>{{$item->product_id}}</td>
                     <td>{{$item->quantity}}</td>
                     <td>${{$item->price}}</td>
-                    @if($order_status == 'process')
+                    @if($order_status == 'processing')
                     <th>
                         <form action="{{route('orderdetail.destroy',$item->id)}}" method="post" style="display:inline">
                             @csrf
@@ -55,7 +55,7 @@
             <tfoot>
             </tfoot>
         </table>
-        @if($order_status == 'process')
+        @if($order_status == 'processing')
         <button class="confirm"><a href="{{route('confirm_order',$order_id)}}">Confirm</a></button>
         @endif
     </section>

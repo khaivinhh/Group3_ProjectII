@@ -4,8 +4,33 @@
 
 .sort_by {
     width: 90%;
-    margin: 25px auto 0 auto;
+    margin: 50px auto 0 auto;
     text-align: right;
+}
+.sort_by .open_option{
+    float: left;
+    display: none;
+
+}
+.sort_by .open_option .icon_filter{
+    border: none;
+    background-color: white;
+    outline: none;
+}
+.sort_by .open_option .icon_filter span {
+    display: block;
+    height: 3px;
+    background-color: black;
+    margin: 5px auto;
+}
+.sort_by .open_option .icon_filter span:nth-child(1) {
+    width: 25px;
+}
+.sort_by .open_option .icon_filter span:nth-child(2) {
+    width: 17px;
+}
+.sort_by .open_option .icon_filter span:nth-child(3) {
+    width: 10px;
 }
 
 .sort_by form {
@@ -24,7 +49,13 @@
     margin: auto;
     margin-top: 50px;
 }
-
+.shop .option .btn_close_option {
+    display: none;
+    font-size: 25px;
+    position: absolute;
+    top: 20px ;
+    right: 20px;
+}
 .shop .option .accordion {
     background-color: white;
 
@@ -106,6 +137,7 @@
     flex-wrap: wrap;
     width: 75%;
 }
+
 .shop .no_result {
     width: 100%;
     text-align: center;
@@ -171,7 +203,7 @@
 }
 
 .shop .option {
-    width: 25%;
+    width: 250px;
 }
 
 .pagination {
@@ -204,7 +236,14 @@
     display: none;
 }
 
-@media(max-width:900px) {
+@media(max-width:660px) {
+    .sort_by .open_option{
+        display: flex;
+        align-items: center;
+    }
+    .sort_by .open_option span{
+        padding-left: 5px;
+    }
     .sort_by select {
         padding: 5px;
         font-size: 15px;
@@ -219,7 +258,14 @@
         z-index: 999;
         top: 0;
         left: -100%;
-        width: 250px;
+        height: 100vh;
+        overflow-y: auto;
+        background-color: white;
+        padding-top: 75px;
+        transition:.3s;
+    }
+    .shop .option .btn_close_option {
+        display: block;
     }
 
     .shop .product {

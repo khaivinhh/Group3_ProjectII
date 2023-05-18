@@ -43,7 +43,7 @@
         <p class="price">Price : <span>${{$iphone->price}}</span></ơ>
         <p class="color">Color : {{$iphone->colors->name}}</p>
         <p class="ram">Ram : {{$iphone->rams->name}}</p>
-        <p class="capacity">Capacity : {{$iphone->capacities->name}}</p>
+        <p class="capacity">Storage : {{$iphone->capacities->name}}</p>
         <div class="quantity">
             <label for="">Quantity : </label>
             <input class="input_quantity" type="number" max="{{$iphone->quantity}}" value="1" min="1">
@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="rate_content_user">
-                    <p>{{$item->customers->first_name.' '.$item->customers->last_name}}</p>
+                    <p>{{$item->customers->name}}</p>
                     <p>{{$item->diffForHumans}}</p>
                     <div class="rate">
                         <input class="star" type="radio" id="star5" name="rate_user-{{$item->customers->id}}" value="5" disabled {{ $item->rate == 5 ? 'checked' : '' }} />
@@ -112,7 +112,7 @@
                 <div>
                     <img src="{{asset($user->image)}}" alt="">
                 </div>
-                <p>{{$user->first_name.' '.$user->last_name}}</p>
+                <p>{{$user->name}}</p>
             </div>
             <div class="flex">
                 <p>Your Rating : </p>

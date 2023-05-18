@@ -72,7 +72,7 @@
                         <td>
                             <div class="name_image_user">
                                 <img src="{{asset($item->customers->image)}}" alt="" width="50" height="50" style="border-radius:50%">
-                                <p>{{$item->customers->first_name.' '.$item->customers->last_name}}</p>
+                                <p>{{$item->customers->name}}</p>
                             </div>
                         </td>
                         <td>{{ date('Y-m-d', strtotime($item->date)) }}</td>
@@ -95,7 +95,7 @@
             <div class="item">
                 <img src="{{asset($item->image)}}">
                 <div>
-                    <p>{{$item->first_name.' '.$item->last_name}}</p>
+                    <p>{{$item->name}}</p>
                     <p>{{$item->address}}</p>
                 </div>
             </div>

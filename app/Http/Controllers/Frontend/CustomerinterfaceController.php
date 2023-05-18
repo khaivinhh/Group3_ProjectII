@@ -20,12 +20,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Auth;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use Carbon\Carbon;
 
 
 class CustomerinterfaceController extends Controller
 {
+
+
     public function home()
     {
         $categorydetails = Categorydetail::all();
@@ -81,21 +85,44 @@ class CustomerinterfaceController extends Controller
         }
     }
 
+
+    public function google_redirect()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+    public function google_callback()
+    {
+        $user = Socialite::driver('google')->user();
+
+        $customer = Customer::where('email', $user->email)->first();
+        if ($customer == null) {
+            $customer = new Customer();
+            $customer->name = $user->name;
+            $customer->email = $user->email;
+            $customer->image = $user->avatar;
+            $customer->source = 'google';
+            $customer->save();
+        }
+        session(['user' => $customer]);
+        return redirect('frontend/profile');
+        // dd($user);
+    }
+
     public function create_user(Request $request)
     {
         // $password = Hash::make($request->password);
         $customer = Customer::firstOrCreate(['email' => $request->email], [
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
+            'name' => $request->name,
             'image' => "images/myimg/admin/logo-user-default.png",
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
             'password' => $request->password,
+            'source' => 'register',
         ]);
 
         if ($customer->wasRecentlyCreated) {
-            $name = $request->first_name . ' ' . $request->last_name;
+            $name = $request->name;
             Mail::send('frontend.sendmail', compact('name'), function ($email) use ($request) {
                 $email->to($request->email)->subject('Email from IShopApple');
             });
@@ -420,28 +447,18 @@ class CustomerinterfaceController extends Controller
 
     public function check_coupon(Request $request)
     {
-        if ($request->session()->has('cart')) {
-            $user = $request->session()->get('user');
-            $cart = $request->session()->get('cart');
-            if ($request->name) {
-                $discount_code = $request->name;
-                $count = Discount::where('name', $request->name)
-                    ->value('count');
-                $value = Discount::where('name', $request->name)
-                    ->value('value');
-                if ($value > 0 && $count > 0) {
-                    $notification = 'You have successfully entered ' . $value . '% discount code';
-                    return view('frontend/checkout', compact('cart', 'user', 'value', 'notification', 'discount_code'));
-                } elseif ($value > 0 && $count == 0) {
-                    $notification = 'Expired code';
-                    return view('frontend/checkout', compact('cart', 'user', 'notification'));
-                } else {
-                    $notification = 'Incorrect discount code';
-                    return view('frontend/checkout', compact('cart', 'user', 'notification'));
-                }
+
+        $count = Discount::where('name', $request->name)
+            ->first();
+
+        if ($count != null) {
+            if ($count->count > 0) {
+                return response()->json(['notification' => 'You have successfully entered ' . $count->value . '% discount code','value'=>$count->value]);
             } else {
-                return redirect('frontend/checkout');
+                return response()->json(['notification' => 'Expired code']);
             }
+        } else {
+            return response()->json(['notification' => 'Incorrect discount code']);
         }
     }
 
@@ -452,10 +469,11 @@ class CustomerinterfaceController extends Controller
         $cart_product = $request->session()->get('cart');
         $order = new Order();
         $order->customer_id = $user->id;
-        $order->address = $request->address;
+        $order->address = $request->address . ' , ' . $request->ward . ' , ' . $request->district . ' , ' . $request->province;
         $order->date = date('Y-m-d H:i:s', time());
-        $order->status = 'process';
-        $order->discount = $request->discount_code;
+        $order->status = 'processing';
+        $order->discount_value = $request->discount_value;
+        $order->transport_fee = $request->transport_fee;
         $order->total = $request->total;
         $order->save();
 
@@ -511,7 +529,7 @@ class CustomerinterfaceController extends Controller
     {
         $user = $request->session()->get('user');
         $status_product = Order::where('customer_id', $user->id)
-            ->where('status', 'process')
+            ->where('status', 'processing')
             ->get();
 
         return view('frontend/order_status', compact('status_product'));
@@ -559,36 +577,29 @@ class CustomerinterfaceController extends Controller
             }
         } else {
 
-
-            if ($request->hasFile('newimguser')) {
-
-                $customer->first_name = $request->first_name;
-                $customer->last_name = $request->last_name;
+            if ($customer->source == "register") {
+                $customer->name = $request->name;
                 $customer->email = $request->email;
-                $customer->address = $request->address;
-                $customer->phone = $request->phone;
-
-                $file = $request->file('newimguser');
-                $filename = $file->getClientOriginalName();
-                $file->move(public_path('images/myimg/frontend/customer'), $filename);
-                $customer->image = 'images/myimg/frontend/customer/' . $filename;
-            } else {
-
-                $customer->first_name = $request->first_name;
-                $customer->last_name = $request->last_name;
-                $customer->email = $request->email;
-                $customer->phone = $request->phone;
-                $customer->address = $request->address;
+                if ($request->hasFile('newimguser')) {
+                    $file = $request->file('newimguser');
+                    $filename = $file->getClientOriginalName();
+                    $file->move(public_path('images/myimg/frontend/customer'), $filename);
+                    $customer->image = 'images/myimg/frontend/customer/' . $filename;
+                }
             }
+            $customer->phone = $request->phone;
+            $customer->address = $request->address;
+
+
             $customer->save();
             session()->put('user', $customer);
 
             return [
-                'first_name' => $customer->first_name,
-                'last_name' => $customer->last_name,
+                'name' => $customer->name,
                 'email' => $customer->email,
                 'phone' => $customer->phone,
                 'address' => $customer->address,
+
             ];
         }
     }
@@ -604,8 +615,10 @@ class CustomerinterfaceController extends Controller
     public function recover_password(Request $request)
     {
         // return response()->json(['notification' => $request->email]);
-        $account_customers = Customer::where('email', $request->email)->first();
-        if ($account_customers == '') {
+        $account_customers = Customer::where('email', $request->email)
+            ->where('source', 'register')
+            ->first();
+        if ($account_customers == null) {
             return response()->json(['notification' => 'error']);
         } else {
             $name = $account_customers->first_name . ' ' . $account_customers->last_name;
@@ -623,7 +636,7 @@ class CustomerinterfaceController extends Controller
 
     public function view_cart(Request $request)
     {
-        dd($request->session()->get('cart_copy'));
+        dd($request->session()->get('user'));
     }
 
     public function delete_cart(Request $request)

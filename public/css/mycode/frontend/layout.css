@@ -380,10 +380,17 @@ header .sidebar_header .left_sidebar_header h1 .name_brand {
     text-decoration: none;
 }
 
-header .sidebar_header .left_sidebar_header>* {
+header .sidebar_header .left_sidebar_header>a {
     color: white;
     text-decoration: none;
     padding: 0 10px;
+}
+header .sidebar_header .left_sidebar_header .fa-xmark {
+    font-size: 25px;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    display: none;
 }
 
 header .sidebar_header .left_sidebar_header .count_cart {
@@ -434,13 +441,13 @@ header .sidebar_header .right_sidebar_header .header_mobie .search input {
     border-bottom: 1px solid rgb(255, 255, 255);
 }
 
-header .sidebar_header .right_sidebar_header img,
+header .sidebar_header .right_sidebar_header .fa-user,
 header .sidebar_header .right_sidebar_header .fa-bars {
     display: none;
-    font-size: 30px;
+    font-size: 25px;
 }
 
-header .sidebar_header .right_sidebar_header a {
+header .sidebar_header .right_sidebar_header .btn-account {
     background-color: #5d5dff;
     padding: 5px 10px;
     border-radius: 3px;
@@ -554,22 +561,32 @@ ul {
 }
 
 @media (max-width : 620px) {
-    header .sidebar_header {
+    
+    header .sidebar_header .left_sidebar_header {
         justify-content: start;
         height: 100%;
         top: 0;
         left: -100%;
         position: fixed;
-        flex-direction: column;
-        background-color: red;
+        background-color: rgb(245, 245, 245);
         width: 250px;
-
-    }
-
-
-    header .sidebar_header .left_sidebar_header {
         display: flex;
         flex-direction: column;
+        z-index: 999;
+        padding-top: 55px;
+        transition: .3s;
+    }
+    header .sidebar_header .left_sidebar_header a{
+        color: #000000;
+        padding: 10px 40px;
+        position: relative;
+        transition: .3s;
+    }
+    header .sidebar_header .left_sidebar_header a:hover{
+        color: #5d5dff;
+    }
+    header .sidebar_header .left_sidebar_header .fa-xmark {
+        display: block;
     }
 
     header .sidebar_header .right_sidebar_header .header_mobie {
@@ -587,9 +604,9 @@ ul {
     }
 
 
-    header .sidebar_header .right_sidebar_header img,
+    header .sidebar_header .right_sidebar_header .fa-user,
     header .sidebar_header .right_sidebar_header .fa-bars {
-        padding-top: 10px;
+        padding-top: 7px;
         display: block;
         color: white;
     }

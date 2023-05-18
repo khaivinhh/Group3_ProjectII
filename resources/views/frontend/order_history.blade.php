@@ -41,12 +41,13 @@
             <tfoot>
                 <tr>
                     <td class="total" colspan="5">
-                        <p>Total : ${{$items->total}}</p>
-                        @if($items->discount != '')
-                        <p>Discount : {{$items->total/($items->total-$total_history)}}%</p>
+                        @if($items->discount_value != '')
+                        <p>Discount : {{$items->discount_value}}%</p>
                         @else
                         <p>Discount : No</p>
                         @endif
+                        <p>Transport Fee : {{$items->transport_fee}}$</p>
+                        <p>Total : ${{$items->total}}</p>
                         <a href="{{route('re_order',$items->id)}}">Reorder</a>
 
                     </td>
