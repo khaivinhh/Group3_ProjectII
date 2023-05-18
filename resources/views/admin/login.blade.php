@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('/css/mycode/admin/login.css')}}">
+    <link rel="icon" type="image/x-icon" href="{{asset('images/myimg/OIP-removebg-preview.png')}}">
 
-    <title>Document</title>
+    <title>IShopApple</title>
 </head>
 
 <body>
@@ -107,7 +108,8 @@
                     },
                     success: function(data) {
                         if (data == 'successfully') {
-                            $('#notification-checkcreate').text('successfully !');
+                            $('#notification-checkcreate').text('successfully !')
+                            container.removeClass("right-panel-active");
                         } else {
                             $('#notification-checkcreate').text('Email already exists !');
                         }
