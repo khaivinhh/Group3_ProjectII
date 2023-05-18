@@ -36,9 +36,11 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('admin/login');
-});
+Route::get('/', [CustomerinterfaceController::class, 'home'])->name('home');
+// Route::get('/', function () {
+//     return view('frontend/home');
+//     // admin/login
+// });
 
  
 // Route::get('/auth/google/redirect', function () {
