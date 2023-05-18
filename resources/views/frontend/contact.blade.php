@@ -32,11 +32,11 @@
         <p class="title_contact2">Tell Us Your Message</p>
         <form class="form_contact">
             <div>
-                <label for="name">Your Name (required)</label><br>
+                <label for="name">Your Name</label><br>
                 <input type="text" id="name_contact" name="name" required>
             </div>
             <div>
-                <label for="email">Your Email (required)</label><br>
+                <label for="email">Your Email</label><br>
                 <input type="text" id="email_contact" name="email" required>
             </div>
             <div>
@@ -59,8 +59,6 @@
 <script>
     $('.form_contact').on('submit', function(e) {
         e.preventDefault();
-
-
         $.ajax({
             type: 'post',
             url: "{{route('send_mail_contact')}}",
