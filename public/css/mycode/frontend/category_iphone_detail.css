@@ -121,7 +121,7 @@
 
 .category_product .information_product .capacities>input:checked+label {
     border: 2px solid rgb(125, 125, 255);
-
+    transition: .3s;
 }
 
 .discription,
